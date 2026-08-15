@@ -1,1 +1,82 @@
+<!DOCTYPE html>
+<!-- template renders the individual recipe pages, 
+placing your ingredients in a sidebar next to the 
+step-by-step cooking directions.-->
 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <link rel="stylesheet" href="{{ "style.css" | relURL }}">
+</head>
+<body>
+  <header class="site-header">
+    <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Back to Cookbook</a>
+    <h1>{{ .Title }}</h1>
+  </header>
+
+  {{ $recipeKey := .File.TranslationBaseName }}
+  {{ $recipe := index .Site.Data.recipes $recipeKey }}
+
+  <main class="container recipe-layout">
+    {{ if $recipe }}
+      <!-- Sidebar: Ingredients & Equipment -->
+      <aside class="sidebar">
+        {{ with $recipe.metadata }}
+          <div class="meta-box">
+            {{ range $k, $v := . }}
+              <div><strong>{{ humanize $k }}:</strong> {{ $v }}</div>
+            {{ end }}
+          </div>
+        {{ end }}
+
+        {{ if $recipe.ingredients }}
+          <section class="ingredients-section">
+            <h2>Ingredients</h2>
+            <ul class="ingredients-list">
+              {{ range $recipe.ingredients }}
+                <li>
+                  <label>
+                    <input type="checkbox">
+                    <span>
+                      <strong>{{ .name }}</strong>
+                      {{ if .quantity }}— {{ .quantity }} {{ .units }}{{ end }}
+                    </span>
+                  </label>
+                </li>
+              {{ end }}
+            </ul>
+          </section>
+        {{ end }}
+      </aside>
+
+      <!-- Main Content: Directions -->
+      <section class="directions-section">
+        <h2>Directions</h2>
+        <ol class="steps-list">
+          {{ range $recipe.steps }}
+            <li>
+              <p>
+                {{ range . }}
+                  {{ if eq .type "text" }}
+                    {{ .value }}
+                  {{ else if eq .type "ingredient" }}
+                    <mark class="ing">{{ .name }}</mark>
+                  {{ else if eq .type "cookware" }}
+                    <mark class="cw">{{ .name }}</mark>
+                  {{ else if eq .type "timer" }}
+                    <mark class="tm">{{ .quantity }} {{ .units }}</mark>
+                  {{ end }}
+                {{ end }}
+              </p>
+            </li>
+          {{ end }}
+        </ol>
+      </section>
+    {{ else }}
+      <p>Recipe details could not be loaded.</p>
+    {{ end }}
+  </main>
+</body>
+</html>

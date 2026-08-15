@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<!-- template serves as your cookbook’s front page, listing all available recipes in a simple grid -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Site.Title }}</title>
+  <link rel="stylesheet" href="{{ "style.css" | relURL }}">
+</head>
+<body>
+  <header class="site-header">
+    <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+  </header>
 
+  <main class="container">
+    <h2>All Recipes</h2>
+    <div class="recipe-grid">
+      {{ range $name, $recipe := .Site.Data.recipes }}
+        <article class="recipe-card">
+          <h3>
+            <a href="{{ $.Site.BaseURL }}recipes/{{ $name }}/">
+              {{ humanize $name }}
+            </a>
+          </h3>
+          {{ if $recipe.metadata }}
+            <p class="meta">
+              {{ with $recipe.metadata.servings }}Servings: {{ . }} | {{ end }}
+              {{ with index $recipe.metadata "cook time" }}Cook time: {{ . }}{{ end }}
+            </p>
+          {{ end }}
+        </article>
+      {{ range else }}
+        <p>No recipes found yet. Add `.cook` files to your <code>recipes/</code> folder!</p>
+      {{ end }}
+    </div>
+  </main>
+</body>
+</html>

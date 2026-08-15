@@ -1,1 +1,66 @@
+name: Deploy Culinary Cookbook to GitHub Pages
 
+# setting up the GitHub Actions workflow file. This tells GitHub how to automatically 
+# compile your .cook files, build your Hugo site, and deploy the finished website to 
+# GitHub Pages every time you push changes
+
+on:
+  push:
+    branches: ["main"] # Runs automatically whenever you commit to the main branch
+  workflow_dispatch:   # Allows you to manually trigger a build from the Actions tab
+
+# Grants permissions required to build and deploy to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allows only one concurrent deployment at a time
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install CookCLI
+        run: |
+          # Install the Cooklang command-line parser
+          curl -sSL https://github.com/cooklang/cookcli/releases/latest/download/cookcli_linux_amd64.tar.gz | tar -xz
+          sudo mv cook /usr/local/bin/
+
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+
+      - name: Process Recipes (.cook to JSON)
+        run: |
+          # Make build.sh executable and run the conversion script
+          chmod +x build.sh
+          ./build.sh
+
+      - name: Build Hugo Site
+        run: |
+          # Compile HTML files into the public directory
+          hugo --minify
+
+      - name: Upload Build Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

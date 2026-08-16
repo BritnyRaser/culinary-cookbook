@@ -9,25 +9,20 @@
 #    creates the HTML page route for each individual recipe.
 # ==============================================================================
 
-# Create necessary directories
 mkdir -p data/recipes
 mkdir -p content/recipes
 
-# Process all .cook files in the recipes/ directory
 for file in recipes/*.cook; do
-  [ -e "$file" ] || continue
-  
-  # Get base filename without extension
+  [ -f "$file" ] || continue
   filename=$(basename "$file" .cook)
   
-  # 1. Convert .cook file to JSON for Hugo data usage
-  cook recipe "$file" --json > "data/recipes/${filename}.json"
+  # CookCLI syntax to output JSON to stdout:
+  cook recipe "$file" json > "data/recipes/${filename}.json"
   
-  # 2. Create a content file so Hugo generates the HTML page route
+  # Generate Hugo markdown content route
   cat <<EOF > "content/recipes/${filename}.md"
 ---
 title: "${filename}"
-recipe_key: "${filename}"
 ---
 EOF
 done

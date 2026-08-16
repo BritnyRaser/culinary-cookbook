@@ -563,7 +563,9 @@ title: "Grocery List"
 </section>
 
 <script>
-  const groceryState = {
+  const STORAGE_KEY = 'groceryState_v1';
+
+  const defaultState = {
     Produce: [
       { name: 'Apples', amount: 6, unit: 'each' },
       { name: 'Avocados', amount: 2, unit: 'each' },
@@ -583,6 +585,31 @@ title: "Grocery List"
 
   const sectionOrder = ['Produce', 'Bakery', 'Meat', 'Pantry', 'Dairy', 'Frozen', 'Personal Care', 'Home Supplies', 'Miscellaneous'];
 
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        // ensure all sections exist
+        sectionOrder.forEach((s) => { if (!Array.isArray(parsed[s])) parsed[s] = defaultState[s] || []; });
+        return parsed;
+      }
+    } catch (e) {
+      console.warn('Failed to load grocery state:', e);
+    }
+    return JSON.parse(JSON.stringify(defaultState));
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(groceryState));
+    } catch (e) {
+      console.warn('Failed to save grocery state:', e);
+    }
+  }
+
+  const groceryState = loadState();
+
   const formatAmount = (amount, unit) => {
     const normalizedAmount = amount == null || amount === '' ? '1' : String(amount).trim();
     const normalizedUnit = unit && unit !== 'each' ? unit : '';
@@ -591,7 +618,6 @@ title: "Grocery List"
 
   function renderSection(sectionName) {
     const grid = document.querySelector('[data-grid="' + sectionName + '"]');
-    const section = document.querySelector('.grocery-section[data-section="' + sectionName + '"]');
     if (!grid) return;
 
     grid.innerHTML = '';
@@ -608,6 +634,7 @@ title: "Grocery List"
     items.forEach((item, itemIndex) => {
       const article = document.createElement('article');
       article.className = 'grocery-item';
+      if (item.checked) article.classList.add('is-checked');
       article.innerHTML = `
         <div class="item-content">
           <span class="item-name">${item.name}</span>
@@ -651,11 +678,15 @@ title: "Grocery List"
       const unitSelect = article.querySelector('select');
 
       checkToggle.addEventListener('click', () => {
-        article.classList.toggle('is-checked');
+        item.checked = !item.checked;
+        if (item.checked) article.classList.add('is-checked'); else article.classList.remove('is-checked');
+        saveState();
       });
 
       undoToggle.addEventListener('click', () => {
+        item.checked = false;
         article.classList.remove('is-checked');
+        saveState();
       });
 
       editToggle.addEventListener('click', () => {
@@ -667,7 +698,7 @@ title: "Grocery List"
       cancelToggle.addEventListener('click', () => {
         article.classList.remove('is-editing');
         amountInput.value = item.amount;
-        unitSelect.value = item.unit;
+        unitSelect.value = item.unit || 'each';
       });
 
       saveToggle.addEventListener('click', () => {
@@ -677,12 +708,14 @@ title: "Grocery List"
           item.amount = nextAmount;
           item.unit = nextUnit;
           amountText.textContent = formatAmount(nextAmount, nextUnit);
+          saveState();
         }
         article.classList.remove('is-editing');
       });
 
       removeToggle.addEventListener('click', () => {
         groceryState[sectionName].splice(itemIndex, 1);
+        saveState();
         renderSection(sectionName);
       });
 
@@ -729,6 +762,7 @@ title: "Grocery List"
         unit
       });
       groceryState[sectionName] = list;
+      saveState();
       form.reset();
       form.closest('.grocery-section').classList.remove('is-adding');
       renderSection(sectionName);

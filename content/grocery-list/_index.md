@@ -142,6 +142,7 @@ title: "Grocery List"
   .edit-toggle,
   .save-toggle,
   .cancel-toggle,
+  .remove-toggle,
   .add-submit,
   .add-cancel {
     border: none;
@@ -171,6 +172,7 @@ title: "Grocery List"
   .save-toggle,
   .cancel-toggle,
   .undo-toggle,
+  .remove-toggle,
   .add-submit,
   .add-cancel {
     background: #edf8fb;
@@ -180,6 +182,26 @@ title: "Grocery List"
     padding: 0.36rem 0.6rem;
     font-size: 0.7rem;
     font-weight: 700;
+    min-width: 28px;
+    min-height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .edit-toggle::before { content: '✎'; }
+  .remove-toggle::before { content: '−'; }
+  .undo-toggle::before { content: '↺'; }
+  .save-toggle::before { content: '✓'; }
+  .cancel-toggle::before { content: '×'; }
+
+  .edit-toggle,
+  .remove-toggle,
+  .undo-toggle,
+  .save-toggle,
+  .cancel-toggle {
+    text-indent: -9999px;
+    overflow: hidden;
   }
 
   .undo-toggle {
@@ -598,7 +620,7 @@ title: "Grocery List"
       return;
     }
 
-    items.forEach((item) => {
+    items.forEach((item, itemIndex) => {
       const article = document.createElement('article');
       article.className = 'grocery-item';
       article.innerHTML = `
@@ -621,14 +643,15 @@ title: "Grocery List"
               <option value="can" ${item.unit === 'can' ? 'selected' : ''}>can</option>
               <option value="jar" ${item.unit === 'jar' ? 'selected' : ''}>jar</option>
             </select>
-            <button class="save-toggle" type="button">Save</button>
-            <button class="cancel-toggle" type="button">Cancel</button>
+            <button class="save-toggle" type="button" aria-label="Save ${item.name}">Save</button>
+            <button class="cancel-toggle" type="button" aria-label="Cancel editing ${item.name}">Cancel</button>
           </div>
         </div>
         <div class="item-actions">
-          <button class="edit-toggle" type="button">Edit</button>
+          <button class="edit-toggle" type="button" aria-label="Edit ${item.name}"></button>
+          <button class="remove-toggle" type="button" aria-label="Remove ${item.name}"></button>
           <button class="check-toggle" type="button" aria-label="Check ${item.name}">✓</button>
-          <button class="undo-toggle" type="button">Undo</button>
+          <button class="undo-toggle" type="button" aria-label="Undo ${item.name}"></button>
         </div>
       `;
 
@@ -637,6 +660,7 @@ title: "Grocery List"
       const editToggle = article.querySelector('.edit-toggle');
       const cancelToggle = article.querySelector('.cancel-toggle');
       const saveToggle = article.querySelector('.save-toggle');
+      const removeToggle = article.querySelector('.remove-toggle');
       const amountText = article.querySelector('.item-amount');
       const amountInput = article.querySelector('input[type="text"]');
       const unitSelect = article.querySelector('select');
@@ -670,6 +694,11 @@ title: "Grocery List"
           amountText.textContent = formatAmount(nextAmount, nextUnit);
         }
         article.classList.remove('is-editing');
+      });
+
+      removeToggle.addEventListener('click', () => {
+        groceryState[sectionName].splice(itemIndex, 1);
+        renderSection(sectionName);
       });
 
       grid.appendChild(article);

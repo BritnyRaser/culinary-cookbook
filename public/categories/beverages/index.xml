@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Beverages on Culinary Cookbook</title>
-    <link>http://localhost:1313/culinary-cookbook/categories/beverages/</link>
+    <link>https://BritnyRaser.github.io/culinary-cookbook/categories/beverages/</link>
     <description>Recent content in Beverages on Culinary Cookbook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <atom:link href="http://localhost:1313/culinary-cookbook/categories/beverages/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://BritnyRaser.github.io/culinary-cookbook/categories/beverages/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Brazilian Lemonade</title>
-      <link>http://localhost:1313/culinary-cookbook/recipes/beverages/brazilian_lemonade/</link>
+      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/beverages/brazilian_lemonade/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/recipes/beverages/brazilian_lemonade/</guid>
+      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/beverages/brazilian_lemonade/</guid>
       <description></description>
     </item>
   </channel>

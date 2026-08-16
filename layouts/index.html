@@ -92,8 +92,36 @@
           {{ $recipeData := index $.Site.Data.recipes $recipeKey }}
           {{ $tags := "" }}
           {{ with $recipeData.metadata.map.tags }}{{ $tags = . }}{{ else }}{{ with $recipeData.metadata.map.Tags }}{{ $tags = . }}{{ end }}{{ end }}
+          {{ $recipeImage := "" }}
+          {{ $slug := lower $title | urlize }}
+          {{ $slugUnderscore := replace $slug "-" "_" }}
+          {{ $recipeCandidates := slice
+            (printf "static/images/%s.png" $slug)
+            (printf "static/images/%s.jpg" $slug)
+            (printf "static/images/%s.jpeg" $slug)
+            (printf "static/images/%s.svg" $slug)
+            (printf "static/images/%s.webp" $slug)
+            (printf "static/images/%s.gif" $slug)
+            (printf "static/images/%s.png" $slugUnderscore)
+            (printf "static/images/%s.jpg" $slugUnderscore)
+            (printf "static/images/%s.jpeg" $slugUnderscore)
+            (printf "static/images/%s.svg" $slugUnderscore)
+            (printf "static/images/%s.webp" $slugUnderscore)
+            (printf "static/images/%s.gif" $slugUnderscore)
+          }}
+
+          {{ range $recipeCandidates }}
+            {{ if eq $recipeImage "" }}
+              {{ if fileExists . }}
+                {{ $recipeImage = printf "images/%s" (replace . "static/images/" "") }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
 
           <article class="recipe-card home-recipe-card" data-name="{{ $title }}" data-tags="{{ $tags }}">
+            {{ with $recipeImage }}
+              <img src="{{ . | relURL }}" alt="{{ $title }}" class="recipe-image">
+            {{ end }}
             <h3><a href="{{ .RelPermalink }}">{{ $title }}</a></h3>
             {{ with $tags }}
               <p class="recipe-meta">{{ $tags }}</p>

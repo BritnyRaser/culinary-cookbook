@@ -5,6 +5,11 @@ title = 'Culinary Cookbook'
 [taxonomies]
   category = 'categories'
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 # Tells Hugo to look for compiled recipe JSON in the data/ folder
 [params]
   description = 'My personal Cooklang digital cookbook'

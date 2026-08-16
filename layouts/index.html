@@ -23,8 +23,13 @@
             {{ $imagePath := "" }}
 
             {{ with .Page.Params.image }}
-              {{ $imagePath = . }}
-            {{ else }}
+              {{ $paramImage := printf "static%s" . }}
+              {{ if fileExists $paramImage }}
+                {{ $imagePath = . }}
+              {{ end }}
+            {{ end }}
+
+            {{ if eq $imagePath "" }}
               {{ $slug := lower $title | urlize }}
               {{ $slugUnderscore := replace $slug "-" "_" }}
               {{ $candidates := slice
@@ -43,8 +48,10 @@
               }}
 
               {{ range $candidates }}
-                {{ if and (not $imagePath) (fileExists .) }}
-                  {{ $imagePath = replace . "static/images/" "/images/" }}
+                {{ if eq $imagePath "" }}
+                  {{ if fileExists . }}
+                    {{ $imagePath = replace . "static/images/" "/images/" }}
+                  {{ end }}
                 {{ end }}
               {{ end }}
             {{ end }}

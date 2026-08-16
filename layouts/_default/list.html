@@ -188,14 +188,12 @@
         if (!query) {
           tagSuggestions.hidden = true;
           tagSuggestions.innerHTML = '';
-          tagSearchInput.closest('.tag-search-shell').style.display = 'none';
           if (tagControl) {
             tagControl.classList.remove('is-active');
           }
           return;
         }
 
-        tagSearchInput.closest('.tag-search-shell').style.display = 'block';
         if (tagControl) {
           tagControl.classList.add('is-active');
         }
@@ -250,7 +248,6 @@
         selectedTagsContainer.style.display = 'none';
         renderSelectedTags();
         const tagControl = tagSearchInput.closest('.tag-search-control');
-        tagSearchInput.closest('.tag-search-shell').style.display = 'none';
         if (tagControl) {
           tagControl.classList.remove('is-active');
         }

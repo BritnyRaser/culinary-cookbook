@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <link rel="stylesheet" href="{{ "style.css" | relURL }}">
+</head>
+<body>
+  <header class="site-header">
+    <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Back to Cookbook</a>
+  </header>
+
+  {{ $categoryImage := "" }}
+  {{ with .Params.image }}
+    {{ $normalizedImage := strings.TrimPrefix "/" . }}
+    {{ $paramImage := printf "static/%s" $normalizedImage }}
+    {{ if fileExists $paramImage }}
+      {{ $categoryImage = $normalizedImage }}
+    {{ end }}
+  {{ end }}
+
+  {{ if eq $categoryImage "" }}
+    {{ $slug := lower .Title | urlize }}
+    {{ $slugUnderscore := replace $slug "-" "_" }}
+    {{ $candidates := slice
+      (printf "static/images/%s.png" $slug)
+      (printf "static/images/%s.jpg" $slug)
+      (printf "static/images/%s.jpeg" $slug)
+      (printf "static/images/%s.svg" $slug)
+      (printf "static/images/%s.webp" $slug)
+      (printf "static/images/%s.gif" $slug)
+      (printf "static/images/%s.png" $slugUnderscore)
+      (printf "static/images/%s.jpg" $slugUnderscore)
+      (printf "static/images/%s.jpeg" $slugUnderscore)
+      (printf "static/images/%s.svg" $slugUnderscore)
+      (printf "static/images/%s.webp" $slugUnderscore)
+      (printf "static/images/%s.gif" $slugUnderscore)
+    }}
+
+    {{ range $candidates }}
+      {{ if eq $categoryImage "" }}
+        {{ if fileExists . }}
+          {{ $categoryImage = printf "images/%s" (replace . "static/images/" "") }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  <main class="container category-page">
+    <section class="category-hero" {{ with $categoryImage }}style="background-image: linear-gradient(135deg, rgba(15,118,110,0.78), rgba(37,99,235,0.68)), url('{{ . | relURL }}');"{{ end }}>
+      <div class="category-hero-content">
+        <p class="eyebrow">Category</p>
+        <h1>{{ .Title }}</h1>
+      </div>
+    </section>
+
+    {{ if .Pages }}
+      <nav class="category-tabs" aria-label="Recipe tabs">
+        {{ range .Pages }}
+          <a href="{{ .RelPermalink }}" class="category-tab">{{ .Title }}</a>
+        {{ end }}
+      </nav>
+
+      <div class="recipe-grid category-recipe-grid">
+        {{ range .Pages }}
+          {{ $recipeImage := "" }}
+          {{ $recipeTitle := .Title }}
+          {{ $slug := lower $recipeTitle | urlize }}
+          {{ $slugUnderscore := replace $slug "-" "_" }}
+          {{ $recipeCandidates := slice
+            (printf "static/images/%s.png" $slug)
+            (printf "static/images/%s.jpg" $slug)
+            (printf "static/images/%s.jpeg" $slug)
+            (printf "static/images/%s.svg" $slug)
+            (printf "static/images/%s.webp" $slug)
+            (printf "static/images/%s.gif" $slug)
+            (printf "static/images/%s.png" $slugUnderscore)
+            (printf "static/images/%s.jpg" $slugUnderscore)
+            (printf "static/images/%s.jpeg" $slugUnderscore)
+            (printf "static/images/%s.svg" $slugUnderscore)
+            (printf "static/images/%s.webp" $slugUnderscore)
+            (printf "static/images/%s.gif" $slugUnderscore)
+          }}
+
+          {{ range $recipeCandidates }}
+            {{ if eq $recipeImage "" }}
+              {{ if fileExists . }}
+                {{ $recipeImage = printf "images/%s" (replace . "static/images/" "") }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+
+          <article class="recipe-card category-card">
+            {{ with $recipeImage }}
+              <img src="{{ . | relURL }}" alt="{{ $recipeTitle }}" class="recipe-image">
+            {{ end }}
+            <h3><a href="{{ .RelPermalink }}">{{ $recipeTitle }}</a></h3>
+          </article>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="empty-state">No recipes in this category yet.</p>
+    {{ end }}
+  </main>
+</body>
+</html>

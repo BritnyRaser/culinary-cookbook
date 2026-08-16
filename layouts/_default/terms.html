@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <link rel="stylesheet" href="{{ "style.css" | relURL }}">
+</head>
+<body>
+  <header class="site-header">
+    <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Back to Cookbook</a>
+    <h1>{{ .Title }}</h1>
+  </header>
+
+  <main class="container">
+    <div class="category-list">
+      {{ range .Data.Terms.Alphabetical }}
+        <section class="category-group">
+          {{ $term := .Page }}
+          {{ $title := $term.Title }}
+          {{ $imagePath := "" }}
+
+          {{ with $term.Params.image }}
+            {{ $normalizedImage := strings.TrimPrefix "/" . }}
+            {{ $paramImage := printf "static/%s" $normalizedImage }}
+            {{ if fileExists $paramImage }}
+              {{ $imagePath = $normalizedImage }}
+            {{ end }}
+          {{ end }}
+
+          {{ if eq $imagePath "" }}
+            {{ $slug := lower $title | urlize }}
+            {{ $slugUnderscore := replace $slug "-" "_" }}
+            {{ $candidates := slice
+              (printf "static/images/%s.png" $slug)
+              (printf "static/images/%s.jpg" $slug)
+              (printf "static/images/%s.jpeg" $slug)
+              (printf "static/images/%s.svg" $slug)
+              (printf "static/images/%s.webp" $slug)
+              (printf "static/images/%s.gif" $slug)
+              (printf "static/images/%s.png" $slugUnderscore)
+              (printf "static/images/%s.jpg" $slugUnderscore)
+              (printf "static/images/%s.jpeg" $slugUnderscore)
+              (printf "static/images/%s.svg" $slugUnderscore)
+              (printf "static/images/%s.webp" $slugUnderscore)
+              (printf "static/images/%s.gif" $slugUnderscore)
+            }}
+
+            {{ range $candidates }}
+              {{ if eq $imagePath "" }}
+                {{ if fileExists . }}
+                  {{ $imagePath = printf "images/%s" (replace . "static/images/" "") }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+
+          {{ with $imagePath }}
+            <img src="{{ . | relURL }}" alt="{{ $title }}" class="category-image">
+          {{ end }}
+
+          <h3><a href="{{ $term.RelPermalink }}">{{ $title }}</a></h3>
+        </section>
+      {{ end }}
+    </div>
+  </main>
+</body>
+</html>

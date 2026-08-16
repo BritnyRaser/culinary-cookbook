@@ -23,9 +23,10 @@
             {{ $imagePath := "" }}
 
             {{ with .Page.Params.image }}
-              {{ $paramImage := printf "static%s" . }}
+              {{ $normalizedImage := strings.TrimPrefix "/" . }}
+              {{ $paramImage := printf "static/%s" $normalizedImage }}
               {{ if fileExists $paramImage }}
-                {{ $imagePath = . }}
+                {{ $imagePath = $normalizedImage }}
               {{ end }}
             {{ end }}
 
@@ -50,7 +51,7 @@
               {{ range $candidates }}
                 {{ if eq $imagePath "" }}
                   {{ if fileExists . }}
-                    {{ $imagePath = replace . "static/images/" "/images/" }}
+                    {{ $imagePath = printf "images/%s" (replace . "static/images/" "") }}
                   {{ end }}
                 {{ end }}
               {{ end }}

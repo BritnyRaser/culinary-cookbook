@@ -206,8 +206,11 @@
         selectedTagsContainer.innerHTML = '';
 
         if (!selectedTags.length) {
+          selectedTagsContainer.style.display = 'none';
           return;
         }
+
+        selectedTagsContainer.style.display = 'flex';
 
         selectedTags.forEach((tag) => {
           const chip = document.createElement('button');
@@ -228,15 +231,22 @@
       const renderSuggestions = () => {
         if (!tagSearchInput || !tagSuggestions) return;
         const query = normalizeText(tagSearchInput.value);
+        const tagControl = tagSearchInput.closest('.tag-search-control');
 
         if (!query) {
           tagSuggestions.hidden = true;
           tagSuggestions.innerHTML = '';
           tagSearchInput.closest('.tag-search-shell').style.display = 'none';
+          if (tagControl) {
+            tagControl.classList.remove('is-active');
+          }
           return;
         }
 
         tagSearchInput.closest('.tag-search-shell').style.display = 'block';
+        if (tagControl) {
+          tagControl.classList.add('is-active');
+        }
 
         const suggestions = getUniqueTags().filter((tag) => tag.includes(query) && !selectedTags.includes(tag));
         tagSuggestions.innerHTML = '';
@@ -285,8 +295,13 @@
       };
 
       if (searchInput && tagSearchInput && cards.length) {
+        selectedTagsContainer.style.display = 'none';
         renderSelectedTags();
+        const tagControl = tagSearchInput.closest('.tag-search-control');
         tagSearchInput.closest('.tag-search-shell').style.display = 'none';
+        if (tagControl) {
+          tagControl.classList.remove('is-active');
+        }
         searchInput.addEventListener('input', filterCards);
         tagSearchInput.addEventListener('input', renderSuggestions);
         tagSearchInput.addEventListener('focus', () => {

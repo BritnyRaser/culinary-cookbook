@@ -43,16 +43,6 @@ PY
 )
   fi
 
-  # Copy a sibling image file with the same basename into the static asset folder
-  # so Hugo can find recipe images even when they live next to the .cook source.
-  recipe_dir=$(dirname "$file")
-  for ext in png jpg jpeg svg webp gif; do
-    candidate="${recipe_dir}/${filename}.${ext}"
-    if [ -f "$candidate" ]; then
-      cp "$candidate" "static/images/${filename}.${ext}"
-    fi
-  done
-
   # CookCLI syntax to output JSON to stdout:
   cook recipe --format json "$file" > "data/recipes/${filename}.json"
 

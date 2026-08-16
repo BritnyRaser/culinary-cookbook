@@ -128,9 +128,9 @@ body {
 }
 
 .category-hero {
-  min-height: 300px;
+  min-height: 360px;
   border-radius: 24px;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   box-shadow: 0 12px 30px rgba(18, 53, 74, 0.12);
@@ -192,6 +192,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  min-height: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.tag-search-control.is-active {
+  background: #eff8fb;
+  border: 1px solid #d8edf2;
+  border-radius: 20px;
+  padding: 0.85rem 1rem 0.9rem;
 }
 
 .search-control input,
@@ -253,8 +264,12 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  min-height: 1.75rem;
+  min-height: 0;
   margin-top: 0.15rem;
+}
+
+.selected-tags:empty {
+  display: none;
 }
 
 .tag-chip {

@@ -76,7 +76,9 @@
         <div class="control tag-search-control" aria-label="Filter recipes by tag">
           <div class="tag-filter-layout">
             <span class="control-label">Filter by tags</span>
-            <input id="tag-search" type="text" aria-label="Search tags" placeholder="Search tags" />
+            <div id="tag-search-shell" class="tag-search-shell">
+              <input id="tag-search" type="text" aria-label="Search tags" placeholder="Search tags" />
+            </div>
             <div id="tag-suggestions" class="tag-suggestions" hidden></div>
             <div id="selected-tags" class="selected-tags" aria-live="polite"></div>
           </div>
@@ -141,12 +143,11 @@
         selectedTagsContainer.innerHTML = '';
 
         if (!selectedTags.length) {
-          const emptyState = document.createElement('span');
-          emptyState.className = 'tag-chip tag-chip-empty';
-          emptyState.textContent = 'No tags selected';
-          selectedTagsContainer.appendChild(emptyState);
+          selectedTagsContainer.style.display = 'none';
           return;
         }
+
+        selectedTagsContainer.style.display = 'flex';
 
         selectedTags.forEach((tag) => {
           const chip = document.createElement('button');
@@ -167,11 +168,21 @@
       const renderSuggestions = () => {
         if (!tagSearchInput || !tagSuggestions) return;
         const query = normalizeText(tagSearchInput.value);
+        const tagControl = tagSearchInput.closest('.tag-search-control');
 
         if (!query) {
           tagSuggestions.hidden = true;
           tagSuggestions.innerHTML = '';
+          tagSearchInput.closest('.tag-search-shell').style.display = 'none';
+          if (tagControl) {
+            tagControl.classList.remove('is-active');
+          }
           return;
+        }
+
+        tagSearchInput.closest('.tag-search-shell').style.display = 'block';
+        if (tagControl) {
+          tagControl.classList.add('is-active');
         }
 
         const suggestions = getUniqueTags().filter((tag) => tag.includes(query) && !selectedTags.includes(tag));
@@ -221,6 +232,7 @@
       };
 
       if (searchInput && tagSearchInput && cards.length) {
+        selectedTagsContainer.style.display = 'none';
         renderSelectedTags();
         searchInput.addEventListener('input', filterCards);
         tagSearchInput.addEventListener('input', renderSuggestions);

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/culinary-cookbook/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=culinary-cookbook/livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grocery List | Culinary Cookbook</title>
@@ -8,7 +8,7 @@
 </head>
 <body>
   <header class="site-header">
-    <a href="http://localhost:1314/culinary-cookbook/" class="back-link">&larr; Back to Cookbook</a>
+    <a href="https://BritnyRaser.github.io/culinary-cookbook/" class="back-link">&larr; Back to Cookbook</a>
   </header>
 
   
@@ -421,6 +421,8 @@
       function saveState() {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(groceryState));
+          lastSave = new Date().toISOString();
+          updateDebug();
         } catch (e) {
           console.warn('Failed to save grocery state:', e);
         }
@@ -582,6 +584,87 @@
       });
 
       renderAllSections();
+
+      
+      let lastLoad = new Date().toISOString();
+      let lastSave = null;
+
+      function createDebugPanel() {
+        if (document.getElementById('grocery-debug')) return;
+        const panel = document.createElement('div');
+        panel.id = 'grocery-debug';
+        panel.style.position = 'fixed';
+        panel.style.right = '12px';
+        panel.style.bottom = '12px';
+        panel.style.background = '#fff';
+        panel.style.border = '1px solid #ddd';
+        panel.style.padding = '8px';
+        panel.style.borderRadius = '8px';
+        panel.style.boxShadow = '0 6px 18px rgba(0,0,0,0.06)';
+        panel.style.fontSize = '12px';
+        panel.style.zIndex = '9999';
+        panel.style.maxWidth = '360px';
+
+        panel.innerHTML = `
+          <strong>Grocery Debug</strong>
+          <div id="grocery-debug-state" style="max-height:140px;overflow:auto;margin-top:6px;white-space:pre-wrap;font-family:monospace"></div>
+          <div style="margin-top:6px"> 
+            <button id="grocery-debug-refresh">Refresh</button>
+            <button id="grocery-debug-clear">Clear storage</button>
+            <button id="grocery-debug-export">Export JSON</button>
+          </div>
+          <div id="grocery-debug-msg" style="color:#666;margin-top:6px;font-size:11px"></div>
+        `;
+
+        document.body.appendChild(panel);
+
+        document.getElementById('grocery-debug-refresh').addEventListener('click', () => {
+          renderAllSections();
+          updateDebug('Refreshed');
+        });
+
+        document.getElementById('grocery-debug-clear').addEventListener('click', () => {
+          if (!confirm('Clear saved grocery list from localStorage?')) return;
+          localStorage.removeItem(STORAGE_KEY);
+          
+          Object.keys(groceryState).forEach(k => delete groceryState[k]);
+          Object.assign(groceryState, JSON.parse(JSON.stringify(defaultState)));
+          saveState();
+          renderAllSections();
+          updateDebug('Cleared');
+        });
+
+        document.getElementById('grocery-debug-export').addEventListener('click', async () => {
+          try {
+            const json = JSON.stringify(groceryState, null, 2);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(json);
+              updateDebug('Copied JSON to clipboard');
+            } else {
+              updateDebug('Clipboard not available — open console to copy');
+              console.log(json);
+            }
+          } catch (e) {
+            updateDebug('Export failed');
+            console.error(e);
+          }
+        });
+      }
+
+      function updateDebug(msg) {
+        createDebugPanel();
+        const shell = document.getElementById('grocery-debug-state');
+        const info = document.getElementById('grocery-debug-msg');
+        try {
+          shell.textContent = JSON.stringify(groceryState, null, 2);
+        } catch (e) {
+          shell.textContent = String(groceryState);
+        }
+        info.textContent = (msg ? msg + ' · ' : '') + `Loaded: ${lastLoad}` + (lastSave ? ` · Saved: ${lastSave}` : '');
+      }
+
+      
+      updateDebug('Loaded');
     </script>
   
 

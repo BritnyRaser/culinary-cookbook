@@ -44,7 +44,7 @@
 
               {{ range $candidates }}
                 {{ if and (not $imagePath) (fileExists .) }}
-                  {{ $imagePath = printf "/images/%s" (base .) }}
+                  {{ $imagePath = replace . "static/images/" "/images/" }}
                 {{ end }}
               {{ end }}
             {{ end }}

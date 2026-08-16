@@ -37,8 +37,19 @@ jobs:
 
       - name: Install CookCLI
         run: |
-          curl -sSL "https://github.com/cooklang/cookcli/releases/download/v0.7.0/cookcli-v0.7.0-x86_64-unknown-linux-gnu.tar.gz" -o cookcli.tar.gz
+          # Fetch the latest release download URL directly from GitHub API
+          DOWNLOAD_URL=$(curl -s https://api.github.com/repos/cooklang/CookCLI/releases/latest | grep "browser_download_url" | grep "linux" | grep "x86_64" | head -n 1 | cut -d '"' -f 4)
+          
+          # Fallback to direct release URL if API query returns empty
+          if [ -z "$DOWNLOAD_URL" ]; then
+            DOWNLOAD_URL="https://github.com/cooklang/CookCLI/releases/download/v0.32.1/cook-x86_64-unknown-linux-musl.tar.gz"
+          fi
+          
+          echo "Downloading CookCLI from: $DOWNLOAD_URL"
+          curl -sSL "$DOWNLOAD_URL" -o cookcli.tar.gz
           tar -xzf cookcli.tar.gz
+          
+          # Move binary into system path
           sudo mv cook /usr/local/bin/ || sudo mv cookcli /usr/local/bin/
           cook --version
 

@@ -52,10 +52,29 @@ title: "Grocery List"
     box-shadow: 0 12px 28px rgba(15, 88, 105, 0.08);
   }
 
-  .grocery-section h2 {
-    margin: 0 0 0.9rem;
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .section-header h2 {
+    margin: 0;
     color: #0e5870;
     font-size: 1.3rem;
+  }
+
+  .add-item-button {
+    border: none;
+    background: #0f766e;
+    color: #ffffff;
+    border-radius: 999px;
+    padding: 0.45rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
   }
 
   .grocery-grid {
@@ -87,15 +106,6 @@ title: "Grocery List"
   .grocery-item.is-checked .item-name,
   .grocery-item.is-checked .item-amount {
     text-decoration: line-through;
-  }
-
-  .grocery-thumb {
-    width: 56px;
-    height: 56px;
-    object-fit: cover;
-    border-radius: 14px;
-    flex-shrink: 0;
-    border: 1px solid rgba(18, 53, 74, 0.08);
   }
 
   .item-content {
@@ -131,7 +141,9 @@ title: "Grocery List"
   .undo-toggle,
   .edit-toggle,
   .save-toggle,
-  .cancel-toggle {
+  .cancel-toggle,
+  .add-submit,
+  .add-cancel {
     border: none;
     cursor: pointer;
     font: inherit;
@@ -158,7 +170,9 @@ title: "Grocery List"
   .edit-toggle,
   .save-toggle,
   .cancel-toggle,
-  .undo-toggle {
+  .undo-toggle,
+  .add-submit,
+  .add-cancel {
     background: #edf8fb;
     border: 1px solid #d1eaf0;
     color: #0f5a70;
@@ -192,8 +206,9 @@ title: "Grocery List"
     display: none;
   }
 
-  .grocery-item input[type="text"] {
-    width: 90px;
+  .grocery-item input[type="text"],
+  .add-form input[type="text"],
+  .add-form select {
     border: 1px solid #cfe8ee;
     border-radius: 10px;
     background: #ffffff;
@@ -203,14 +218,52 @@ title: "Grocery List"
     font-size: 0.8rem;
   }
 
-  .save-toggle {
+  .grocery-item input[type="text"] {
+    width: 90px;
+  }
+
+  .save-toggle,
+  .add-submit {
     background: #0f766e;
     border-color: #0f766e;
     color: #ffffff;
   }
 
-  .cancel-toggle {
+  .cancel-toggle,
+  .add-cancel {
     background: #ffffff;
+  }
+
+  .empty-state {
+    color: #66808a;
+    font-size: 0.9rem;
+    font-style: italic;
+    padding: 0.5rem 0.1rem 0.2rem;
+  }
+
+  .add-form {
+    display: none;
+    margin-top: 0.8rem;
+    padding: 0.8rem;
+    background: #f4fbff;
+    border: 1px solid #dfeef2;
+    border-radius: 16px;
+    gap: 0.55rem;
+    align-items: end;
+    flex-wrap: wrap;
+  }
+
+  .grocery-section.is-adding .add-form {
+    display: flex;
+  }
+
+  .add-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    color: #365a6d;
+    font-size: 0.74rem;
+    font-weight: 700;
   }
 
   @media (max-width: 640px) {
@@ -231,326 +284,442 @@ title: "Grocery List"
   </header>
 
   <div class="grocery-sections">
-    <section class="grocery-section">
-      <h2>Produce</h2>
-      <div class="grocery-grid">
-        <article class="grocery-item" data-name="Apples">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=220&q=80" alt="Apples">
-          <div class="item-content">
-            <span class="item-name">Apples</span>
-            <span class="item-amount">6</span>
-            <div class="edit-controls">
-              <input type="text" value="6" aria-label="Edit Apples amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Apples">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
-
-        <article class="grocery-item" data-name="Avocados">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?auto=format&fit=crop&w=220&q=80" alt="Avocados">
-          <div class="item-content">
-            <span class="item-name">Avocados</span>
-            <span class="item-amount">2</span>
-            <div class="edit-controls">
-              <input type="text" value="2" aria-label="Edit Avocados amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Avocados">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
-
-        <article class="grocery-item" data-name="Bell Peppers">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=220&q=80" alt="Bell Peppers">
-          <div class="item-content">
-            <span class="item-name">Bell Peppers</span>
-            <span class="item-amount">3</span>
-            <div class="edit-controls">
-              <input type="text" value="3" aria-label="Edit Bell Peppers amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Bell Peppers">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
-
-        <article class="grocery-item" data-name="Carrots">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1447175008436-5d4f2a3c8fdd?auto=format&fit=crop&w=220&q=80" alt="Carrots">
-          <div class="item-content">
-            <span class="item-name">Carrots</span>
-            <span class="item-amount">1 lb</span>
-            <div class="edit-controls">
-              <input type="text" value="1 lb" aria-label="Edit Carrots amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Carrots">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
+    <section class="grocery-section" data-section="Produce">
+      <div class="section-header">
+        <h2>Produce</h2>
+        <button class="add-item-button" type="button">Add</button>
       </div>
+      <div class="grocery-grid" data-grid="Produce"></div>
+      <form class="add-form" data-form="Produce">
+        <label>
+          Ingredient
+          <input type="text" name="name" placeholder="e.g. Spinach" required>
+        </label>
+        <label>
+          Amount
+          <input type="text" name="amount" placeholder="2" required>
+        </label>
+        <label>
+          Unit
+          <select name="unit">
+            <option value="each">each</option>
+            <option value="oz">oz</option>
+            <option value="lb">lb</option>
+            <option value="bunch">bunch</option>
+            <option value="bag">bag</option>
+            <option value="bottle">bottle</option>
+            <option value="loaf">loaf</option>
+            <option value="gal">gal</option>
+            <option value="box">box</option>
+            <option value="pack">pack</option>
+            <option value="can">can</option>
+            <option value="jar">jar</option>
+          </select>
+        </label>
+        <button class="add-submit" type="submit">Add Ingredient</button>
+        <button class="add-cancel" type="button">Cancel</button>
+      </form>
     </section>
 
-    <section class="grocery-section">
-      <h2>Dairy</h2>
-      <div class="grocery-grid">
-        <article class="grocery-item" data-name="Cheddar Cheese">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=220&q=80" alt="Cheddar Cheese">
-          <div class="item-content">
-            <span class="item-name">Cheddar Cheese</span>
-            <span class="item-amount">8 oz</span>
-            <div class="edit-controls">
-              <input type="text" value="8 oz" aria-label="Edit Cheddar Cheese amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Cheddar Cheese">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
-
-        <article class="grocery-item" data-name="Greek Yogurt">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=220&q=80" alt="Greek Yogurt">
-          <div class="item-content">
-            <span class="item-name">Greek Yogurt</span>
-            <span class="item-amount">32 oz</span>
-            <div class="edit-controls">
-              <input type="text" value="32 oz" aria-label="Edit Greek Yogurt amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Greek Yogurt">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
-
-        <article class="grocery-item" data-name="Milk">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=220&q=80" alt="Milk">
-          <div class="item-content">
-            <span class="item-name">Milk</span>
-            <span class="item-amount">1 gal</span>
-            <div class="edit-controls">
-              <input type="text" value="1 gal" aria-label="Edit Milk amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Milk">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
+    <section class="grocery-section" data-section="Bakery">
+      <div class="section-header">
+        <h2>Bakery</h2>
+        <button class="add-item-button" type="button">Add</button>
       </div>
+      <div class="grocery-grid" data-grid="Bakery"></div>
+      <form class="add-form" data-form="Bakery">
+        <label>
+          Ingredient
+          <input type="text" name="name" placeholder="e.g. Sourdough" required>
+        </label>
+        <label>
+          Amount
+          <input type="text" name="amount" placeholder="2" required>
+        </label>
+        <label>
+          Unit
+          <select name="unit">
+            <option value="each">each</option>
+            <option value="oz">oz</option>
+            <option value="lb">lb</option>
+            <option value="loaf">loaf</option>
+            <option value="pack">pack</option>
+          </select>
+        </label>
+        <button class="add-submit" type="submit">Add Ingredient</button>
+        <button class="add-cancel" type="button">Cancel</button>
+      </form>
     </section>
 
-    <section class="grocery-section">
-      <h2>Pantry</h2>
-      <div class="grocery-grid">
-        <article class="grocery-item" data-name="Basil">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=220&q=80" alt="Basil">
-          <div class="item-content">
-            <span class="item-name">Basil</span>
-            <span class="item-amount">1 bunch</span>
-            <div class="edit-controls">
-              <input type="text" value="1 bunch" aria-label="Edit Basil amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Basil">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
-
-        <article class="grocery-item" data-name="Brown Rice">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1586201375761-83865001e31f?auto=format&fit=crop&w=220&q=80" alt="Brown Rice">
-          <div class="item-content">
-            <span class="item-name">Brown Rice</span>
-            <span class="item-amount">2 bags</span>
-            <div class="edit-controls">
-              <input type="text" value="2 bags" aria-label="Edit Brown Rice amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Brown Rice">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
-
-        <article class="grocery-item" data-name="Olive Oil">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=220&q=80" alt="Olive Oil">
-          <div class="item-content">
-            <span class="item-name">Olive Oil</span>
-            <span class="item-amount">1 bottle</span>
-            <div class="edit-controls">
-              <input type="text" value="1 bottle" aria-label="Edit Olive Oil amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Olive Oil">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
+    <section class="grocery-section" data-section="Meat">
+      <div class="section-header">
+        <h2>Meat</h2>
+        <button class="add-item-button" type="button">Add</button>
       </div>
+      <div class="grocery-grid" data-grid="Meat"></div>
+      <form class="add-form" data-form="Meat">
+        <label>
+          Ingredient
+          <input type="text" name="name" placeholder="e.g. Chicken" required>
+        </label>
+        <label>
+          Amount
+          <input type="text" name="amount" placeholder="1.5" required>
+        </label>
+        <label>
+          Unit
+          <select name="unit">
+            <option value="lb">lb</option>
+            <option value="oz">oz</option>
+            <option value="each">each</option>
+          </select>
+        </label>
+        <button class="add-submit" type="submit">Add Ingredient</button>
+        <button class="add-cancel" type="button">Cancel</button>
+      </form>
     </section>
 
-    <section class="grocery-section">
-      <h2>Meat</h2>
-      <div class="grocery-grid">
-        <article class="grocery-item" data-name="Chicken Breast">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=220&q=80" alt="Chicken Breast">
-          <div class="item-content">
-            <span class="item-name">Chicken Breast</span>
-            <span class="item-amount">1.5 lb</span>
-            <div class="edit-controls">
-              <input type="text" value="1.5 lb" aria-label="Edit Chicken Breast amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Chicken Breast">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
-
-        <article class="grocery-item" data-name="Ground Turkey">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1615937691194-97dbd3f3dc29?auto=format&fit=crop&w=220&q=80" alt="Ground Turkey">
-          <div class="item-content">
-            <span class="item-name">Ground Turkey</span>
-            <span class="item-amount">1 lb</span>
-            <div class="edit-controls">
-              <input type="text" value="1 lb" aria-label="Edit Ground Turkey amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Ground Turkey">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
+    <section class="grocery-section" data-section="Pantry">
+      <div class="section-header">
+        <h2>Pantry</h2>
+        <button class="add-item-button" type="button">Add</button>
       </div>
+      <div class="grocery-grid" data-grid="Pantry"></div>
+      <form class="add-form" data-form="Pantry">
+        <label>
+          Ingredient
+          <input type="text" name="name" placeholder="e.g. Rice" required>
+        </label>
+        <label>
+          Amount
+          <input type="text" name="amount" placeholder="2" required>
+        </label>
+        <label>
+          Unit
+          <select name="unit">
+            <option value="bag">bag</option>
+            <option value="can">can</option>
+            <option value="jar">jar</option>
+            <option value="bottle">bottle</option>
+            <option value="each">each</option>
+            <option value="oz">oz</option>
+          </select>
+        </label>
+        <button class="add-submit" type="submit">Add Ingredient</button>
+        <button class="add-cancel" type="button">Cancel</button>
+      </form>
     </section>
 
-    <section class="grocery-section">
-      <h2>Bakery</h2>
-      <div class="grocery-grid">
-        <article class="grocery-item" data-name="Bread">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=220&q=80" alt="Bread">
-          <div class="item-content">
-            <span class="item-name">Bread</span>
-            <span class="item-amount">1 loaf</span>
-            <div class="edit-controls">
-              <input type="text" value="1 loaf" aria-label="Edit Bread amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Bread">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
-
-        <article class="grocery-item" data-name="Buns">
-          <img class="grocery-thumb" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=220&q=80" alt="Buns">
-          <div class="item-content">
-            <span class="item-name">Buns</span>
-            <span class="item-amount">8</span>
-            <div class="edit-controls">
-              <input type="text" value="8" aria-label="Edit Buns amount">
-              <button class="save-toggle" type="button">Save</button>
-              <button class="cancel-toggle" type="button">Cancel</button>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="edit-toggle" type="button">Edit</button>
-            <button class="check-toggle" type="button" aria-label="Check Buns">✓</button>
-            <button class="undo-toggle" type="button">Undo</button>
-          </div>
-        </article>
+    <section class="grocery-section" data-section="Dairy">
+      <div class="section-header">
+        <h2>Dairy</h2>
+        <button class="add-item-button" type="button">Add</button>
       </div>
+      <div class="grocery-grid" data-grid="Dairy"></div>
+      <form class="add-form" data-form="Dairy">
+        <label>
+          Ingredient
+          <input type="text" name="name" placeholder="e.g. Cheese" required>
+        </label>
+        <label>
+          Amount
+          <input type="text" name="amount" placeholder="8" required>
+        </label>
+        <label>
+          Unit
+          <select name="unit">
+            <option value="oz">oz</option>
+            <option value="gal">gal</option>
+            <option value="each">each</option>
+            <option value="pack">pack</option>
+          </select>
+        </label>
+        <button class="add-submit" type="submit">Add Ingredient</button>
+        <button class="add-cancel" type="button">Cancel</button>
+      </form>
+    </section>
+
+    <section class="grocery-section" data-section="Frozen">
+      <div class="section-header">
+        <h2>Frozen</h2>
+        <button class="add-item-button" type="button">Add</button>
+      </div>
+      <div class="grocery-grid" data-grid="Frozen"></div>
+      <form class="add-form" data-form="Frozen">
+        <label>
+          Ingredient
+          <input type="text" name="name" placeholder="e.g. Frozen Peas" required>
+        </label>
+        <label>
+          Amount
+          <input type="text" name="amount" placeholder="1" required>
+        </label>
+        <label>
+          Unit
+          <select name="unit">
+            <option value="bag">bag</option>
+            <option value="box">box</option>
+            <option value="each">each</option>
+            <option value="lb">lb</option>
+          </select>
+        </label>
+        <button class="add-submit" type="submit">Add Ingredient</button>
+        <button class="add-cancel" type="button">Cancel</button>
+      </form>
+    </section>
+
+    <section class="grocery-section" data-section="Personal Care">
+      <div class="section-header">
+        <h2>Personal Care</h2>
+        <button class="add-item-button" type="button">Add</button>
+      </div>
+      <div class="grocery-grid" data-grid="Personal Care"></div>
+      <form class="add-form" data-form="Personal Care">
+        <label>
+          Ingredient
+          <input type="text" name="name" placeholder="e.g. Shampoo" required>
+        </label>
+        <label>
+          Amount
+          <input type="text" name="amount" placeholder="1" required>
+        </label>
+        <label>
+          Unit
+          <select name="unit">
+            <option value="each">each</option>
+            <option value="bottle">bottle</option>
+            <option value="pack">pack</option>
+          </select>
+        </label>
+        <button class="add-submit" type="submit">Add Ingredient</button>
+        <button class="add-cancel" type="button">Cancel</button>
+      </form>
+    </section>
+
+    <section class="grocery-section" data-section="Home Supplies">
+      <div class="section-header">
+        <h2>Home Supplies</h2>
+        <button class="add-item-button" type="button">Add</button>
+      </div>
+      <div class="grocery-grid" data-grid="Home Supplies"></div>
+      <form class="add-form" data-form="Home Supplies">
+        <label>
+          Ingredient
+          <input type="text" name="name" placeholder="e.g. Dish Soap" required>
+        </label>
+        <label>
+          Amount
+          <input type="text" name="amount" placeholder="1" required>
+        </label>
+        <label>
+          Unit
+          <select name="unit">
+            <option value="each">each</option>
+            <option value="bottle">bottle</option>
+            <option value="pack">pack</option>
+          </select>
+        </label>
+        <button class="add-submit" type="submit">Add Ingredient</button>
+        <button class="add-cancel" type="button">Cancel</button>
+      </form>
+    </section>
+
+    <section class="grocery-section" data-section="Miscellaneous">
+      <div class="section-header">
+        <h2>Miscellaneous</h2>
+        <button class="add-item-button" type="button">Add</button>
+      </div>
+      <div class="grocery-grid" data-grid="Miscellaneous"></div>
+      <form class="add-form" data-form="Miscellaneous">
+        <label>
+          Ingredient
+          <input type="text" name="name" placeholder="e.g. Candle" required>
+        </label>
+        <label>
+          Amount
+          <input type="text" name="amount" placeholder="1" required>
+        </label>
+        <label>
+          Unit
+          <select name="unit">
+            <option value="each">each</option>
+            <option value="pack">pack</option>
+            <option value="box">box</option>
+            <option value="bottle">bottle</option>
+          </select>
+        </label>
+        <button class="add-submit" type="submit">Add Ingredient</button>
+        <button class="add-cancel" type="button">Cancel</button>
+      </form>
     </section>
   </div>
 </section>
 
 <script>
-  document.querySelectorAll('.grocery-item').forEach((item) => {
-    const checkToggle = item.querySelector('.check-toggle');
-    const undoToggle = item.querySelector('.undo-toggle');
-    const editToggle = item.querySelector('.edit-toggle');
-    const cancelToggle = item.querySelector('.cancel-toggle');
-    const saveToggle = item.querySelector('.save-toggle');
-    const amountText = item.querySelector('.item-amount');
-    const amountInput = item.querySelector('input[type="text"]');
+  const groceryState = {
+    Produce: [
+      { name: 'Apples', amount: 6, unit: 'each' },
+      { name: 'Avocados', amount: 2, unit: 'each' },
+      { name: 'Bell Peppers', amount: 3, unit: 'each' }
+    ],
+    Bakery: [
+      { name: 'Bread', amount: 1, unit: 'loaf' }
+    ],
+    Meat: [],
+    Pantry: [],
+    Dairy: [],
+    Frozen: [],
+    'Personal Care': [],
+    'Home Supplies': [],
+    'Miscellaneous': []
+  };
 
-    const setCheckedState = (checked) => {
-      item.classList.toggle('is-checked', checked);
-      item.classList.toggle('is-editing', false);
-    };
+  const sectionOrder = ['Produce', 'Bakery', 'Meat', 'Pantry', 'Dairy', 'Frozen', 'Personal Care', 'Home Supplies', 'Miscellaneous'];
 
-    checkToggle.addEventListener('click', () => {
-      const checked = !item.classList.contains('is-checked');
-      setCheckedState(checked);
+  const formatAmount = (amount, unit) => {
+    const normalizedAmount = amount == null || amount === '' ? '1' : String(amount).trim();
+    const normalizedUnit = unit && unit !== 'each' ? unit : '';
+    return normalizedUnit ? `${normalizedAmount} ${normalizedUnit}` : normalizedAmount;
+  };
+
+  function renderSection(sectionName) {
+    const grid = document.querySelector('[data-grid="' + sectionName + '"]');
+    const section = document.querySelector('.grocery-section[data-section="' + sectionName + '"]');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+    const items = groceryState[sectionName] || [];
+
+    if (!items.length) {
+      const empty = document.createElement('div');
+      empty.className = 'empty-state';
+      empty.textContent = 'No items yet';
+      grid.appendChild(empty);
+      return;
+    }
+
+    items.forEach((item) => {
+      const article = document.createElement('article');
+      article.className = 'grocery-item';
+      article.innerHTML = `
+        <div class="item-content">
+          <span class="item-name">${item.name}</span>
+          <span class="item-amount">${formatAmount(item.amount, item.unit)}</span>
+          <div class="edit-controls">
+            <input type="text" value="${item.amount}" aria-label="Edit ${item.name} amount">
+            <select aria-label="Edit ${item.name} unit">
+              <option value="each" ${item.unit === 'each' ? 'selected' : ''}>each</option>
+              <option value="oz" ${item.unit === 'oz' ? 'selected' : ''}>oz</option>
+              <option value="lb" ${item.unit === 'lb' ? 'selected' : ''}>lb</option>
+              <option value="bunch" ${item.unit === 'bunch' ? 'selected' : ''}>bunch</option>
+              <option value="bag" ${item.unit === 'bag' ? 'selected' : ''}>bag</option>
+              <option value="bottle" ${item.unit === 'bottle' ? 'selected' : ''}>bottle</option>
+              <option value="loaf" ${item.unit === 'loaf' ? 'selected' : ''}>loaf</option>
+              <option value="gal" ${item.unit === 'gal' ? 'selected' : ''}>gal</option>
+              <option value="box" ${item.unit === 'box' ? 'selected' : ''}>box</option>
+              <option value="pack" ${item.unit === 'pack' ? 'selected' : ''}>pack</option>
+              <option value="can" ${item.unit === 'can' ? 'selected' : ''}>can</option>
+              <option value="jar" ${item.unit === 'jar' ? 'selected' : ''}>jar</option>
+            </select>
+            <button class="save-toggle" type="button">Save</button>
+            <button class="cancel-toggle" type="button">Cancel</button>
+          </div>
+        </div>
+        <div class="item-actions">
+          <button class="edit-toggle" type="button">Edit</button>
+          <button class="check-toggle" type="button" aria-label="Check ${item.name}">✓</button>
+          <button class="undo-toggle" type="button">Undo</button>
+        </div>
+      `;
+
+      const checkToggle = article.querySelector('.check-toggle');
+      const undoToggle = article.querySelector('.undo-toggle');
+      const editToggle = article.querySelector('.edit-toggle');
+      const cancelToggle = article.querySelector('.cancel-toggle');
+      const saveToggle = article.querySelector('.save-toggle');
+      const amountText = article.querySelector('.item-amount');
+      const amountInput = article.querySelector('input[type="text"]');
+      const unitSelect = article.querySelector('select');
+
+      checkToggle.addEventListener('click', () => {
+        article.classList.toggle('is-checked');
+      });
+
+      undoToggle.addEventListener('click', () => {
+        article.classList.remove('is-checked');
+      });
+
+      editToggle.addEventListener('click', () => {
+        article.classList.add('is-editing');
+        amountInput.focus();
+        amountInput.select();
+      });
+
+      cancelToggle.addEventListener('click', () => {
+        article.classList.remove('is-editing');
+        amountInput.value = item.amount;
+        unitSelect.value = item.unit;
+      });
+
+      saveToggle.addEventListener('click', () => {
+        const nextAmount = (amountInput.value || '').trim();
+        const nextUnit = unitSelect.value || 'each';
+        if (nextAmount) {
+          item.amount = nextAmount;
+          item.unit = nextUnit;
+          amountText.textContent = formatAmount(nextAmount, nextUnit);
+        }
+        article.classList.remove('is-editing');
+      });
+
+      grid.appendChild(article);
     });
+  }
 
-    undoToggle.addEventListener('click', () => {
-      setCheckedState(false);
-    });
+  function renderAllSections() {
+    sectionOrder.forEach(renderSection);
+  }
 
-    editToggle.addEventListener('click', () => {
-      item.classList.add('is-editing');
-      amountInput.focus();
-      amountInput.select();
-    });
-
-    cancelToggle.addEventListener('click', () => {
-      item.classList.remove('is-editing');
-      amountInput.value = amountText.textContent.trim();
-    });
-
-    saveToggle.addEventListener('click', () => {
-      const nextValue = (amountInput.value || '').trim();
-      if (nextValue) {
-        amountText.textContent = nextValue;
-      }
-      item.classList.remove('is-editing');
+  document.querySelectorAll('.add-item-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const section = button.closest('.grocery-section');
+      section.classList.add('is-adding');
+      const input = section.querySelector('input[name="name"]');
+      if (input) input.focus();
     });
   });
+
+  document.querySelectorAll('.add-cancel').forEach((button) => {
+    button.addEventListener('click', () => {
+      const section = button.closest('.grocery-section');
+      section.classList.remove('is-adding');
+      section.querySelector('form').reset();
+    });
+  });
+
+  document.querySelectorAll('.add-form').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const sectionName = form.dataset.form;
+      const formData = new FormData(form);
+      const name = (formData.get('name') || '').toString().trim();
+      const amount = (formData.get('amount') || '').toString().trim();
+      const unit = (formData.get('unit') || 'each').toString();
+
+      if (!name || !amount) return;
+
+      const list = groceryState[sectionName] || [];
+      list.push({
+        name,
+        amount,
+        unit
+      });
+      groceryState[sectionName] = list;
+      form.reset();
+      form.closest('.grocery-section').classList.remove('is-adding');
+      renderSection(sectionName);
+    });
+  });
+
+  renderAllSections();
 </script>

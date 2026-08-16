@@ -12,6 +12,7 @@ set -euo pipefail
 
 mkdir -p data/recipes
 mkdir -p content/recipes
+mkdir -p static/images
 
 find data/recipes -type f -name '*.json' -delete 2>/dev/null || true
 find content/recipes -type f -name '*.md' -delete 2>/dev/null || true
@@ -41,6 +42,16 @@ print(' / '.join(pretty))
 PY
 )
   fi
+
+  # Copy a sibling image file with the same basename into the static asset folder
+  # so Hugo can find recipe images even when they live next to the .cook source.
+  recipe_dir=$(dirname "$file")
+  for ext in png jpg jpeg svg webp gif; do
+    candidate="${recipe_dir}/${filename}.${ext}"
+    if [ -f "$candidate" ]; then
+      cp "$candidate" "static/images/${filename}.${ext}"
+    fi
+  done
 
   # CookCLI syntax to output JSON to stdout:
   cook recipe --format json "$file" > "data/recipes/${filename}.json"

@@ -91,7 +91,9 @@
         <div class="control tag-search-control" aria-label="Filter recipes by tag">
           <div class="tag-filter-layout">
             <span class="control-label">Filter by tags</span>
-            <input id="tag-search" type="text" aria-label="Search tags" placeholder="Search tags" />
+            <div id="tag-search-shell" class="tag-search-shell">
+              <input id="tag-search" type="text" aria-label="Search tags" placeholder="Search tags" />
+            </div>
             <div id="tag-suggestions" class="tag-suggestions" hidden></div>
             <div id="selected-tags" class="selected-tags" aria-live="polite"></div>
           </div>
@@ -160,9 +162,74 @@
             
           
 
-          <article class="recipe-card category-card" data-name="Grilled PB &amp; J" data-tags="American, Centerpiece">
+          <article class="recipe-card category-card" data-name="Grilled PB &amp; J" data-tags="American, Centerpiece, Sandwich">
             
             <h3><a href="/culinary-cookbook/recipes/centerpiece/grilled_pb__j/">Grilled PB &amp; J</a></h3>
+          </article>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+
+          <article class="recipe-card category-card" data-name="Toasted Turkey Sandwich" data-tags="Turkey, Centerpiece, Sandwich">
+            
+            <h3><a href="/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/">Toasted Turkey Sandwich</a></h3>
           </article>
         
       </div>
@@ -208,10 +275,6 @@
         selectedTagsContainer.innerHTML = '';
 
         if (!selectedTags.length) {
-          const emptyState = document.createElement('span');
-          emptyState.className = 'tag-chip tag-chip-empty';
-          emptyState.textContent = 'No tags selected';
-          selectedTagsContainer.appendChild(emptyState);
           return;
         }
 
@@ -238,8 +301,11 @@
         if (!query) {
           tagSuggestions.hidden = true;
           tagSuggestions.innerHTML = '';
+          tagSearchInput.closest('.tag-search-shell').style.display = 'none';
           return;
         }
+
+        tagSearchInput.closest('.tag-search-shell').style.display = 'block';
 
         const suggestions = getUniqueTags().filter((tag) => tag.includes(query) && !selectedTags.includes(tag));
         tagSuggestions.innerHTML = '';
@@ -289,9 +355,14 @@
 
       if (searchInput && tagSearchInput && cards.length) {
         renderSelectedTags();
+        tagSearchInput.closest('.tag-search-shell').style.display = 'none';
         searchInput.addEventListener('input', filterCards);
         tagSearchInput.addEventListener('input', renderSuggestions);
-        tagSearchInput.addEventListener('focus', renderSuggestions);
+        tagSearchInput.addEventListener('focus', () => {
+          if (tagSearchInput.value.trim()) {
+            renderSuggestions();
+          }
+        });
         document.addEventListener('click', (event) => {
           if (!event.target.closest('.tag-suggestion') && !event.target.closest('#tag-search')) {
             tagSuggestions.hidden = true;

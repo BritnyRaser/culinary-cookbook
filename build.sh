@@ -12,17 +12,42 @@
 mkdir -p data/recipes
 mkdir -p content/recipes
 
-for file in recipes/*.cook; do
+find data/recipes -type f -name '*.json' -delete 2>/dev/null || true
+find content/recipes -type f -name '*.md' -delete 2>/dev/null || true
+
+while IFS= read -r -d '' file; do
   [ -f "$file" ] || continue
   filename=$(basename "$file" .cook)
-  
+
   # CookCLI syntax to output JSON to stdout:
-  cook recipe "$file" json > "data/recipes/${filename}.json"
-  
+  cook recipe --format json "$file" > "data/recipes/${filename}.json"
+
+  title=$(python3 - "data/recipes/${filename}.json" <<'PY'
+import json, sys
+path = sys.argv[1]
+with open(path, 'r', encoding='utf-8') as f:
+    data = json.load(f)
+meta = data.get('metadata', {}).get('map', {})
+for key in ('title', 'Title', 'TITLE'):
+    value = meta.get(key)
+    if value not in (None, ''):
+        print(value)
+        break
+else:
+    print('')
+PY
+)
+
+  if [ -z "$title" ]; then
+    title="$filename"
+  fi
+
+  escaped_title=${title//\"/\\\"}
+
   # Generate Hugo markdown content route
   cat <<EOF > "content/recipes/${filename}.md"
 ---
-title: "${filename}"
+title: "${escaped_title}"
 ---
 EOF
 done < <(find recipes -type f -name '*.cook' -print0)

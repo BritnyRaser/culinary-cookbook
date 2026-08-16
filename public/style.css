@@ -25,6 +25,8 @@ body {
 }
 
 .site-header {
+  position: relative;
+  z-index: 20;
   background: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid var(--border-color);
   padding: 1.25rem 2rem;
@@ -80,6 +82,7 @@ body {
 
 .menu-panel {
   position: absolute;
+  z-index: 30;
   top: calc(100% + 12px);
   right: 0;
   min-width: 240px;

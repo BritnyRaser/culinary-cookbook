@@ -38,44 +38,108 @@
   <script>
     (function () {
       const searchInput = document.getElementById('recipe-search');
-      const tagFilter = document.getElementById('tag-filter');
+      const tagOptions = document.getElementById('tag-options');
+      const selectedTagsContainer = document.getElementById('selected-tags');
       const cards = Array.from(document.querySelectorAll('.category-card'));
+      const noResults = document.getElementById('no-results');
+      let selectedTags = [];
 
-      const buildTagOptions = () => {
+      const normalizeText = (value) => {
+        const cleaned = (value || '').toString()
+          .replace(/&amp;/gi, '&')
+          .replace(/&/g, ' and ')
+          .replace(/[_-]+/g, ' ')
+          .replace(/[^a-z0-9\s]/gi, ' ')
+          .toLowerCase();
+
+        return cleaned.replace(/\s+/g, ' ').trim();
+      };
+
+      const parseTags = (value) => (value || '')
+        .split(',')
+        .map((tag) => normalizeText(tag))
+        .filter(Boolean);
+
+      const renderSelectedTags = () => {
+        selectedTagsContainer.innerHTML = '';
+
+        if (!selectedTags.length) {
+          const emptyState = document.createElement('span');
+          emptyState.className = 'tag-chip tag-chip-empty';
+          emptyState.textContent = 'No tags selected';
+          selectedTagsContainer.appendChild(emptyState);
+          return;
+        }
+
+        selectedTags.forEach((tag) => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'tag-chip';
+          chip.setAttribute('aria-label', `Remove tag ${tag}`);
+          chip.innerHTML = `${tag} <span aria-hidden="true">×</span>`;
+          chip.addEventListener('click', () => {
+            selectedTags = selectedTags.filter((item) => item !== tag);
+            renderSelectedTags();
+            renderTagOptions();
+            filterCards();
+          });
+          selectedTagsContainer.appendChild(chip);
+        });
+      };
+
+      const renderTagOptions = () => {
+        if (!tagOptions) return;
+
         const uniqueTags = new Set();
         cards.forEach((card) => {
-          const tags = (card.dataset.tags || '').split(',').map((tag) => tag.trim()).filter(Boolean);
-          tags.forEach((tag) => uniqueTags.add(tag));
+          parseTags(card.dataset.tags).forEach((tag) => uniqueTags.add(tag));
         });
 
-        const currentValue = tagFilter.value;
-        tagFilter.innerHTML = '<option value="">All tags</option>';
+        tagOptions.innerHTML = '';
         Array.from(uniqueTags).sort().forEach((tag) => {
-          const option = document.createElement('option');
-          option.value = tag;
+          const option = document.createElement('button');
+          option.type = 'button';
+          option.className = 'tag-option' + (selectedTags.includes(tag) ? ' selected' : '');
           option.textContent = tag;
-          tagFilter.appendChild(option);
+          option.setAttribute('aria-pressed', selectedTags.includes(tag) ? 'true' : 'false');
+          option.addEventListener('click', () => {
+            if (selectedTags.includes(tag)) {
+              selectedTags = selectedTags.filter((item) => item !== tag);
+            } else {
+              selectedTags = [...selectedTags, tag];
+            }
+            renderSelectedTags();
+            renderTagOptions();
+            filterCards();
+          });
+          tagOptions.appendChild(option);
         });
-        tagFilter.value = currentValue && uniqueTags.has(currentValue) ? currentValue : '';
       };
 
       const filterCards = () => {
-        const query = (searchInput.value || '').trim().toLowerCase();
-        const selectedTag = (tagFilter.value || '').trim().toLowerCase();
+        const query = normalizeText(searchInput.value);
+        let visibleCount = 0;
 
         cards.forEach((card) => {
-          const name = (card.dataset.name || '').toLowerCase();
-          const tags = (card.dataset.tags || '').split(',').map((tag) => tag.trim().toLowerCase()).filter(Boolean);
-          const matchesQuery = !query || name.includes(query);
-          const matchesTag = !selectedTag || tags.includes(selectedTag);
-          card.style.display = matchesQuery && matchesTag ? '' : 'none';
+          const nameText = normalizeText(card.dataset.name || card.querySelector('h3 a')?.textContent || '');
+          const cardText = normalizeText(card.textContent || '');
+          const tags = parseTags(card.dataset.tags);
+          const matchesQuery = !query || nameText.includes(query) || cardText.includes(query);
+          const matchesTag = selectedTags.length === 0 || selectedTags.some((tag) => tags.includes(tag));
+          const shouldShow = matchesQuery && matchesTag;
+          card.style.display = shouldShow ? '' : 'none';
+          if (shouldShow) visibleCount += 1;
         });
+
+        if (noResults) {
+          noResults.hidden = visibleCount !== 0;
+        }
       };
 
-      if (searchInput && tagFilter && cards.length) {
-        buildTagOptions();
+      if (searchInput && cards.length) {
+        renderTagOptions();
+        renderSelectedTags();
         searchInput.addEventListener('input', filterCards);
-        tagFilter.addEventListener('change', filterCards);
       }
     })();
   </script>

@@ -1,15 +1,33 @@
 #!/bin/bash
-set -e
 
-# This script automatically scans your recipes/ folder, 
-# translates each .cook file into JSON using CookCLI, 
-# and drops the output into Hugo's data pipeline.
+# ==============================================================================
+# Recipe Processing Script
+# 
+# 1. Scans the 'recipes/' directory for all Cooklang (.cook) files.
+# 2. Uses CookCLI to parse each .cook file into a JSON data file in 'data/recipes/'.
+# 3. Generates a matching Markdown (.md) file in 'content/recipes/' so Hugo 
+#    creates the HTML page route for each individual recipe.
+# ==============================================================================
 
-# Create a temporary directory for Hugo to read the transformed recipe data
+# Create necessary directories
 mkdir -p data/recipes
+mkdir -p content/recipes
 
-# Convert every .cook file into a JSON data file for Hugo
-find recipes -name "*.cook" | while read -r f; do
-  slug=$(basename "$f" .cook | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
-  cook recipe "$f" -f json > "data/recipes/${slug}.json"
+# Process all .cook files in the recipes/ directory
+for file in recipes/*.cook; do
+  [ -e "$file" ] || continue
+  
+  # Get base filename without extension
+  filename=$(basename "$file" .cook)
+  
+  # 1. Convert .cook file to JSON for Hugo data usage
+  cook recipe "$file" --json > "data/recipes/${filename}.json"
+  
+  # 2. Create a content file so Hugo generates the HTML page route
+  cat <<EOF > "content/recipes/${filename}.md"
+---
+title: "${filename}"
+recipe_key: "${filename}"
+---
+EOF
 done

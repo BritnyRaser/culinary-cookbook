@@ -34,5 +34,50 @@
       <p class="empty-state">No recipes in this category yet.</p>
     
   </main>
+
+  <script>
+    (function () {
+      const searchInput = document.getElementById('recipe-search');
+      const tagFilter = document.getElementById('tag-filter');
+      const cards = Array.from(document.querySelectorAll('.category-card'));
+
+      const buildTagOptions = () => {
+        const uniqueTags = new Set();
+        cards.forEach((card) => {
+          const tags = (card.dataset.tags || '').split(',').map((tag) => tag.trim()).filter(Boolean);
+          tags.forEach((tag) => uniqueTags.add(tag));
+        });
+
+        const currentValue = tagFilter.value;
+        tagFilter.innerHTML = '<option value="">All tags</option>';
+        Array.from(uniqueTags).sort().forEach((tag) => {
+          const option = document.createElement('option');
+          option.value = tag;
+          option.textContent = tag;
+          tagFilter.appendChild(option);
+        });
+        tagFilter.value = currentValue && uniqueTags.has(currentValue) ? currentValue : '';
+      };
+
+      const filterCards = () => {
+        const query = (searchInput.value || '').trim().toLowerCase();
+        const selectedTag = (tagFilter.value || '').trim().toLowerCase();
+
+        cards.forEach((card) => {
+          const name = (card.dataset.name || '').toLowerCase();
+          const tags = (card.dataset.tags || '').split(',').map((tag) => tag.trim().toLowerCase()).filter(Boolean);
+          const matchesQuery = !query || name.includes(query);
+          const matchesTag = !selectedTag || tags.includes(selectedTag);
+          card.style.display = matchesQuery && matchesTag ? '' : 'none';
+        });
+      };
+
+      if (searchInput && tagFilter && cards.length) {
+        buildTagOptions();
+        searchInput.addEventListener('input', filterCards);
+        tagFilter.addEventListener('change', filterCards);
+      }
+    })();
+  </script>
 </body>
 </html>

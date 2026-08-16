@@ -2,16 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/</loc>
+    <loc>http://localhost:1313/culinary-cookbook/categories/breakfast/</loc>
   </url><url>
-    <loc>https://BritnyRaser.github.io/culinary-cookbook/</loc>
+    <loc>http://localhost:1313/culinary-cookbook/categories/</loc>
   </url><url>
-    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/french_toast/</loc>
+    <loc>http://localhost:1313/culinary-cookbook/categories/centerpiece/</loc>
   </url><url>
-    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/grilled_pb__j/</loc>
+    <loc>http://localhost:1313/culinary-cookbook/</loc>
   </url><url>
-    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/</loc>
+    <loc>http://localhost:1313/culinary-cookbook/recipes/breakfast/french_toast/</loc>
   </url><url>
-    <loc>https://BritnyRaser.github.io/culinary-cookbook/tags/</loc>
+    <loc>http://localhost:1313/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</loc>
+  </url><url>
+    <loc>http://localhost:1313/culinary-cookbook/recipes/</loc>
   </url>
 </urlset>

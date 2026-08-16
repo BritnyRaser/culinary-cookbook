@@ -13,26 +13,42 @@
   </header>
 
   <main class="container">
-    <h2>All Recipes</h2>
-    <div class="recipe-grid">
-      {{ range $name, $recipe := .Site.Data.recipes }}
-        <article class="recipe-card">
-          <h3>
-        <a href="{{ printf "recipes/%s/" $name | relURL }}">
-              {{ humanize $name }}
-            </a>
-          </h3>
-          {{ if $recipe.metadata }}
-            <p class="meta">
-              {{ with $recipe.metadata.servings }}Servings: {{ . }} | {{ end }}
-              {{ with index $recipe.metadata "cook time" }}Cook time: {{ . }}{{ end }}
-            </p>
-          {{ end }}
-        </article>
-      {{ else }}
-        <p>No recipes found yet. Add `.cook` files to your <code>recipes/</code> folder!</p>
-      {{ end }}
-    </div>
+    <h2>Categories</h2>
+
+    {{ if .Site.Taxonomies.categories }}
+      <div class="category-list">
+        {{ range .Site.Taxonomies.categories }}
+          <section class="category-group">
+            <h3><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></h3>
+            <ul>
+              {{ range .Pages }}
+                <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+              {{ end }}
+            </ul>
+          </section>
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="recipe-grid">
+        {{ range $name, $recipe := .Site.Data.recipes }}
+          <article class="recipe-card">
+            <h3>
+              <a href="{{ printf "recipes/%s/" $name | relURL }}">
+                {{ humanize $name }}
+              </a>
+            </h3>
+            {{ if $recipe.metadata }}
+              <p class="meta">
+                {{ with $recipe.metadata.servings }}Servings: {{ . }} | {{ end }}
+                {{ with index $recipe.metadata "cook time" }}Cook time: {{ . }}{{ end }}
+              </p>
+            {{ end }}
+          </article>
+        {{ else }}
+          <p>No recipes found yet.</p>
+        {{ end }}
+      </div>
+    {{ end }}
   </main>
 </body>
 </html>

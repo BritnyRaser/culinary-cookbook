@@ -61,10 +61,11 @@
           <span class="control-label">Search by name</span>
           <input id="recipe-search" type="text" aria-label="Search recipes by name" placeholder="Search recipes" />
         </label>
-        <div class="control tag-control" aria-label="Filter recipes by tag">
+        <div class="control tag-search-control" aria-label="Filter recipes by tag">
           <div class="tag-filter-layout">
             <span class="control-label">Filter by tags</span>
-            <div id="tag-options" class="tag-options" aria-label="Tag options"></div>
+            <input id="tag-search" type="text" aria-label="Search tags" placeholder="Search tags" />
+            <div id="tag-suggestions" class="tag-suggestions" hidden></div>
             <div id="selected-tags" class="selected-tags" aria-live="polite"></div>
           </div>
         </div>
@@ -120,7 +121,8 @@
   <script>
     (function () {
       const searchInput = document.getElementById('recipe-search');
-      const tagOptions = document.getElementById('tag-options');
+      const tagSearchInput = document.getElementById('tag-search');
+      const tagSuggestions = document.getElementById('tag-suggestions');
       const selectedTagsContainer = document.getElementById('selected-tags');
       const cards = Array.from(document.querySelectorAll('.category-card'));
       const noResults = document.getElementById('no-results');
@@ -142,6 +144,14 @@
         .map((tag) => normalizeText(tag))
         .filter(Boolean);
 
+      const getUniqueTags = () => {
+        const uniqueTags = new Set();
+        cards.forEach((card) => {
+          parseTags(card.dataset.tags).forEach((tag) => uniqueTags.add(tag));
+        });
+        return Array.from(uniqueTags).sort();
+      };
+
       const renderSelectedTags = () => {
         selectedTagsContainer.innerHTML = '';
 
@@ -162,40 +172,47 @@
           chip.addEventListener('click', () => {
             selectedTags = selectedTags.filter((item) => item !== tag);
             renderSelectedTags();
-            renderTagOptions();
+            renderSuggestions();
             filterCards();
           });
           selectedTagsContainer.appendChild(chip);
         });
       };
 
-      const renderTagOptions = () => {
-        if (!tagOptions) return;
+      const renderSuggestions = () => {
+        if (!tagSearchInput || !tagSuggestions) return;
+        const query = normalizeText(tagSearchInput.value);
 
-        const uniqueTags = new Set();
-        cards.forEach((card) => {
-          parseTags(card.dataset.tags).forEach((tag) => uniqueTags.add(tag));
-        });
+        if (!query) {
+          tagSuggestions.hidden = true;
+          tagSuggestions.innerHTML = '';
+          return;
+        }
 
-        tagOptions.innerHTML = '';
-        Array.from(uniqueTags).sort().forEach((tag) => {
+        const suggestions = getUniqueTags().filter((tag) => tag.includes(query) && !selectedTags.includes(tag));
+        tagSuggestions.innerHTML = '';
+
+        if (!suggestions.length) {
+          tagSuggestions.hidden = true;
+          return;
+        }
+
+        suggestions.forEach((tag) => {
           const option = document.createElement('button');
           option.type = 'button';
-          option.className = 'tag-option' + (selectedTags.includes(tag) ? ' selected' : '');
+          option.className = 'tag-suggestion';
           option.textContent = tag;
-          option.setAttribute('aria-pressed', selectedTags.includes(tag) ? 'true' : 'false');
           option.addEventListener('click', () => {
-            if (selectedTags.includes(tag)) {
-              selectedTags = selectedTags.filter((item) => item !== tag);
-            } else {
-              selectedTags = [...selectedTags, tag];
-            }
+            selectedTags = [...selectedTags, tag];
+            tagSearchInput.value = '';
             renderSelectedTags();
-            renderTagOptions();
+            renderSuggestions();
             filterCards();
           });
-          tagOptions.appendChild(option);
+          tagSuggestions.appendChild(option);
         });
+
+        tagSuggestions.hidden = false;
       };
 
       const filterCards = () => {
@@ -218,10 +235,16 @@
         }
       };
 
-      if (searchInput && cards.length) {
-        renderTagOptions();
+      if (searchInput && tagSearchInput && cards.length) {
         renderSelectedTags();
         searchInput.addEventListener('input', filterCards);
+        tagSearchInput.addEventListener('input', renderSuggestions);
+        tagSearchInput.addEventListener('focus', renderSuggestions);
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.tag-suggestion') && !event.target.closest('#tag-search')) {
+            tagSuggestions.hidden = true;
+          }
+        });
       }
     })();
   </script>

@@ -19,6 +19,9 @@
       <div class="category-list">
         {{ range .Site.Taxonomies.categories }}
           <section class="category-group">
+            {{ with .Page.Params.image }}
+              <img src="{{ . | relURL }}" alt="{{ $.Page.Title }}" class="category-image">
+            {{ end }}
             <h3><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></h3>
             <ul>
               {{ range .Pages }}

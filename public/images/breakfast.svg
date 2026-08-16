@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Breakfast illustration</title>
+  <desc id="desc">A stylized plate of breakfast food with toast, eggs, and fruit.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#fff7ee"/>
+      <stop offset="100%" stop-color="#f8ead8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" rx="24" fill="url(#bg)"/>
+
+  <circle cx="520" cy="120" r="62" fill="#f7d27a" opacity="0.8"/>
+  <circle cx="590" cy="155" r="44" fill="#f7d27a" opacity="0.7"/>
+  <circle cx="460" cy="160" r="38" fill="#f7d27a" opacity="0.7"/>
+
+  <ellipse cx="410" cy="318" rx="236" ry="124" fill="#f6f1ea" stroke="#d7c7ba" stroke-width="6"/>
+  <ellipse cx="410" cy="295" rx="200" ry="98" fill="#fffdfb" stroke="#e4d6ca" stroke-width="4"/>
+
+  <path d="M260 280 L380 220 L510 280 L470 340 L300 340 Z" fill="#d89252" stroke="#ab6933" stroke-width="4"/>
+  <path d="M310 265 L380 215 L450 265" fill="none" stroke="#c88245" stroke-width="6" stroke-linecap="round"/>
+
+  <rect x="288" y="270" width="190" height="18" rx="8" fill="#e9c98a" stroke="#cd9b57" stroke-width="4"/>
+
+  <path d="M300 290 Q350 235 410 290" fill="none" stroke="#f1e6d0" stroke-width="10" stroke-linecap="round"/>
+  <path d="M410 290 Q470 235 520 290" fill="none" stroke="#f1e6d0" stroke-width="10" stroke-linecap="round"/>
+
+  <ellipse cx="340" cy="290" rx="28" ry="22" fill="#f8f0d8" stroke="#d6b77a" stroke-width="4"/>
+  <ellipse cx="470" cy="290" rx="28" ry="22" fill="#f8f0d8" stroke="#d6b77a" stroke-width="4"/>
+
+  <circle cx="360" cy="258" r="18" fill="#f2d75a" stroke="#c9a533" stroke-width="4"/>
+  <circle cx="445" cy="252" r="18" fill="#f2d75a" stroke="#c9a533" stroke-width="4"/>
+
+  <path d="M280 350 C315 335, 330 382, 293 392 C260 402, 255 367, 280 350Z" fill="#c24a2c"/>
+  <path d="M548 348 C580 334, 597 380, 565 392 C533 402, 526 365, 548 348Z" fill="#c24a2c"/>
+
+  <circle cx="292" cy="146" r="46" fill="#f6a938" opacity="0.7"/>
+  <path d="M170 177 Q210 128 260 180" fill="none" stroke="#7ea96f" stroke-width="12" stroke-linecap="round"/>
+  <path d="M176 202 Q230 151 285 206" fill="none" stroke="#8abf78" stroke-width="12" stroke-linecap="round"/>
+
+  <text x="400" y="450" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="700" fill="#a34828">Breakfast</text>
+</svg>

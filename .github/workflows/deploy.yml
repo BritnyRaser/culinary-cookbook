@@ -1,8 +1,18 @@
-name: Deploy Culinary Cookbook to GitHub Pages
+# ==============================================================================
+# GitHub Actions Workflow: Culinary Cookbook Deployment
+#
+# Triggers: Automatically runs on pushes to 'main' or via manual dispatch.
+# Build Phase:
+#   1. Sets up the Ubuntu build environment and checks out repository source.
+#   2. Installs CookCLI to parse plain-text .cook recipe files.
+#   3. Installs Hugo static site generator.
+#   4. Executes 'build.sh' to process recipes into JSON and generate content routes.
+#   5. Compiles and minifies the final site into static assets ('./public').
+# Deploy Phase:
+#   6. Publishes compiled build artifacts directly to GitHub Pages.
+# ==============================================================================
 
-# setting up the GitHub Actions workflow file. This tells GitHub how to automatically 
-# compile your .cook files, build your Hugo site, and deploy the finished website to 
-# GitHub Pages every time you push changes
+name: Deploy Culinary Cookbook to GitHub Pages
 
 on:
   push:
@@ -27,10 +37,10 @@ jobs:
 
       - name: Install CookCLI
         run: |
-          DOWNLOAD_URL=$(curl -s https://api.github.com/repos/cooklang/cookcli/releases/latest | grep "browser_download_url" | grep "linux" | grep "amd64\|x86_64" | head -n 1 | cut -d '"' -f 4)
-          curl -sSL "$DOWNLOAD_URL" -o cookcli.tar.gz
+          curl -sSL "https://github.com/cooklang/cookcli/releases/download/v0.7.0/cookcli-v0.7.0-x86_64-unknown-linux-gnu.tar.gz" -o cookcli.tar.gz
           tar -xzf cookcli.tar.gz
           sudo mv cook /usr/local/bin/ || sudo mv cookcli /usr/local/bin/
+          cook --version
 
       - name: Install Hugo
         uses: peaceiris/actions-hugo@v3
@@ -55,7 +65,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: build
     steps:
       - name: Deploy to GitHub Pages

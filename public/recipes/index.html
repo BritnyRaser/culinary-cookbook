@@ -72,20 +72,23 @@
 
   <main class="container category-page">
     <section class="category-hero" >
-      <div class="category-hero-content">
+      <div class="category-hero-copy">
         <p class="eyebrow">Category</p>
         <h1>Recipes</h1>
       </div>
     </section>
 
     
-      <nav class="category-tabs" aria-label="Recipe tabs">
-        
-          <a href="/culinary-cookbook/recipes/breakfast/french_toast/" class="category-tab">French Toast</a>
-        
-          <a href="/culinary-cookbook/recipes/centerpiece/grilled_pb__j/" class="category-tab">Grilled PB &amp; J</a>
-        
-      </nav>
+      <div class="category-controls">
+        <div class="control search-control">
+          <span class="control-label">Search by name</span>
+          <input type="text" aria-label="Search recipes by name" placeholder="Search recipes" />
+        </div>
+        <div class="control tag-control">
+          <span class="control-label">Filter by tags</span>
+          <button type="button" class="tag-select">Select a tag</button>
+        </div>
+      </div>
 
       <div class="recipe-grid category-recipe-grid">
         

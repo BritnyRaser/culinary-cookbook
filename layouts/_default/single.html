@@ -23,11 +23,10 @@ step-by-step cooking directions.-->
     {{ if $recipe }}
       <!-- Sidebar: Ingredients & Equipment -->
       <aside class="sidebar">
-        {{ with $recipe.metadata }}
+        {{ with $recipe.metadata.map }}
           <div class="meta-box">
-            {{ range $k, $v := . }}
-              <div><strong>{{ humanize $k }}:</strong> {{ $v }}</div>
-            {{ end }}
+            {{ with .title }}<div><strong>Title:</strong> {{ . }}</div>{{ end }}
+            {{ with .tags }}<div><strong>Tags:</strong> {{ . }}</div>{{ end }}
           </div>
         {{ end }}
 
@@ -41,7 +40,19 @@ step-by-step cooking directions.-->
                     <input type="checkbox">
                     <span>
                       <strong>{{ .name }}</strong>
-                      {{ if .quantity }}— {{ .quantity }} {{ .units }}{{ end }}
+                      {{ with .quantity }}
+                        {{- if eq .value.type "text" -}}
+                          — {{ .value.value }}
+                        {{- else if eq .value.type "number" -}}
+                          {{- with .value.value -}}
+                            {{- if .value -}}
+                              — {{ .value }}
+                            {{- else -}}
+                              — {{ printf "%v" . }}
+                            {{- end -}}
+                          {{- end -}}
+                        {{- end -}}
+                      {{ end }}
                     </span>
                   </label>
                 </li>
@@ -55,22 +66,28 @@ step-by-step cooking directions.-->
       <section class="directions-section">
         <h2>Directions</h2>
         <ol class="steps-list">
-          {{ range $recipe.steps }}
-            <li>
-              <p>
-                {{ range . }}
-                  {{ if eq .type "text" }}
-                    {{ .value }}
-                  {{ else if eq .type "ingredient" }}
-                    <mark class="ing">{{ .name }}</mark>
-                  {{ else if eq .type "cookware" }}
-                    <mark class="cw">{{ .name }}</mark>
-                  {{ else if eq .type "timer" }}
-                    <mark class="tm">{{ .quantity }} {{ .units }}</mark>
-                  {{ end }}
-                {{ end }}
-              </p>
-            </li>
+          {{ range $sidx, $section := $recipe.sections }}
+            {{ range $section.content }}
+              {{ if eq .type "step" }}
+                <li>
+                  <p>
+                    {{ range $it := .value.items }}
+                      {{- if eq $it.type "text" -}}
+                        {{ $it.value }}
+                      {{- else if eq $it.type "ingredient" -}}
+                        {{ $ing := index $recipe.ingredients (int $it.index) }}
+                        {{- if $ing }}<mark class="ing">{{ $ing.name }}</mark>{{ end -}}
+                      {{- else if eq $it.type "cookware" -}}
+                        {{ $cw := index $recipe.cookware (int $it.index) }}
+                        {{- if $cw }}<mark class="cw">{{ $cw.name }}</mark>{{ else }}<mark class="cw">cookware</mark>{{ end -}}
+                      {{- else -}}
+                        {{ printf "%v" $it }}
+                      {{- end -}}
+                    {{ end }}
+                  </p>
+                </li>
+              {{ end }}
+            {{ end }}
           {{ end }}
         </ol>
       </section>

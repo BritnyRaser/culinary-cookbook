@@ -1,0 +1,81 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EAF8FF"/>
+      <stop offset="100%" stop-color="#DDECFB"/>
+    </linearGradient>
+    <linearGradient id="photo1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8ED0D9"/>
+      <stop offset="100%" stop-color="#2C7A8A"/>
+    </linearGradient>
+    <linearGradient id="photo2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E2C7A2"/>
+      <stop offset="100%" stop-color="#9F6B3F"/>
+    </linearGradient>
+    <linearGradient id="photo3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#B9DCC1"/>
+      <stop offset="100%" stop-color="#456C5A"/>
+    </linearGradient>
+    <linearGradient id="photo4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F5D6AB"/>
+      <stop offset="100%" stop-color="#C28B48"/>
+    </linearGradient>
+    <linearGradient id="photo5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9AD0E0"/>
+      <stop offset="100%" stop-color="#1F6E8E"/>
+    </linearGradient>
+    <linearGradient id="photo6" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F2E6C3"/>
+      <stop offset="100%" stop-color="#B78232"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+
+  <text x="90" y="90" fill="#1D475C" font-family="Arial, sans-serif" font-size="24" font-weight="700">Categories</text>
+
+  <g transform="translate(110,130)">
+    <g transform="translate(0,0)">
+      <circle cx="120" cy="120" r="120" fill="url(#photo1)"/>
+      <circle cx="120" cy="120" r="120" fill="rgba(0,0,0,0.18)"/>
+      <text x="120" y="128" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="26" font-weight="700">Bakery</text>
+    </g>
+    <g transform="translate(290,0)">
+      <circle cx="120" cy="120" r="120" fill="url(#photo2)"/>
+      <circle cx="120" cy="120" r="120" fill="rgba(0,0,0,0.18)"/>
+      <text x="120" y="128" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="26" font-weight="700">Breakfast</text>
+    </g>
+    <g transform="translate(580,0)">
+      <circle cx="120" cy="120" r="120" fill="url(#photo3)"/>
+      <circle cx="120" cy="120" r="120" fill="rgba(0,0,0,0.18)"/>
+      <text x="120" y="128" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="26" font-weight="700">Centerpiece</text>
+    </g>
+    <g transform="translate(870,0)">
+      <circle cx="120" cy="120" r="120" fill="url(#photo4)"/>
+      <circle cx="120" cy="120" r="120" fill="rgba(0,0,0,0.18)"/>
+      <text x="120" y="128" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="26" font-weight="700">Sides</text>
+    </g>
+  </g>
+
+  <g transform="translate(120,420)">
+    <text x="0" y="0" fill="#1D475C" font-family="Arial, sans-serif" font-size="24" font-weight="700">Recipes</text>
+
+    <rect x="0" y="30" width="420" height="56" rx="16" fill="#F3F8FA" stroke="#D0E6EA"/>
+    <text x="28" y="66" fill="#7B8E99" font-family="Arial, sans-serif" font-size="18">Search by name</text>
+
+    <rect x="0" y="110" width="420" height="56" rx="16" fill="#F3F8FA" stroke="#D0E6EA"/>
+    <text x="28" y="146" fill="#7B8E99" font-family="Arial, sans-serif" font-size="18">Filter by tag</text>
+
+    <g transform="translate(0,200)">
+      <rect x="0" y="0" width="240" height="165" rx="18" fill="white" stroke="#DDEAF0"/>
+      <rect x="0" y="0" width="240" height="90" rx="18" fill="url(#photo5)"/>
+      <text x="120" y="128" text-anchor="middle" fill="#1D475C" font-family="Arial, sans-serif" font-size="18" font-weight="700">French Toast</text>
+    </g>
+
+    <g transform="translate(280,200)">
+      <rect x="0" y="0" width="240" height="165" rx="18" fill="white" stroke="#DDEAF0"/>
+      <rect x="0" y="0" width="240" height="90" rx="18" fill="url(#photo6)"/>
+      <text x="120" y="128" text-anchor="middle" fill="#1D475C" font-family="Arial, sans-serif" font-size="18" font-weight="700">Grilled PB &amp; J</text>
+    </g>
+  </g>
+</svg>

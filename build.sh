@@ -25,4 +25,4 @@ for file in recipes/*.cook; do
 title: "${filename}"
 ---
 EOF
-done
+done < <(find recipes -type f -name '*.cook' -print0)

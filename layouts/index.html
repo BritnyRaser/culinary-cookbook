@@ -18,7 +18,7 @@
       {{ range $name, $recipe := .Site.Data.recipes }}
         <article class="recipe-card">
           <h3>
-            <a href="{{ $.Site.BaseURL }}recipes/{{ $name }}/">
+        <a href="{{ printf "recipes/%s/" $name | relURL }}">
               {{ humanize $name }}
             </a>
           </h3>

@@ -189,21 +189,6 @@ title: "Grocery List"
     justify-content: center;
   }
 
-  .edit-toggle::before { content: '✎'; }
-  .remove-toggle::before { content: '−'; }
-  .undo-toggle::before { content: '↺'; }
-  .save-toggle::before { content: '✓'; }
-  .cancel-toggle::before { content: '×'; }
-
-  .edit-toggle,
-  .remove-toggle,
-  .undo-toggle,
-  .save-toggle,
-  .cancel-toggle {
-    text-indent: -9999px;
-    overflow: hidden;
-  }
-
   .undo-toggle {
     display: none;
   }
@@ -648,10 +633,10 @@ title: "Grocery List"
           </div>
         </div>
         <div class="item-actions">
-          <button class="edit-toggle" type="button" aria-label="Edit ${item.name}"></button>
-          <button class="remove-toggle" type="button" aria-label="Remove ${item.name}"></button>
+          <button class="edit-toggle" type="button" aria-label="Edit ${item.name}">✎</button>
+          <button class="remove-toggle" type="button" aria-label="Remove ${item.name}">−</button>
           <button class="check-toggle" type="button" aria-label="Check ${item.name}">✓</button>
-          <button class="undo-toggle" type="button" aria-label="Undo ${item.name}"></button>
+          <button class="undo-toggle" type="button" aria-label="Undo ${item.name}">↺</button>
         </div>
       `;
 

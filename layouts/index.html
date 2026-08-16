@@ -19,9 +19,40 @@
       <div class="category-list">
         {{ range .Site.Taxonomies.categories }}
           <section class="category-group">
+            {{ $title := .Page.Title }}
+            {{ $imagePath := "" }}
+
             {{ with .Page.Params.image }}
-              <img src="{{ . | relURL }}" alt="{{ $.Page.Title }}" class="category-image">
+              {{ $imagePath = . }}
+            {{ else }}
+              {{ $slug := lower $title | urlize }}
+              {{ $slugUnderscore := replace $slug "-" "_" }}
+              {{ $candidates := slice
+                (printf "static/images/%s.png" $slug)
+                (printf "static/images/%s.jpg" $slug)
+                (printf "static/images/%s.jpeg" $slug)
+                (printf "static/images/%s.svg" $slug)
+                (printf "static/images/%s.webp" $slug)
+                (printf "static/images/%s.gif" $slug)
+                (printf "static/images/%s.png" $slugUnderscore)
+                (printf "static/images/%s.jpg" $slugUnderscore)
+                (printf "static/images/%s.jpeg" $slugUnderscore)
+                (printf "static/images/%s.svg" $slugUnderscore)
+                (printf "static/images/%s.webp" $slugUnderscore)
+                (printf "static/images/%s.gif" $slugUnderscore)
+              }}
+
+              {{ range $candidates }}
+                {{ if and (not $imagePath) (fileExists .) }}
+                  {{ $imagePath = printf "/images/%s" (base .) }}
+                {{ end }}
+              {{ end }}
             {{ end }}
+
+            {{ with $imagePath }}
+              <img src="{{ . | relURL }}" alt="{{ $title }}" class="category-image">
+            {{ end }}
+
             <h3><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></h3>
             <ul>
               {{ range .Pages }}

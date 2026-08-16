@@ -1,5 +1,5 @@
 baseURL = 'https://BritnyRaser.github.io/culinary-cookbook/'
-languageCode = 'en-us'
+languageCode = 'en'
 title = 'Culinary Cookbook'
 
 # Tells Hugo to look for compiled recipe JSON in the data/ folder

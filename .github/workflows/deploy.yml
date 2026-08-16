@@ -27,7 +27,6 @@ jobs:
 
       - name: Install CookCLI
         run: |
-          # Fetch the latest Linux x86_64 binary release tarball via GitHub API
           DOWNLOAD_URL=$(curl -s https://api.github.com/repos/cooklang/cookcli/releases/latest | grep "browser_download_url" | grep "linux" | grep "amd64\|x86_64" | head -n 1 | cut -d '"' -f 4)
           curl -sSL "$DOWNLOAD_URL" -o cookcli.tar.gz
           tar -xzf cookcli.tar.gz

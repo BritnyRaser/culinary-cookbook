@@ -8,7 +8,36 @@
 </head>
 <body>
   <header class="site-header">
-    <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+    <div class="header-row">
+      <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+
+      <div class="mobile-menu">
+        <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="main-menu" class="menu-panel" aria-label="Main menu">
+          <div class="menu-group">
+            <div class="menu-item">
+              <button class="menu-button" type="button" aria-expanded="false">
+                <span>Category</span>
+                <span class="caret">▾</span>
+              </button>
+              <ul class="sub-menu">
+                {{ range .Site.Taxonomies.categories }}
+                  <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+                {{ end }}
+              </ul>
+            </div>
+          </div>
+
+          <a href="{{ "/meal-plan/" | relURL }}" class="menu-item-link">Meal Plan</a>
+          <a href="{{ "/grocery-list/" | relURL }}" class="menu-item-link">Grocery List</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
   <main class="container home-page">
@@ -135,6 +164,32 @@
 
   <script>
     (function () {
+      const hamburger = document.querySelector('.hamburger');
+      const menuPanel = document.querySelector('.menu-panel');
+      const categoryButton = document.querySelector('.menu-button');
+      const categorySubmenu = document.querySelector('.sub-menu');
+
+      if (hamburger && menuPanel) {
+        hamburger.addEventListener('click', () => {
+          const isOpen = menuPanel.classList.toggle('open');
+          hamburger.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.mobile-menu')) {
+            menuPanel.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      if (categoryButton && categorySubmenu) {
+        categoryButton.addEventListener('click', () => {
+          const isOpen = categorySubmenu.classList.toggle('open');
+          categoryButton.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+
       const searchInput = document.getElementById('recipe-search');
       const tagSearchInput = document.getElementById('tag-search');
       const tagSuggestions = document.getElementById('tag-suggestions');

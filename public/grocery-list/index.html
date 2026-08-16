@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grocery List | Culinary Cookbook</title>
+  <link rel="stylesheet" href="/culinary-cookbook/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="https://BritnyRaser.github.io/culinary-cookbook/" class="back-link">&larr; Back to Cookbook</a>
+  </header>
+
+  
+  
+
+  
+    
+    
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+  
+
+  <main class="container category-page">
+    <section class="category-hero" >
+      <div class="category-hero-copy">
+        <p class="eyebrow">Category</p>
+        <h1>Grocery List</h1>
+      </div>
+    </section>
+
+    
+      <p class="empty-state">No recipes in this category yet.</p>
+    
+  </main>
+
+  <script>
+    (function () {
+      const searchInput = document.getElementById('recipe-search');
+      const tagSearchInput = document.getElementById('tag-search');
+      const tagSuggestions = document.getElementById('tag-suggestions');
+      const selectedTagsContainer = document.getElementById('selected-tags');
+      const cards = Array.from(document.querySelectorAll('.category-card'));
+      const noResults = document.getElementById('no-results');
+      let selectedTags = [];
+
+      const normalizeText = (value) => {
+        const cleaned = (value || '').toString()
+          .replace(/&amp;/gi, '&')
+          .replace(/&/g, ' and ')
+          .replace(/[_-]+/g, ' ')
+          .replace(/[^a-z0-9\s]/gi, ' ')
+          .toLowerCase();
+
+        return cleaned.replace(/\s+/g, ' ').trim();
+      };
+
+      const parseTags = (value) => (value || '')
+        .split(',')
+        .map((tag) => normalizeText(tag))
+        .filter(Boolean);
+
+      const getUniqueTags = () => {
+        const uniqueTags = new Set();
+        cards.forEach((card) => {
+          parseTags(card.dataset.tags).forEach((tag) => uniqueTags.add(tag));
+        });
+        return Array.from(uniqueTags).sort();
+      };
+
+      const renderSelectedTags = () => {
+        selectedTagsContainer.innerHTML = '';
+
+        if (!selectedTags.length) {
+          selectedTagsContainer.style.display = 'none';
+          return;
+        }
+
+        selectedTagsContainer.style.display = 'flex';
+
+        selectedTags.forEach((tag) => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'tag-chip';
+          chip.setAttribute('aria-label', `Remove tag ${tag}`);
+          chip.innerHTML = `${tag} <span aria-hidden="true">×</span>`;
+          chip.addEventListener('click', () => {
+            selectedTags = selectedTags.filter((item) => item !== tag);
+            renderSelectedTags();
+            renderSuggestions();
+            filterCards();
+          });
+          selectedTagsContainer.appendChild(chip);
+        });
+      };
+
+      const renderSuggestions = () => {
+        if (!tagSearchInput || !tagSuggestions) return;
+        const query = normalizeText(tagSearchInput.value);
+        const tagControl = tagSearchInput.closest('.tag-search-control');
+
+        if (!query) {
+          tagSuggestions.hidden = true;
+          tagSuggestions.innerHTML = '';
+          if (tagControl) {
+            tagControl.classList.remove('is-active');
+          }
+          return;
+        }
+
+        if (tagControl) {
+          tagControl.classList.add('is-active');
+        }
+
+        const suggestions = getUniqueTags().filter((tag) => tag.includes(query) && !selectedTags.includes(tag));
+        tagSuggestions.innerHTML = '';
+
+        if (!suggestions.length) {
+          tagSuggestions.hidden = true;
+          return;
+        }
+
+        suggestions.forEach((tag) => {
+          const option = document.createElement('button');
+          option.type = 'button';
+          option.className = 'tag-suggestion';
+          option.textContent = tag;
+          option.addEventListener('click', () => {
+            selectedTags = [...selectedTags, tag];
+            tagSearchInput.value = '';
+            renderSelectedTags();
+            renderSuggestions();
+            filterCards();
+          });
+          tagSuggestions.appendChild(option);
+        });
+
+        tagSuggestions.hidden = false;
+      };
+
+      const filterCards = () => {
+        const query = normalizeText(searchInput.value);
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const nameText = normalizeText(card.dataset.name || card.querySelector('h3 a')?.textContent || '');
+          const cardText = normalizeText(card.textContent || '');
+          const tags = parseTags(card.dataset.tags);
+          const matchesQuery = !query || nameText.includes(query) || cardText.includes(query);
+          const matchesTag = selectedTags.length === 0 || selectedTags.some((tag) => tags.includes(tag));
+          const shouldShow = matchesQuery && matchesTag;
+          card.style.display = shouldShow ? '' : 'none';
+          if (shouldShow) visibleCount += 1;
+        });
+
+        if (noResults) {
+          noResults.hidden = visibleCount !== 0;
+        }
+      };
+
+      if (searchInput && tagSearchInput && cards.length) {
+        selectedTagsContainer.style.display = 'none';
+        renderSelectedTags();
+        const tagControl = tagSearchInput.closest('.tag-search-control');
+        if (tagControl) {
+          tagControl.classList.remove('is-active');
+        }
+        searchInput.addEventListener('input', filterCards);
+        tagSearchInput.addEventListener('input', renderSuggestions);
+        tagSearchInput.addEventListener('focus', () => {
+          if (tagSearchInput.value.trim()) {
+            renderSuggestions();
+          }
+        });
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.tag-suggestion') && !event.target.closest('#tag-search')) {
+            tagSuggestions.hidden = true;
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bakery on Culinary Cookbook</title>
-    <link>http://localhost:1314/culinary-cookbook/categories/bakery/</link>
+    <link>https://BritnyRaser.github.io/culinary-cookbook/categories/bakery/</link>
     <description>Recent content in Bakery on Culinary Cookbook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <atom:link href="http://localhost:1314/culinary-cookbook/categories/bakery/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://BritnyRaser.github.io/culinary-cookbook/categories/bakery/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>High Protein Bread</title>
-      <link>http://localhost:1314/culinary-cookbook/recipes/bakery/high_protein_bread/</link>
+      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/bakery/high_protein_bread/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/recipes/bakery/high_protein_bread/</guid>
+      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/bakery/high_protein_bread/</guid>
       <description></description>
     </item>
   </channel>

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Condiments on Culinary Cookbook</title>
-    <link>http://localhost:1314/culinary-cookbook/categories/condiments/</link>
+    <link>https://BritnyRaser.github.io/culinary-cookbook/categories/condiments/</link>
     <description>Recent content in Condiments on Culinary Cookbook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <atom:link href="http://localhost:1314/culinary-cookbook/categories/condiments/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://BritnyRaser.github.io/culinary-cookbook/categories/condiments/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pickled Red Onions</title>
-      <link>http://localhost:1314/culinary-cookbook/recipes/condiments/pickled_red_onions/</link>
+      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/condiments/pickled_red_onions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/recipes/condiments/pickled_red_onions/</guid>
+      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/condiments/pickled_red_onions/</guid>
       <description></description>
     </item>
   </channel>

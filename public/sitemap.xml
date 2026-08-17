@@ -2,60 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/bakery/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/bakery/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/beverages/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/beverages/brazilian_lemonade/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/beverages/brazilian_lemonade/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/mystery-mixers/brazilian_lemonade/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/mystery-mixers/brazilian_lemonade/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/breakfast/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/breakfast/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/munchies/cheez_its/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/munchies/cheez_its/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/condiments/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/condiments/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/sides/cowboy_beans/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/sides/cowboy_beans/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/breakfast/french_toast/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/breakfast/french_toast/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/grocery-list/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/grocery-list/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/bakery/high_protein_bread/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/bakery/high_protein_bread/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/centerpiece/marry_me_chicken/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/prospects/centerpiece/marry_me_chicken/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/meal-plan/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/meal-plan/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/munchies/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/munchies/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/mystery-mixers/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/mystery-mixers/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/nom-nom-central/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/nom-nom-central/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/centerpiece/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/centerpiece/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/condiments/pickled_red_onions/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/condiments/pickled_red_onions/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/prospects-/-nom-nom-central/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/prospects-/-centerpiece/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/prospects-/-nom-nom-central/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/sides/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/categories/sweets/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/sides/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/sweets/tiramisu/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/categories/sweets/</loc>
-  </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/sweets/tiramisu/</loc>
-  </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/</loc>
+    <loc>https://BritnyRaser.github.io/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/</loc>
   </url>
 </urlset>

@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nom Nom Central on Culinary Cookbook</title>
-    <link>https://BritnyRaser.github.io/culinary-cookbook/categories/centerpiece/</link>
+    <link>http://localhost:1314/culinary-cookbook/categories/centerpiece/</link>
     <description>Recent content in Nom Nom Central on Culinary Cookbook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <atom:link href="https://BritnyRaser.github.io/culinary-cookbook/categories/centerpiece/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/culinary-cookbook/categories/centerpiece/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

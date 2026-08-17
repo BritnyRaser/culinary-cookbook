@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/culinary-cookbook/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=culinary-cookbook/livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sweets | Culinary Cookbook</title>
@@ -8,7 +8,52 @@
 </head>
 <body>
   <header class="site-header">
-    <a href="https://BritnyRaser.github.io/culinary-cookbook/" class="back-link">&larr; Back to Cookbook</a>
+    <div class="header-row">
+      <a href="http://localhost:1314/culinary-cookbook/" class="back-link">&larr; Back to Cookbook</a>
+
+      <div class="mobile-menu">
+        <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="main-menu" class="menu-panel" aria-label="Main menu">
+          <div class="menu-group">
+            <div class="menu-item">
+              <button class="menu-button" type="button" aria-expanded="false">
+                <span>Category</span>
+                <span class="caret">▾</span>
+              </button>
+              <ul class="sub-menu">
+                
+                  <li><a href="/culinary-cookbook/categories/bakery/">Bakery</a></li>
+                
+                  <li><a href="/culinary-cookbook/categories/beverages/">Beverages</a></li>
+                
+                  <li><a href="/culinary-cookbook/categories/breakfast/">Breakfast</a></li>
+                
+                  <li><a href="/culinary-cookbook/categories/centerpiece/">Centerpiece</a></li>
+                
+                  <li><a href="/culinary-cookbook/categories/condiments/">Condiments</a></li>
+                
+                  <li><a href="/culinary-cookbook/categories/munchies/">Munchies</a></li>
+                
+                  <li><a href="/culinary-cookbook/categories/prospects-/-centerpiece/">Prospects / Centerpiece</a></li>
+                
+                  <li><a href="/culinary-cookbook/categories/sides/">Sides</a></li>
+                
+                  <li><a href="/culinary-cookbook/categories/sweets/">Sweets</a></li>
+                
+              </ul>
+            </div>
+          </div>
+
+          <a href="/culinary-cookbook/meal-plan/" class="menu-item-link">Meal Plan</a>
+          <a href="/culinary-cookbook/grocery-list/" class="menu-item-link">Grocery List</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
   
@@ -292,6 +337,35 @@
           if (!event.target.closest('.tag-suggestion') && !event.target.closest('#tag-search')) {
             tagSuggestions.hidden = true;
           }
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      const hamburger = document.querySelector('.hamburger');
+      const menuPanel = document.querySelector('.menu-panel');
+      const categoryButton = document.querySelector('.menu-button');
+      const categorySubmenu = document.querySelector('.sub-menu');
+
+      if (hamburger && menuPanel) {
+        hamburger.addEventListener('click', () => {
+          const isOpen = menuPanel.classList.toggle('open');
+          hamburger.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.mobile-menu')) {
+            menuPanel.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      if (categoryButton && categorySubmenu) {
+        categoryButton.addEventListener('click', () => {
+          const isOpen = categorySubmenu.classList.toggle('open');
+          categoryButton.setAttribute('aria-expanded', String(isOpen));
         });
       }
     })();

@@ -8,7 +8,36 @@
 </head>
 <body>
   <header class="site-header">
-    <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Back to Cookbook</a>
+    <div class="header-row">
+      <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Back to Cookbook</a>
+
+      <div class="mobile-menu">
+        <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="main-menu" class="menu-panel" aria-label="Main menu">
+          <div class="menu-group">
+            <div class="menu-item">
+              <button class="menu-button" type="button" aria-expanded="false">
+                <span>Category</span>
+                <span class="caret">▾</span>
+              </button>
+              <ul class="sub-menu">
+                {{ range .Site.Taxonomies.categories }}
+                  <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+                {{ end }}
+              </ul>
+            </div>
+          </div>
+
+          <a href="{{ "meal-plan/" | relURL }}" class="menu-item-link">Meal Plan</a>
+          <a href="{{ "grocery-list/" | relURL }}" class="menu-item-link">Grocery List</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
   {{ $categoryImage := "" }}
@@ -47,7 +76,457 @@
     {{ end }}
   {{ end }}
 
-  {{ if eq .Title "Grocery List" }}
+  {{ if eq .Title "Meal Plan" }}
+    <style>
+      .meal-plan-page {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 2rem 1rem 3rem;
+      }
+      .meal-plan-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+      .meal-plan-header h1 {
+        margin: 0;
+        color: #12354a;
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
+      }
+      .meal-plan-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #0f766e;
+        color: #ffffff;
+        border: 1px solid #0f766e;
+        border-radius: 999px;
+        padding: 0.65rem 1.1rem;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .meal-plan-surface {
+        background: rgba(255,255,255,0.8);
+        border: 1px solid #dfeef2;
+        border-radius: 26px;
+        box-shadow: 0 12px 28px rgba(15,88,105,0.08);
+        overflow-x: auto;
+      }
+      .meal-plan-grid {
+        display: grid;
+        grid-template-columns: 150px repeat(4, minmax(210px, 1fr));
+        min-width: 980px;
+      }
+      .meal-plan-row {
+        display: contents;
+      }
+      .meal-plan-cell {
+        padding: 0.85rem 0.75rem;
+        border-right: 1px solid #e4edf2;
+        border-bottom: 1px solid #e4edf2;
+        background: #fff;
+      }
+      .meal-plan-row[data-row-index="0"] .meal-plan-cell {
+        background: #ffd6d6;
+      }
+      .meal-plan-row[data-row-index="0"] .meal-plan-row-label,
+      .meal-plan-row[data-row-index="0"] [data-time="Lunch"],
+      .meal-plan-row[data-row-index="0"] [data-time="Extra"] {
+        background: #ff8f8f;
+      }
+      .meal-plan-row[data-row-index="0"] [data-time="Breakfast"],
+      .meal-plan-row[data-row-index="0"] [data-time="Dinner"] {
+        background: #ffb3b3;
+      }
+      .meal-plan-row[data-row-index="1"] .meal-plan-cell {
+        background: #ffe3b3;
+      }
+      .meal-plan-row[data-row-index="1"] .meal-plan-row-label,
+      .meal-plan-row[data-row-index="1"] [data-time="Lunch"],
+      .meal-plan-row[data-row-index="1"] [data-time="Extra"] {
+        background: #ffae2e;
+      }
+      .meal-plan-row[data-row-index="1"] [data-time="Breakfast"],
+      .meal-plan-row[data-row-index="1"] [data-time="Dinner"] {
+        background: #ffc76a;
+      }
+      .meal-plan-row[data-row-index="2"] .meal-plan-cell {
+        background: #fff0a8;
+      }
+      .meal-plan-row[data-row-index="2"] .meal-plan-row-label,
+      .meal-plan-row[data-row-index="2"] [data-time="Lunch"],
+      .meal-plan-row[data-row-index="2"] [data-time="Extra"] {
+        background: #f0c000;
+      }
+      .meal-plan-row[data-row-index="2"] [data-time="Breakfast"],
+      .meal-plan-row[data-row-index="2"] [data-time="Dinner"] {
+        background: #f7d95b;
+      }
+      .meal-plan-row[data-row-index="3"] .meal-plan-cell {
+        background: #c9f7b5;
+      }
+      .meal-plan-row[data-row-index="3"] .meal-plan-row-label,
+      .meal-plan-row[data-row-index="3"] [data-time="Lunch"],
+      .meal-plan-row[data-row-index="3"] [data-time="Extra"] {
+        background: #4fca49;
+      }
+      .meal-plan-row[data-row-index="3"] [data-time="Breakfast"],
+      .meal-plan-row[data-row-index="3"] [data-time="Dinner"] {
+        background: #8fe17a;
+      }
+      .meal-plan-row[data-row-index="4"] .meal-plan-cell {
+        background: #cfe8ff;
+      }
+      .meal-plan-row[data-row-index="4"] .meal-plan-row-label,
+      .meal-plan-row[data-row-index="4"] [data-time="Lunch"],
+      .meal-plan-row[data-row-index="4"] [data-time="Extra"] {
+        background: #4d8ef7;
+      }
+      .meal-plan-row[data-row-index="4"] [data-time="Breakfast"],
+      .meal-plan-row[data-row-index="4"] [data-time="Dinner"] {
+        background: #8bbafc;
+      }
+      .meal-plan-row[data-row-index="5"] .meal-plan-cell {
+        background: #dcc9ff;
+      }
+      .meal-plan-row[data-row-index="5"] .meal-plan-row-label,
+      .meal-plan-row[data-row-index="5"] [data-time="Lunch"],
+      .meal-plan-row[data-row-index="5"] [data-time="Extra"] {
+        background: #7d5cf2;
+      }
+      .meal-plan-row[data-row-index="5"] [data-time="Breakfast"],
+      .meal-plan-row[data-row-index="5"] [data-time="Dinner"] {
+        background: #a98af8;
+      }
+      .meal-plan-row[data-row-index="6"] .meal-plan-cell {
+        background: #ffcfe8;
+      }
+      .meal-plan-row[data-row-index="6"] .meal-plan-row-label,
+      .meal-plan-row[data-row-index="6"] [data-time="Lunch"],
+      .meal-plan-row[data-row-index="6"] [data-time="Extra"] {
+        background: #e64b9d;
+      }
+      .meal-plan-row[data-row-index="6"] [data-time="Breakfast"],
+      .meal-plan-row[data-row-index="6"] [data-time="Dinner"] {
+        background: #f48cc2;
+      }
+      .meal-plan-row-label,
+      .meal-plan-header-cell {
+        background: #111111;
+        color: #ffffff;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .meal-plan-row-label {
+        width: 100%;
+      }
+      .meal-plan-slot {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        background: linear-gradient(180deg, #ffffff 0%, #f7fcff 100%);
+      }
+      .meal-slot-search {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      .meal-slot-search label {
+        color: #365a6d;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+      .meal-slot-search input {
+        width: 100%;
+        border: 1px solid #cfe8ee;
+        border-radius: 10px;
+        background: #fff;
+        color: #173d52;
+        padding: 0.45rem 0.6rem;
+        font: inherit;
+        font-size: 0.8rem;
+        box-sizing: border-box;
+      }
+      .meal-suggestions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        max-height: 160px;
+        overflow-y: auto;
+        border: 1px solid #d8edf3;
+        background: #fff;
+        border-radius: 10px;
+        padding: 0.25rem;
+      }
+      .meal-suggest-item {
+        border: none;
+        background: #f3fbff;
+        color: #173d52;
+        border-radius: 8px;
+        padding: 0.42rem 0.5rem;
+        text-align: left;
+        font: inherit;
+        font-size: 0.76rem;
+        cursor: pointer;
+      }
+      .meal-suggest-item:hover {
+        background: #e6f6fb;
+      }
+      .meal-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+      }
+      .meal-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.42rem 0.5rem;
+        border-radius: 10px;
+        background: #edf9fb;
+        border: 1px solid #d4edf1;
+        color: #12354a;
+      }
+      .meal-item-name {
+        font-size: 0.8rem;
+        font-weight: 700;
+        line-height: 1.3;
+        word-break: break-word;
+      }
+      .meal-item-remove {
+        border: none;
+        background: #dff7f3;
+        color: #0f766e;
+        border-radius: 999px;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.68rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .meal-empty {
+        color: #66808a;
+        font-size: 0.72rem;
+        font-style: italic;
+      }
+      .meal-recipe-options {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        .meal-plan-page { padding: 1.25rem 0.75rem 2.5rem; }
+      }
+    </style>
+
+    <section class="meal-plan-page">
+      <header class="meal-plan-header">
+        <h1>Meal Plan</h1>
+        <button type="button" class="meal-plan-action">Add to Grocery List</button>
+      </header>
+
+      <div class="meal-plan-surface">
+        <div class="meal-plan-grid" aria-label="Meal plan schedule">
+          <div class="meal-plan-cell meal-plan-header-cell">Day</div>
+          <div class="meal-plan-cell meal-plan-header-cell">Breakfast</div>
+          <div class="meal-plan-cell meal-plan-header-cell">Lunch</div>
+          <div class="meal-plan-cell meal-plan-header-cell">Dinner</div>
+          <div class="meal-plan-cell meal-plan-header-cell">Extra</div>
+
+          {{ $days := slice "Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" }}
+          {{ $mealTimes := slice "Breakfast" "Lunch" "Dinner" "Extra" }}
+          {{ range $index, $day := $days }}
+            <div class="meal-plan-row" data-row-index="{{ $index }}">
+              <div class="meal-plan-cell meal-plan-row-label">{{ $day }}</div>
+              {{ range $mealTimes }}
+                {{ $time := . }}
+                <div class="meal-plan-cell meal-plan-slot" data-slot="{{ $day }}-{{ $time }}" data-day="{{ $day }}" data-time="{{ $time }}">
+                  <div class="meal-slot-search">
+                    <input id="meal-search-{{ $day }}-{{ $time }}" type="text" aria-label="Search recipes for {{ $day }} {{ $time }}" placeholder="Recipe name" />
+                  </div>
+                  <div class="meal-suggestions" hidden></div>
+                  <div class="meal-items" aria-live="polite"></div>
+                </div>
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+
+    <ul class="meal-recipe-options" aria-hidden="true">
+      {{ range where .Site.RegularPages "Section" "recipes" }}
+        <li data-recipe-title="{{ .Title }}">{{ .Title }}</li>
+      {{ end }}
+    </ul>
+
+    <script>
+      (function () {
+        const STORAGE_KEY = 'mealPlanState_v1';
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const mealTimes = ['Breakfast', 'Lunch', 'Dinner', 'Extra'];
+        const defaultState = Object.fromEntries(days.map((day) => [day, Object.fromEntries(mealTimes.map((time) => [time, []]))]));
+
+        function loadMealPlanState() {
+          try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return structuredClone(defaultState);
+            const parsed = JSON.parse(raw);
+            const next = structuredClone(defaultState);
+            days.forEach((day) => {
+              mealTimes.forEach((time) => {
+                next[day][time] = Array.isArray(parsed?.[day]?.[time]) ? parsed[day][time].filter(Boolean) : [];
+              });
+            });
+            return next;
+          } catch (error) {
+            console.warn('Failed to load meal plan state:', error);
+            return structuredClone(defaultState);
+          }
+        }
+
+        function saveMealPlanState(state) {
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          } catch (error) {
+            console.warn('Failed to save meal plan state:', error);
+          }
+        }
+
+        const recipeNames = Array.from(document.querySelectorAll('.meal-recipe-options li'))
+          .map((item) => item.dataset.recipeTitle)
+          .filter(Boolean)
+          .sort((a, b) => a.localeCompare(b));
+
+        const mealPlanState = loadMealPlanState();
+
+        const getMatches = (term) => {
+          const normalized = (term || '').trim().toLowerCase();
+          if (!normalized) return [];
+          return recipeNames.filter((name) => name.toLowerCase().includes(normalized)).slice(0, 8);
+        };
+
+        function renderMealItem(day, time, name, index) {
+          const item = document.createElement('div');
+          item.className = 'meal-item';
+          item.innerHTML = `
+            <span class="meal-item-name">${name}</span>
+            <button type="button" class="meal-item-remove" data-day="${day}" data-time="${time}" data-index="${index}">Remove</button>
+          `;
+          return item;
+        }
+
+        function renderSlot(day, time) {
+          const slot = document.querySelector(`[data-slot="${day}-${time}"]`);
+          if (!slot) return;
+
+          const list = slot.querySelector('.meal-items');
+          const items = mealPlanState[day][time] || [];
+          list.innerHTML = '';
+
+          if (!items.length) {
+            const empty = document.createElement('div');
+            empty.className = 'meal-empty';
+            empty.textContent = 'No recipes planned';
+            list.appendChild(empty);
+            return;
+          }
+
+          items.forEach((name, index) => {
+            list.appendChild(renderMealItem(day, time, name, index));
+          });
+        }
+
+        function renderAllSlots() {
+          days.forEach((day) => {
+            mealTimes.forEach((time) => renderSlot(day, time));
+          });
+        }
+
+        function hideSuggestionsForSlot(slot) {
+          const suggestionBox = slot.querySelector('.meal-suggestions');
+          suggestionBox.hidden = true;
+          suggestionBox.innerHTML = '';
+        }
+
+        function updateSuggestionsForSlot(slot, query) {
+          const suggestionBox = slot.querySelector('.meal-suggestions');
+          const matches = getMatches(query);
+          suggestionBox.innerHTML = '';
+
+          if (!matches.length) {
+            suggestionBox.hidden = true;
+            return;
+          }
+
+          matches.forEach((name) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'meal-suggest-item';
+            button.textContent = name;
+            button.addEventListener('click', () => {
+              const day = slot.dataset.day;
+              const time = slot.dataset.time;
+              mealPlanState[day][time].push(name);
+              saveMealPlanState(mealPlanState);
+              const input = slot.querySelector('input');
+              input.value = '';
+              hideSuggestionsForSlot(slot);
+              renderSlot(day, time);
+            });
+            suggestionBox.appendChild(button);
+          });
+
+          suggestionBox.hidden = false;
+        }
+
+        document.querySelectorAll('.meal-plan-slot').forEach((slot) => {
+          const input = slot.querySelector('input');
+          input.addEventListener('input', (event) => {
+            const value = event.target.value;
+            updateSuggestionsForSlot(slot, value);
+          });
+
+          input.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+              input.value = '';
+              hideSuggestionsForSlot(slot);
+            }
+          });
+
+          slot.addEventListener('click', (event) => {
+            const removeButton = event.target.closest('.meal-item-remove');
+            if (!removeButton) return;
+            const { day, time, index } = removeButton.dataset;
+            const mealList = mealPlanState[day][time];
+            if (Array.isArray(mealList)) {
+              mealList.splice(Number(index), 1);
+              saveMealPlanState(mealPlanState);
+              renderSlot(day, time);
+            }
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.meal-plan-slot')) {
+            document.querySelectorAll('.meal-plan-slot').forEach(hideSuggestionsForSlot);
+          }
+        });
+
+        renderAllSlots();
+      })();
+    </script>
+  {{ else if eq .Title "Grocery List" }}
     <style>
       .grocery-page {
         max-width: 1100px;
@@ -860,6 +1339,35 @@
           if (!event.target.closest('.tag-suggestion') && !event.target.closest('#tag-search')) {
             tagSuggestions.hidden = true;
           }
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      const hamburger = document.querySelector('.hamburger');
+      const menuPanel = document.querySelector('.menu-panel');
+      const categoryButton = document.querySelector('.menu-button');
+      const categorySubmenu = document.querySelector('.sub-menu');
+
+      if (hamburger && menuPanel) {
+        hamburger.addEventListener('click', () => {
+          const isOpen = menuPanel.classList.toggle('open');
+          hamburger.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.mobile-menu')) {
+            menuPanel.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      if (categoryButton && categorySubmenu) {
+        categoryButton.addEventListener('click', () => {
+          const isOpen = categorySubmenu.classList.toggle('open');
+          categoryButton.setAttribute('aria-expanded', String(isOpen));
         });
       }
     })();

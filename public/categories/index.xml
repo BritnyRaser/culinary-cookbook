@@ -2,79 +2,72 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Culinary Cookbook</title>
-    <link>http://localhost:1313/culinary-cookbook/categories/</link>
+    <link>http://localhost:1314/culinary-cookbook/categories/</link>
     <description>Recent content in Categories on Culinary Cookbook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <atom:link href="http://localhost:1313/culinary-cookbook/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/culinary-cookbook/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bakery</title>
-      <link>http://localhost:1313/culinary-cookbook/categories/bakery/</link>
+      <link>http://localhost:1314/culinary-cookbook/categories/bakery/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/categories/bakery/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/categories/bakery/</guid>
       <description></description>
     </item>
     <item>
       <title>Breakfast</title>
-      <link>http://localhost:1313/culinary-cookbook/categories/breakfast/</link>
+      <link>http://localhost:1314/culinary-cookbook/categories/breakfast/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/categories/breakfast/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/categories/breakfast/</guid>
       <description></description>
     </item>
     <item>
       <title>Condiments</title>
-      <link>http://localhost:1313/culinary-cookbook/categories/condiments/</link>
+      <link>http://localhost:1314/culinary-cookbook/categories/condiments/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/categories/condiments/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/categories/condiments/</guid>
       <description></description>
     </item>
     <item>
       <title>Munchies</title>
-      <link>http://localhost:1313/culinary-cookbook/categories/munchies/</link>
+      <link>http://localhost:1314/culinary-cookbook/categories/munchies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/categories/munchies/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/categories/munchies/</guid>
       <description></description>
     </item>
     <item>
       <title>Mystery Mixers</title>
-      <link>http://localhost:1313/culinary-cookbook/categories/mystery-mixers/</link>
+      <link>http://localhost:1314/culinary-cookbook/categories/mystery-mixers/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/categories/mystery-mixers/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/categories/mystery-mixers/</guid>
       <description></description>
     </item>
     <item>
       <title>Nom Nom Central</title>
-      <link>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/</link>
+      <link>http://localhost:1314/culinary-cookbook/categories/centerpiece/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/categories/centerpiece/</guid>
       <description></description>
     </item>
     <item>
-      <title>Nom Nom Central</title>
-      <link>http://localhost:1313/culinary-cookbook/categories/centerpiece/</link>
+      <title>Prospects / Centerpiece</title>
+      <link>http://localhost:1314/culinary-cookbook/categories/prospects-/-centerpiece/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/categories/centerpiece/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Prospects / Nom Nom Central</title>
-      <link>http://localhost:1313/culinary-cookbook/categories/prospects-/-nom-nom-central/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/categories/prospects-/-nom-nom-central/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/categories/prospects-/-centerpiece/</guid>
       <description></description>
     </item>
     <item>
       <title>Sides</title>
-      <link>http://localhost:1313/culinary-cookbook/categories/sides/</link>
+      <link>http://localhost:1314/culinary-cookbook/categories/sides/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/categories/sides/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/categories/sides/</guid>
       <description></description>
     </item>
     <item>
       <title>Sweets</title>
-      <link>http://localhost:1313/culinary-cookbook/categories/sweets/</link>
+      <link>http://localhost:1314/culinary-cookbook/categories/sweets/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/categories/sweets/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/categories/sweets/</guid>
       <description></description>
     </item>
   </channel>

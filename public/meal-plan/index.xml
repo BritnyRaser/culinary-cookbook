@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Meal Plan on Culinary Cookbook</title>
-    <link>http://localhost:1313/culinary-cookbook/meal-plan/</link>
+    <link>http://localhost:1314/culinary-cookbook/meal-plan/</link>
     <description>Recent content in Meal Plan on Culinary Cookbook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <atom:link href="http://localhost:1313/culinary-cookbook/meal-plan/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/culinary-cookbook/meal-plan/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

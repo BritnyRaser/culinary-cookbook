@@ -8,6 +8,8 @@
   </url><url>
     <loc>http://localhost:1314/culinary-cookbook/recipes/beverages/brazilian_lemonade/</loc>
   </url><url>
+    <loc>http://localhost:1314/culinary-cookbook/recipes/mystery-mixers/brazilian_lemonade/</loc>
+  </url><url>
     <loc>http://localhost:1314/culinary-cookbook/categories/breakfast/</loc>
   </url><url>
     <loc>http://localhost:1314/culinary-cookbook/categories/</loc>
@@ -33,6 +35,8 @@
     <loc>http://localhost:1314/culinary-cookbook/meal-plan/</loc>
   </url><url>
     <loc>http://localhost:1314/culinary-cookbook/categories/munchies/</loc>
+  </url><url>
+    <loc>http://localhost:1314/culinary-cookbook/categories/mystery-mixers/</loc>
   </url><url>
     <loc>http://localhost:1314/culinary-cookbook/categories/nom-nom-central/</loc>
   </url><url>

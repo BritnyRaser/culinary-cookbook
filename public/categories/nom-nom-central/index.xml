@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nom Nom Central on Culinary Cookbook</title>
-    <link>https://BritnyRaser.github.io/culinary-cookbook/categories/nom-nom-central/</link>
+    <link>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/</link>
     <description>Recent content in Nom Nom Central on Culinary Cookbook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <atom:link href="https://BritnyRaser.github.io/culinary-cookbook/categories/nom-nom-central/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/culinary-cookbook/categories/nom-nom-central/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Grilled PB &amp; J</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</link>
+      <link>http://localhost:1313/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</guid>
       <description></description>
     </item>
     <item>
       <title>Toasted Turkey Sandwich</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/</link>
+      <link>http://localhost:1313/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/</guid>
       <description></description>
     </item>
   </channel>

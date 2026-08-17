@@ -1,5 +1,5 @@
 ---
 title: "Marry Me Chicken"
 categories:
-  - "Prospects / Centerpiece"
+  - "Prospects / Nom Nom Central"
 ---

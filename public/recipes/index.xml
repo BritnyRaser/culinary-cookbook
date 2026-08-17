@@ -2,79 +2,79 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Recipes on Culinary Cookbook</title>
-    <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/</link>
+    <link>http://localhost:1314/culinary-cookbook/recipes/</link>
     <description>Recent content in Recipes on Culinary Cookbook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <atom:link href="https://BritnyRaser.github.io/culinary-cookbook/recipes/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/culinary-cookbook/recipes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Brazilian Lemonade</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/beverages/brazilian_lemonade/</link>
+      <link>http://localhost:1314/culinary-cookbook/recipes/beverages/brazilian_lemonade/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/beverages/brazilian_lemonade/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/recipes/beverages/brazilian_lemonade/</guid>
       <description></description>
     </item>
     <item>
       <title>Cheez-Its</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/munchies/cheez_its/</link>
+      <link>http://localhost:1314/culinary-cookbook/recipes/munchies/cheez_its/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/munchies/cheez_its/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/recipes/munchies/cheez_its/</guid>
       <description></description>
     </item>
     <item>
       <title>Cowboy Beans</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/sides/cowboy_beans/</link>
+      <link>http://localhost:1314/culinary-cookbook/recipes/sides/cowboy_beans/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/sides/cowboy_beans/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/recipes/sides/cowboy_beans/</guid>
       <description></description>
     </item>
     <item>
       <title>French Toast</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/breakfast/french_toast/</link>
+      <link>http://localhost:1314/culinary-cookbook/recipes/breakfast/french_toast/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/breakfast/french_toast/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/recipes/breakfast/french_toast/</guid>
       <description></description>
     </item>
     <item>
       <title>Grilled PB &amp; J</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</link>
+      <link>http://localhost:1314/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</guid>
       <description></description>
     </item>
     <item>
       <title>High Protein Bread</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/bakery/high_protein_bread/</link>
+      <link>http://localhost:1314/culinary-cookbook/recipes/bakery/high_protein_bread/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/bakery/high_protein_bread/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/recipes/bakery/high_protein_bread/</guid>
       <description></description>
     </item>
     <item>
       <title>Marry Me Chicken</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/centerpiece/marry_me_chicken/</link>
+      <link>http://localhost:1314/culinary-cookbook/recipes/prospects/centerpiece/marry_me_chicken/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/centerpiece/marry_me_chicken/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/recipes/prospects/centerpiece/marry_me_chicken/</guid>
       <description></description>
     </item>
     <item>
       <title>Pickled Red Onions</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/condiments/pickled_red_onions/</link>
+      <link>http://localhost:1314/culinary-cookbook/recipes/condiments/pickled_red_onions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/condiments/pickled_red_onions/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/recipes/condiments/pickled_red_onions/</guid>
       <description></description>
     </item>
     <item>
       <title>Tiramisu</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/sweets/tiramisu/</link>
+      <link>http://localhost:1314/culinary-cookbook/recipes/sweets/tiramisu/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/sweets/tiramisu/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/recipes/sweets/tiramisu/</guid>
       <description></description>
     </item>
     <item>
       <title>Toasted Turkey Sandwich</title>
-      <link>https://BritnyRaser.github.io/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/</link>
+      <link>http://localhost:1314/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/</guid>
+      <guid>http://localhost:1314/culinary-cookbook/recipes/centerpiece/toasted_turkey_sandwish/</guid>
       <description></description>
     </item>
   </channel>

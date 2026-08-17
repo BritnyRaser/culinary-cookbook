@@ -1,5 +1,5 @@
 ---
 title: "Grilled PB & J"
 categories:
-  - "Centerpiece"
+  - "Nom Nom Central"
 ---

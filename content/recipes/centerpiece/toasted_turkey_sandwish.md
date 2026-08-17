@@ -1,5 +1,5 @@
 ---
 title: "Toasted Turkey Sandwich"
 categories:
-  - "Centerpiece"
+  - "Nom Nom Central"
 ---

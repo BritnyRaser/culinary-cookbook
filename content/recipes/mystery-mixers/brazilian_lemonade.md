@@ -1,5 +1,5 @@
 ---
 title: "Brazilian Lemonade"
 categories:
-  - "Beverages"
+  - "Mystery Mixers"
 ---

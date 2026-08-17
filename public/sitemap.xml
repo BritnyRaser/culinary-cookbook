@@ -6,11 +6,11 @@
   </url><url>
     <loc>http://localhost:1314/culinary-cookbook/categories/beverages/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/beverages/brazilian_lemonade/</loc>
-  </url><url>
     <loc>http://localhost:1314/culinary-cookbook/recipes/mystery-mixers/brazilian_lemonade/</loc>
   </url><url>
     <loc>http://localhost:1314/culinary-cookbook/categories/breakfast/</loc>
+  </url><url>
+    <loc>http://localhost:1314/culinary-cookbook/categories/bright-bites/</loc>
   </url><url>
     <loc>http://localhost:1314/culinary-cookbook/categories/</loc>
   </url><url>
@@ -18,11 +18,11 @@
   </url><url>
     <loc>http://localhost:1314/culinary-cookbook/categories/condiments/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/sides/cowboy_beans/</loc>
+    <loc>http://localhost:1314/culinary-cookbook/recipes/sidekicks/cowboy_beans/</loc>
   </url><url>
     <loc>http://localhost:1314/culinary-cookbook/</loc>
   </url><url>
-    <loc>http://localhost:1314/culinary-cookbook/recipes/breakfast/french_toast/</loc>
+    <loc>http://localhost:1314/culinary-cookbook/recipes/bright-bites/french_toast/</loc>
   </url><url>
     <loc>http://localhost:1314/culinary-cookbook/recipes/centerpiece/grilled_pb__j/</loc>
   </url><url>

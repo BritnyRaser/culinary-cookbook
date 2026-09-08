@@ -162,9 +162,11 @@
           {{ end }}
 
           <article class="recipe-card home-recipe-card" data-name="{{ $title }}" data-tags="{{ $tags }}" data-ingredients="{{ $ingredientTags }}">
-            {{ with $recipeImage }}
-              <img src="{{ . | relURL }}" alt="{{ $title }}" class="recipe-image">
-            {{ end }}
+            <a href="{{ .RelPermalink }}" class="recipe-image-link">
+              {{ with $recipeImage }}
+                <img src="{{ . | relURL }}" alt="{{ $title }}" class="recipe-image">
+              {{ end }}
+            </a>
             <h3><a href="{{ .RelPermalink }}">{{ $title }}</a></h3>
             {{ with $tags }}
               <p class="recipe-meta">{{ $tags }}</p>

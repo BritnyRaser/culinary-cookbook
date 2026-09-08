@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Prospects / Beef on Culinary Cookbook</title>
-    <link>http://localhost:1313/culinary-cookbook/categories/prospects-/-beef/</link>
-    <description>Recent content in Prospects / Beef on Culinary Cookbook</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <atom:link href="http://localhost:1313/culinary-cookbook/categories/prospects-/-beef/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Beef Tenderloin with Red Wine Sauce</title>
-      <link>http://localhost:1313/culinary-cookbook/recipes/prospects/beef/beef_tenderloin_with_red_wine_sauce/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/culinary-cookbook/recipes/prospects/beef/beef_tenderloin_with_red_wine_sauce/</guid>
-      <description></description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Prospects / Beef on Culinary Cookbook</title><link>https://BritnyRaser.github.io/culinary-cookbook/categories/prospects-/-beef/</link><description>Recent content in Prospects / Beef on Culinary Cookbook</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://BritnyRaser.github.io/culinary-cookbook/categories/prospects-/-beef/index.xml" rel="self" type="application/rss+xml"/><item><title>Beef Tenderloin with Red Wine Sauce</title><link>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/beef/beef_tenderloin_with_red_wine_sauce/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/beef/beef_tenderloin_with_red_wine_sauce/</guid><description/></item></channel></rss>

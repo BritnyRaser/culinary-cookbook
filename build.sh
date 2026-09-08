@@ -126,11 +126,12 @@ PY
     done < <(find "$category_dir" -mindepth 1 -maxdepth 1 -print0)
 
     if [ "${#subcats[@]}" -gt 0 ]; then
+      mapfile -t sorted_subcats < <(printf '%s\n' "${subcats[@]}" | sort)
       {
         printf '%s\n' '---'
         printf 'title: "%s"\n' "$escaped_title"
         printf '%s\n' 'subcategories:'
-        for item in "${subcats[@]}"; do
+        for item in "${sorted_subcats[@]}"; do
           printf '  - "%s"\n' "$item"
         done
         printf '%s\n' '---'

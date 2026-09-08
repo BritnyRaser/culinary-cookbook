@@ -1140,6 +1140,7 @@
         {{ range . }}
           {{ $childCategories = $childCategories | append (dict "title" .) }}
         {{ end }}
+        {{ $childCategories = sort $childCategories "title" }}
       {{ else }}
         {{ range .Sections }}
           {{ $childCategories = $childCategories | append (dict "title" .Title "url" .RelPermalink) }}
@@ -1183,7 +1184,8 @@
         </div>
       {{ end }}
 
-      {{ if .Pages }}
+      {{ $allRecipes := .RegularPagesRecursive }}
+      {{ if gt (len $allRecipes) 0 }}
         <div class="category-controls">
           <label class="control search-control">
             <span class="control-label">Search by name</span>
@@ -1202,7 +1204,7 @@
         </div>
 
         <div class="recipe-grid category-recipe-grid">
-          {{ range .Pages }}
+          {{ range $allRecipes }}
             {{ $recipeImage := "" }}
             {{ $recipeTitle := .Title }}
             {{ $slug := lower $recipeTitle | urlize }}

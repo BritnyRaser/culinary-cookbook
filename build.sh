@@ -84,3 +84,69 @@ title: "${escaped_title}"
 EOF
   fi
 done < <(find recipes -type f -name '*.cook' -print0)
+
+while IFS= read -r -d '' dir; do
+  [ -d "$dir" ] || continue
+
+  rel_dir=${dir#recipes/}
+  if [ -z "$rel_dir" ] || [ "$rel_dir" = "." ] || [ "$rel_dir" = "recipes" ]; then
+    continue
+  fi
+
+  category_dir="content/categories/${rel_dir}"
+  mkdir -p "$category_dir"
+
+  title=$(basename "$rel_dir")
+  escaped_title=$(python3 - "$title" <<'PY'
+import sys
+raw = sys.argv[1]
+parts = [p.replace('_', ' ').replace('-', ' ') for p in raw.split('/') if p]
+pretty = []
+for part in parts:
+    pretty.append(' '.join(word.capitalize() for word in part.split()))
+print(' / '.join(pretty))
+PY
+)
+
+  escaped_title=${escaped_title//"/\\"}
+
+  if [ -d "$category_dir" ] && [ "$category_dir" != "content/categories" ]; then
+    subcats=()
+    while IFS= read -r -d '' child; do
+      child_name=$(basename "$child")
+      if [ "$child_name" != "_index.md" ] && [ -d "$child" ]; then
+        pretty=$(python3 - "$child_name" <<'PY'
+import sys
+raw = sys.argv[1]
+print(' '.join(word.capitalize() for word in raw.replace('_', ' ').replace('-', ' ').split()))
+PY
+)
+        subcats+=("$pretty")
+      fi
+    done < <(find "$category_dir" -mindepth 1 -maxdepth 1 -print0)
+
+    if [ "${#subcats[@]}" -gt 0 ]; then
+      {
+        printf '%s\n' '---'
+        printf 'title: "%s"\n' "$escaped_title"
+        printf '%s\n' 'subcategories:'
+        for item in "${subcats[@]}"; do
+          printf '  - "%s"\n' "$item"
+        done
+        printf '%s\n' '---'
+      } > "${category_dir}/_index.md"
+    else
+      cat <<EOF > "${category_dir}/_index.md"
+---
+title: "${escaped_title}"
+---
+EOF
+    fi
+  else
+    cat <<EOF > "${category_dir}/_index.md"
+---
+title: "${escaped_title}"
+---
+EOF
+  fi
+done < <(find recipes -mindepth 1 -maxdepth 3 -type d -print0)

@@ -1,5 +1,0 @@
----
-title: "Tiramisu"
-categories:
-  - "Sweets"
----

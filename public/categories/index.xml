@@ -2,72 +2,177 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Culinary Cookbook</title>
-    <link>http://localhost:1314/culinary-cookbook/categories/</link>
+    <link>http://localhost:1313/culinary-cookbook/categories/</link>
     <description>Recent content in Categories on Culinary Cookbook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <atom:link href="http://localhost:1314/culinary-cookbook/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/culinary-cookbook/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bakery</title>
-      <link>http://localhost:1314/culinary-cookbook/categories/bakery/</link>
+      <link>http://localhost:1313/culinary-cookbook/categories/bakery/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/categories/bakery/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/categories/bakery/</guid>
       <description></description>
     </item>
     <item>
-      <title>Breakfast</title>
-      <link>http://localhost:1314/culinary-cookbook/categories/breakfast/</link>
+      <title>Beef</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/beef/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/categories/breakfast/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/beef/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Beef</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/prospects/beef/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/prospects/beef/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bright Bites</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/bright-bites/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/bright-bites/</guid>
       <description></description>
     </item>
     <item>
       <title>Condiments</title>
-      <link>http://localhost:1314/culinary-cookbook/categories/condiments/</link>
+      <link>http://localhost:1313/culinary-cookbook/categories/condiments/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/categories/condiments/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/categories/condiments/</guid>
       <description></description>
     </item>
     <item>
       <title>Munchies</title>
-      <link>http://localhost:1314/culinary-cookbook/categories/munchies/</link>
+      <link>http://localhost:1313/culinary-cookbook/categories/munchies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/categories/munchies/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/categories/munchies/</guid>
       <description></description>
     </item>
     <item>
       <title>Mystery Mixers</title>
-      <link>http://localhost:1314/culinary-cookbook/categories/mystery-mixers/</link>
+      <link>http://localhost:1313/culinary-cookbook/categories/mystery-mixers/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/categories/mystery-mixers/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/categories/mystery-mixers/</guid>
       <description></description>
     </item>
     <item>
       <title>Nom Nom Central</title>
-      <link>http://localhost:1314/culinary-cookbook/categories/centerpiece/</link>
+      <link>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/categories/centerpiece/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/</guid>
       <description></description>
     </item>
     <item>
-      <title>Prospects / Centerpiece</title>
-      <link>http://localhost:1314/culinary-cookbook/categories/prospects-/-centerpiece/</link>
+      <title>Nom Nom Central / Poultry</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/nom-nom-central-/-poultry/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/categories/prospects-/-centerpiece/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/categories/nom-nom-central-/-poultry/</guid>
       <description></description>
     </item>
     <item>
-      <title>Sides</title>
-      <link>http://localhost:1314/culinary-cookbook/categories/sides/</link>
+      <title>Nom Nom Central / Seafood</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/nom-nom-central-/-seafood/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/categories/sides/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/categories/nom-nom-central-/-seafood/</guid>
       <description></description>
     </item>
     <item>
-      <title>Sweets</title>
-      <link>http://localhost:1314/culinary-cookbook/categories/sweets/</link>
+      <title>Pork</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/pork/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/culinary-cookbook/categories/sweets/</guid>
+      <guid>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/pork/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pork</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/prospects/pork/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/prospects/pork/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Poultry</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/poultry/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/poultry/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Poultry</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/prospects/poultry/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/prospects/poultry/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prospects</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/prospects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/prospects/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prospects / Beef</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/prospects-/-beef/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/prospects-/-beef/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prospects / Poultry</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/prospects-/-poultry/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/prospects-/-poultry/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prospects / Seafood</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/prospects-/-seafood/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/prospects-/-seafood/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Seafood</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/seafood/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/seafood/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Seafood</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/prospects/seafood/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/prospects/seafood/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sidekicks</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/sidekicks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/sidekicks/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sweet Shack</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/sweet-shack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/sweet-shack/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Wild Game</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/wild-game/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/nom-nom-central/wild-game/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Wild Game</title>
+      <link>http://localhost:1313/culinary-cookbook/categories/prospects/wild-game/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/categories/prospects/wild-game/</guid>
       <description></description>
     </item>
   </channel>

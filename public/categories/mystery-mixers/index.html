@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/culinary-cookbook/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=culinary-cookbook/livereload" data-no-instant defer></script>
+<head><script src="/culinary-cookbook/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=culinary-cookbook/livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mystery Mixers | Culinary Cookbook</title>
@@ -9,7 +9,7 @@
 <body>
   <header class="site-header">
     <div class="header-row">
-      <a href="http://localhost:1314/culinary-cookbook/" class="back-link">&larr; Back to Cookbook</a>
+      <a href="http://localhost:1313/culinary-cookbook/" class="back-link">&larr; Back to Cookbook</a>
 
       <div class="mobile-menu">
         <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
@@ -27,23 +27,65 @@
               </button>
               <ul class="sub-menu">
                 
-                  <li><a href="/culinary-cookbook/categories/bakery/">Bakery</a></li>
+                  
+                  
+                    <li><a href="/culinary-cookbook/categories/bakery/">Bakery</a></li>
+                  
                 
-                  <li><a href="/culinary-cookbook/categories/breakfast/">Breakfast</a></li>
+                  
+                  
+                    <li><a href="/culinary-cookbook/categories/bright-bites/">Bright Bites</a></li>
+                  
                 
-                  <li><a href="/culinary-cookbook/categories/centerpiece/">Nom Nom Central</a></li>
+                  
+                  
+                    <li><a href="/culinary-cookbook/categories/condiments/">Condiments</a></li>
+                  
                 
-                  <li><a href="/culinary-cookbook/categories/condiments/">Condiments</a></li>
+                  
+                  
+                    <li><a href="/culinary-cookbook/categories/munchies/">Munchies</a></li>
+                  
                 
-                  <li><a href="/culinary-cookbook/categories/munchies/">Munchies</a></li>
+                  
+                  
+                    <li><a href="/culinary-cookbook/categories/mystery-mixers/">Mystery Mixers</a></li>
+                  
                 
-                  <li><a href="/culinary-cookbook/categories/mystery-mixers/">Mystery Mixers</a></li>
+                  
+                  
+                    <li><a href="/culinary-cookbook/categories/nom-nom-central/">Nom Nom Central</a></li>
+                  
                 
-                  <li><a href="/culinary-cookbook/categories/prospects-/-centerpiece/">Prospects / Centerpiece</a></li>
+                  
+                  
                 
-                  <li><a href="/culinary-cookbook/categories/sides/">Sides</a></li>
+                  
+                  
                 
-                  <li><a href="/culinary-cookbook/categories/sweets/">Sweets</a></li>
+                  
+                  
+                    <li><a href="/culinary-cookbook/categories/prospects/">Prospects</a></li>
+                  
+                
+                  
+                  
+                
+                  
+                  
+                
+                  
+                  
+                
+                  
+                  
+                    <li><a href="/culinary-cookbook/categories/sidekicks/">Sidekicks</a></li>
+                  
+                
+                  
+                  
+                    <li><a href="/culinary-cookbook/categories/sweet-shack/">Sweet Shack</a></li>
+                  
                 
               </ul>
             </div>
@@ -97,12 +139,20 @@
 
   
     <main class="container category-page">
-      <section class="category-hero" style="background-image: url('/culinary-cookbook/images/mystery-mixers.png');">
+      <section class="category-hero" style="background-image: url('/culinary-cookbook/images/website/mystery-mixers.png');">
         <div class="category-hero-copy">
           <p class="eyebrow">Category</p>
           <h1>Mystery Mixers</h1>
         </div>
       </section>
+
+      
+      
+      
+        
+      
+
+      
 
       
         <div class="category-controls">
@@ -141,52 +191,97 @@
             
               
                 
-              
-            
-              
+                  
                 
               
             
               
-                
+            
               
             
               
-                
+            
               
             
               
-                
+            
               
             
               
-                
+            
               
             
               
-                
-              
             
-              
-                
-              
-            
-              
-                
-              
-            
-              
-                
-              
-            
-              
-                
               
             
 
             <article class="recipe-card category-card" data-name="Brazilian Lemonade" data-tags="Mystery Mixers, Brazilian, Lemonade, Lime,">
               
+                <img src="/culinary-cookbook/images/recipes/brazilian-lemonade.jpg" alt="Brazilian Lemonade" class="recipe-image">
+              
               <h3><a href="/culinary-cookbook/recipes/mystery-mixers/brazilian_lemonade/">Brazilian Lemonade</a></h3>
+            </article>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+              
+                
+              
+            
+              
+                
+              
+            
+              
+                
+              
+            
+              
+                
+              
+            
+              
+                
+              
+            
+              
+                
+              
+            
+              
+                
+              
+            
+              
+                
+                  
+                
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+
+            <article class="recipe-card category-card" data-name="Egg Smoothie" data-tags="Mystery Mixers, American, Eggs, Carnivore, Keto">
+              
+                <img src="/culinary-cookbook/images/recipes/egg_smoothie.jpg" alt="Egg Smoothie" class="recipe-image">
+              
+              <h3><a href="/culinary-cookbook/recipes/mystery-mixers/egg_smoothie/">Egg Smoothie</a></h3>
             </article>
           
         </div>
@@ -201,6 +296,7 @@
       const tagSearchInput = document.getElementById('tag-search');
       const tagSuggestions = document.getElementById('tag-suggestions');
       const selectedTagsContainer = document.getElementById('selected-tags');
+      const filterButtons = Array.from(document.querySelectorAll('.category-filter-btn'));
       const cards = Array.from(document.querySelectorAll('.category-card'));
       const noResults = document.getElementById('no-results');
       let selectedTags = [];
@@ -249,9 +345,19 @@
             selectedTags = selectedTags.filter((item) => item !== tag);
             renderSelectedTags();
             renderSuggestions();
+            syncFilterButtons();
             filterCards();
           });
           selectedTagsContainer.appendChild(chip);
+        });
+      };
+
+      const syncFilterButtons = () => {
+        filterButtons.forEach((button) => {
+          const tag = normalizeText(button.dataset.tag || button.textContent);
+          const isSelected = selectedTags.includes(tag);
+          button.classList.toggle('is-selected', isSelected);
+          button.setAttribute('aria-pressed', String(isSelected));
         });
       };
 
@@ -291,6 +397,7 @@
             tagSearchInput.value = '';
             renderSelectedTags();
             renderSuggestions();
+            syncFilterButtons();
             filterCards();
           });
           tagSuggestions.appendChild(option);
@@ -308,7 +415,7 @@
           const cardText = normalizeText(card.textContent || '');
           const tags = parseTags(card.dataset.tags);
           const matchesQuery = !query || nameText.includes(query) || cardText.includes(query);
-          const matchesTag = selectedTags.length === 0 || selectedTags.some((tag) => tags.includes(tag));
+          const matchesTag = selectedTags.length === 0 || selectedTags.every((tag) => tags.includes(tag));
           const shouldShow = matchesQuery && matchesTag;
           card.style.display = shouldShow ? '' : 'none';
           if (shouldShow) visibleCount += 1;
@@ -322,10 +429,30 @@
       if (searchInput && tagSearchInput && cards.length) {
         selectedTagsContainer.style.display = 'none';
         renderSelectedTags();
+        syncFilterButtons();
         const tagControl = tagSearchInput.closest('.tag-search-control');
         if (tagControl) {
           tagControl.classList.remove('is-active');
         }
+
+        filterButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const tag = normalizeText(button.dataset.tag || button.textContent);
+            if (!tag) return;
+
+            if (selectedTags.includes(tag)) {
+              selectedTags = selectedTags.filter((item) => item !== tag);
+            } else {
+              selectedTags = [...selectedTags, tag];
+            }
+
+            renderSelectedTags();
+            renderSuggestions();
+            syncFilterButtons();
+            filterCards();
+          });
+        });
+
         searchInput.addEventListener('input', filterCards);
         tagSearchInput.addEventListener('input', renderSuggestions);
         tagSearchInput.addEventListener('focus', () => {

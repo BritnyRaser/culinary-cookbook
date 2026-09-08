@@ -27,7 +27,10 @@
               </button>
               <ul class="sub-menu">
                 {{ range .Site.Taxonomies.categories }}
-                  <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+                  {{ $categoryTitle := .Page.Title }}
+                  {{ if not (in $categoryTitle " / ") }}
+                    <li><a href="{{ .Page.RelPermalink }}">{{ $categoryTitle }}</a></li>
+                  {{ end }}
                 {{ end }}
               </ul>
             </div>
@@ -1131,6 +1134,55 @@
         </div>
       </section>
 
+      {{ $currentPage := . }}
+      {{ $childCategories := slice }}
+      {{ with .Params.subcategories }}
+        {{ range . }}
+          {{ $childCategories = $childCategories | append (dict "title" .) }}
+        {{ end }}
+      {{ else }}
+        {{ range .Sections }}
+          {{ $childCategories = $childCategories | append (dict "title" .Title "url" .RelPermalink) }}
+        {{ end }}
+      {{ end }}
+
+      {{ if gt (len $childCategories) 0 }}
+        <div class="category-filter-row">
+          {{ range $childCategories }}
+            {{ $tagTitle := .title }}
+            {{ $rawSlug := lower $tagTitle | urlize }}
+            {{ $slugUnderscore := replace $rawSlug "-" "_" }}
+            {{ $buttonImage := "" }}
+            {{ $candidates := slice
+              (printf "static/images/website/%s.png" $rawSlug)
+              (printf "static/images/website/%s.jpg" $rawSlug)
+              (printf "static/images/website/%s.jpeg" $rawSlug)
+              (printf "static/images/website/%s.svg" $rawSlug)
+              (printf "static/images/website/%s.webp" $rawSlug)
+              (printf "static/images/website/%s.gif" $rawSlug)
+              (printf "static/images/website/%s.png" $slugUnderscore)
+              (printf "static/images/website/%s.jpg" $slugUnderscore)
+              (printf "static/images/website/%s.jpeg" $slugUnderscore)
+              (printf "static/images/website/%s.svg" $slugUnderscore)
+              (printf "static/images/website/%s.webp" $slugUnderscore)
+              (printf "static/images/website/%s.gif" $slugUnderscore)
+            }}
+
+            {{ range $candidates }}
+              {{ if eq $buttonImage "" }}
+                {{ if fileExists . }}
+                  {{ $buttonImage = printf "images/website/%s" (replace . "static/images/website/" "") }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+
+            <button type="button" class="category-filter-btn" data-tag="{{ $tagTitle }}" {{ with $buttonImage }}style="background-image: url('{{ $buttonImage | relURL }}');"{{ end }}>
+              <span>{{ $tagTitle }}</span>
+            </button>
+          {{ end }}
+        </div>
+      {{ end }}
+
       {{ if .Pages }}
         <div class="category-controls">
           <label class="control search-control">
@@ -1203,6 +1255,7 @@
       const tagSearchInput = document.getElementById('tag-search');
       const tagSuggestions = document.getElementById('tag-suggestions');
       const selectedTagsContainer = document.getElementById('selected-tags');
+      const filterButtons = Array.from(document.querySelectorAll('.category-filter-btn'));
       const cards = Array.from(document.querySelectorAll('.category-card'));
       const noResults = document.getElementById('no-results');
       let selectedTags = [];
@@ -1251,9 +1304,19 @@
             selectedTags = selectedTags.filter((item) => item !== tag);
             renderSelectedTags();
             renderSuggestions();
+            syncFilterButtons();
             filterCards();
           });
           selectedTagsContainer.appendChild(chip);
+        });
+      };
+
+      const syncFilterButtons = () => {
+        filterButtons.forEach((button) => {
+          const tag = normalizeText(button.dataset.tag || button.textContent);
+          const isSelected = selectedTags.includes(tag);
+          button.classList.toggle('is-selected', isSelected);
+          button.setAttribute('aria-pressed', String(isSelected));
         });
       };
 
@@ -1293,6 +1356,7 @@
             tagSearchInput.value = '';
             renderSelectedTags();
             renderSuggestions();
+            syncFilterButtons();
             filterCards();
           });
           tagSuggestions.appendChild(option);
@@ -1310,7 +1374,7 @@
           const cardText = normalizeText(card.textContent || '');
           const tags = parseTags(card.dataset.tags);
           const matchesQuery = !query || nameText.includes(query) || cardText.includes(query);
-          const matchesTag = selectedTags.length === 0 || selectedTags.some((tag) => tags.includes(tag));
+          const matchesTag = selectedTags.length === 0 || selectedTags.every((tag) => tags.includes(tag));
           const shouldShow = matchesQuery && matchesTag;
           card.style.display = shouldShow ? '' : 'none';
           if (shouldShow) visibleCount += 1;
@@ -1324,10 +1388,30 @@
       if (searchInput && tagSearchInput && cards.length) {
         selectedTagsContainer.style.display = 'none';
         renderSelectedTags();
+        syncFilterButtons();
         const tagControl = tagSearchInput.closest('.tag-search-control');
         if (tagControl) {
           tagControl.classList.remove('is-active');
         }
+
+        filterButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const tag = normalizeText(button.dataset.tag || button.textContent);
+            if (!tag) return;
+
+            if (selectedTags.includes(tag)) {
+              selectedTags = selectedTags.filter((item) => item !== tag);
+            } else {
+              selectedTags = [...selectedTags, tag];
+            }
+
+            renderSelectedTags();
+            renderSuggestions();
+            syncFilterButtons();
+            filterCards();
+          });
+        });
+
         searchInput.addEventListener('input', filterCards);
         tagSearchInput.addEventListener('input', renderSuggestions);
         tagSearchInput.addEventListener('focus', () => {

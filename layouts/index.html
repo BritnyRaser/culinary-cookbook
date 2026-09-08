@@ -27,7 +27,10 @@
               </button>
               <ul class="sub-menu">
                 {{ range .Site.Taxonomies.categories }}
-                  <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+                  {{ $categoryTitle := .Page.Title }}
+                  {{ if not (in $categoryTitle " / ") }}
+                    <li><a href="{{ .Page.RelPermalink }}">{{ $categoryTitle }}</a></li>
+                  {{ end }}
                 {{ end }}
               </ul>
             </div>
@@ -48,46 +51,48 @@
         <div class="category-dial-grid">
           {{ range .Site.Taxonomies.categories }}
             {{ $title := .Page.Title }}
-            {{ $imagePath := "" }}
+            {{ if not (in $title " / ") }}
+              {{ $imagePath := "" }}
 
-            {{ with .Page.Params.image }}
-              {{ $normalizedImage := strings.TrimPrefix "/" . }}
-              {{ $paramImage := printf "static/%s" $normalizedImage }}
-              {{ if fileExists $paramImage }}
-                {{ $imagePath = $normalizedImage }}
+              {{ with .Page.Params.image }}
+                {{ $normalizedImage := strings.TrimPrefix "/" . }}
+                {{ $paramImage := printf "static/%s" $normalizedImage }}
+                {{ if fileExists $paramImage }}
+                  {{ $imagePath = $normalizedImage }}
+                {{ end }}
               {{ end }}
-            {{ end }}
 
-            {{ if eq $imagePath "" }}
-              {{ $slug := lower $title | urlize }}
-              {{ $slugUnderscore := replace $slug "-" "_" }}
-              {{ $candidates := slice
-                (printf "static/images/website/%s.png" $slug)
-                (printf "static/images/website/%s.jpg" $slug)
-                (printf "static/images/website/%s.jpeg" $slug)
-                (printf "static/images/website/%s.svg" $slug)
-                (printf "static/images/website/%s.webp" $slug)
-                (printf "static/images/website/%s.gif" $slug)
-                (printf "static/images/website/%s.png" $slugUnderscore)
-                (printf "static/images/website/%s.jpg" $slugUnderscore)
-                (printf "static/images/website/%s.jpeg" $slugUnderscore)
-                (printf "static/images/website/%s.svg" $slugUnderscore)
-                (printf "static/images/website/%s.webp" $slugUnderscore)
-                (printf "static/images/website/%s.gif" $slugUnderscore)
-              }}
+              {{ if eq $imagePath "" }}
+                {{ $slug := lower $title | urlize }}
+                {{ $slugUnderscore := replace $slug "-" "_" }}
+                {{ $candidates := slice
+                  (printf "static/images/website/%s.png" $slug)
+                  (printf "static/images/website/%s.jpg" $slug)
+                  (printf "static/images/website/%s.jpeg" $slug)
+                  (printf "static/images/website/%s.svg" $slug)
+                  (printf "static/images/website/%s.webp" $slug)
+                  (printf "static/images/website/%s.gif" $slug)
+                  (printf "static/images/website/%s.png" $slugUnderscore)
+                  (printf "static/images/website/%s.jpg" $slugUnderscore)
+                  (printf "static/images/website/%s.jpeg" $slugUnderscore)
+                  (printf "static/images/website/%s.svg" $slugUnderscore)
+                  (printf "static/images/website/%s.webp" $slugUnderscore)
+                  (printf "static/images/website/%s.gif" $slugUnderscore)
+                }}
 
-              {{ range $candidates }}
-                {{ if eq $imagePath "" }}
-                  {{ if fileExists . }}
-                    {{ $imagePath = printf "images/website/%s" (replace . "static/images/website/" "") }}
+                {{ range $candidates }}
+                  {{ if eq $imagePath "" }}
+                    {{ if fileExists . }}
+                      {{ $imagePath = printf "images/website/%s" (replace . "static/images/website/" "") }}
+                    {{ end }}
                   {{ end }}
                 {{ end }}
               {{ end }}
-            {{ end }}
 
-            <a href="{{ .Page.RelPermalink }}" class="category-dial" {{ with $imagePath }}style="background-image: url('{{ . | relURL }}');"{{ end }}>
-              <span>{{ $title }}</span>
-            </a>
+              <a href="{{ .Page.RelPermalink }}" class="category-dial" {{ with $imagePath }}style="background-image: url('{{ . | relURL }}');"{{ end }}>
+                <span>{{ $title }}</span>
+              </a>
+            {{ end }}
           {{ end }}
         </div>
       {{ end }}

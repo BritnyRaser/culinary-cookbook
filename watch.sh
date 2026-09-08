@@ -10,7 +10,7 @@ if ! command -v inotifywait >/dev/null 2>&1; then
 fi
 
 ./build.sh
-hugo --quiet
+hugo --config hugo.local.toml --quiet
 
 echo "Watching recipes/ and static/ for changes..."
 while true; do
@@ -19,6 +19,6 @@ while true; do
       [ -n "$changed" ] || continue
       echo "Detected change: $changed"
       ./build.sh
-      hugo --quiet
+      hugo --config hugo.local.toml --quiet
     done
 done

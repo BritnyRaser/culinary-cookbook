@@ -126,6 +126,15 @@
           {{ $recipeData := index $.Site.Data.recipes $recipeKey }}
           {{ $tags := "" }}
           {{ with $recipeData.metadata.map.tags }}{{ $tags = . }}{{ else }}{{ with $recipeData.metadata.map.Tags }}{{ $tags = . }}{{ end }}{{ end }}
+          {{ $ingredientNames := slice }}
+          {{ with $recipeData.ingredients }}
+            {{ range . }}
+              {{ with .name }}
+                {{ $ingredientNames = $ingredientNames | append . }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ $ingredientTags := delimit $ingredientNames ", " }}
           {{ $recipeImage := "" }}
           {{ $slug := lower $title | urlize }}
           {{ $slugUnderscore := replace $slug "-" "_" }}
@@ -152,7 +161,7 @@
             {{ end }}
           {{ end }}
 
-          <article class="recipe-card home-recipe-card" data-name="{{ $title }}" data-tags="{{ $tags }}">
+          <article class="recipe-card home-recipe-card" data-name="{{ $title }}" data-tags="{{ $tags }}" data-ingredients="{{ $ingredientTags }}">
             {{ with $recipeImage }}
               <img src="{{ . | relURL }}" alt="{{ $title }}" class="recipe-image">
             {{ end }}
@@ -222,7 +231,8 @@
       const getUniqueTags = () => {
         const uniqueTags = new Set();
         cards.forEach((card) => {
-          parseTags(card.dataset.tags).forEach((tag) => uniqueTags.add(tag));
+          const combinedTags = [card.dataset.tags || '', card.dataset.ingredients || ''].join(',');
+          parseTags(combinedTags).forEach((tag) => uniqueTags.add(tag));
         });
         return Array.from(uniqueTags).sort();
       };

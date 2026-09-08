@@ -156,6 +156,255 @@
 
       
       
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+            
+          
+        
+        
+          
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+            
+          
+        
+        
+          
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+
+      
         <div class="category-controls">
           <label class="control search-control">
             <span class="control-label">Search by name</span>
@@ -184,6 +433,27 @@
             
             
             
+            
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+            
+            
+            
 
             
               
@@ -217,7 +487,7 @@
               
             
 
-            <article class="recipe-card category-card" data-name="Brazilian Lemonade" data-tags="Mystery Mixers, Brazilian, Lemonade, Lime,">
+            <article class="recipe-card category-card" data-name="Brazilian Lemonade" data-tags="Mystery Mixers, Brazilian, Lemonade, Lime," data-ingredients="Limes, Condensed Milk, Water, lime">
               
                 <img src="/culinary-cookbook/images/recipes/brazilian-lemonade.jpg" alt="Brazilian Lemonade" class="recipe-image">
               
@@ -233,6 +503,31 @@
             
             
             
+            
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+            
+            
+            
 
             
               
@@ -278,7 +573,7 @@
               
             
 
-            <article class="recipe-card category-card" data-name="Egg Smoothie" data-tags="Mystery Mixers, American, Eggs, Carnivore, Keto">
+            <article class="recipe-card category-card" data-name="Egg Smoothie" data-tags="Mystery Mixers, American, Eggs, Carnivore, Keto" data-ingredients="Soft-Boiled Eggs, Half And Half, Sweetener, Vanilla Extract, Salt">
               
                 <img src="/culinary-cookbook/images/recipes/egg_smoothie.jpg" alt="Egg Smoothie" class="recipe-image">
               
@@ -321,7 +616,8 @@
       const getUniqueTags = () => {
         const uniqueTags = new Set();
         cards.forEach((card) => {
-          parseTags(card.dataset.tags).forEach((tag) => uniqueTags.add(tag));
+          const combinedTags = [card.dataset.tags || '', card.dataset.ingredients || ''].join(',');
+          parseTags(combinedTags).forEach((tag) => uniqueTags.add(tag));
         });
         return Array.from(uniqueTags).sort();
       };
@@ -414,7 +710,8 @@
         cards.forEach((card) => {
           const nameText = normalizeText(card.dataset.name || card.querySelector('h3 a')?.textContent || '');
           const cardText = normalizeText(card.textContent || '');
-          const tags = parseTags(card.dataset.tags);
+          const combinedTags = [card.dataset.tags || '', card.dataset.ingredients || ''].join(',');
+          const tags = parseTags(combinedTags);
           const matchesQuery = !query || nameText.includes(query) || cardText.includes(query);
           const matchesTag = selectedTags.length === 0 || selectedTags.every((tag) => tags.includes(tag));
           const shouldShow = matchesQuery && matchesTag;

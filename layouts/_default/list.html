@@ -1184,7 +1184,21 @@
         </div>
       {{ end }}
 
-      {{ $allRecipes := .RegularPagesRecursive }}
+      {{ $parentTitle := .Title }}
+      {{ $allRecipes := slice }}
+      {{ range .Site.RegularPages }}
+        {{ $pageCategories := .Params.categories | default (slice) }}
+        {{ $isMatch := false }}
+        {{ range $pageCategories }}
+          {{ if or (eq . $parentTitle) (strings.HasPrefix . (printf "%s / " $parentTitle)) }}
+            {{ $isMatch = true }}
+          {{ end }}
+        {{ end }}
+        {{ if $isMatch }}
+          {{ $allRecipes = $allRecipes | append . }}
+        {{ end }}
+      {{ end }}
+
       {{ if gt (len $allRecipes) 0 }}
         <div class="category-controls">
           <label class="control search-control">
@@ -1213,6 +1227,15 @@
             {{ $recipeKey := .File.TranslationBaseName }}
             {{ $recipeData := index $.Site.Data.recipes $recipeKey }}
             {{ with $recipeData.metadata.map.tags }}{{ $recipeTags = . }}{{ else }}{{ with $recipeData.metadata.map.Tags }}{{ $recipeTags = . }}{{ end }}{{ end }}
+            {{ $ingredientNames := slice }}
+            {{ with $recipeData.ingredients }}
+              {{ range . }}
+                {{ with .name }}
+                  {{ $ingredientNames = $ingredientNames | append . }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+            {{ $ingredientTags := delimit $ingredientNames ", " }}
             {{ $recipeCandidates := slice
               (printf "static/images/recipes/%s.png" $slug)
               (printf "static/images/recipes/%s.jpg" $slug)
@@ -1236,7 +1259,7 @@
               {{ end }}
             {{ end }}
 
-            <article class="recipe-card category-card" data-name="{{ $recipeTitle }}" data-tags="{{ $recipeTags }}">
+            <article class="recipe-card category-card" data-name="{{ $recipeTitle }}" data-tags="{{ $recipeTags }}" data-ingredients="{{ $ingredientTags }}">
               {{ with $recipeImage }}
                 <img src="{{ . | relURL }}" alt="{{ $recipeTitle }}" class="recipe-image">
               {{ end }}
@@ -1281,7 +1304,8 @@
       const getUniqueTags = () => {
         const uniqueTags = new Set();
         cards.forEach((card) => {
-          parseTags(card.dataset.tags).forEach((tag) => uniqueTags.add(tag));
+          const combinedTags = [card.dataset.tags || '', card.dataset.ingredients || ''].join(',');
+          parseTags(combinedTags).forEach((tag) => uniqueTags.add(tag));
         });
         return Array.from(uniqueTags).sort();
       };
@@ -1374,7 +1398,8 @@
         cards.forEach((card) => {
           const nameText = normalizeText(card.dataset.name || card.querySelector('h3 a')?.textContent || '');
           const cardText = normalizeText(card.textContent || '');
-          const tags = parseTags(card.dataset.tags);
+          const combinedTags = [card.dataset.tags || '', card.dataset.ingredients || ''].join(',');
+          const tags = parseTags(combinedTags);
           const matchesQuery = !query || nameText.includes(query) || cardText.includes(query);
           const matchesTag = selectedTags.length === 0 || selectedTags.every((tag) => tags.includes(tag));
           const shouldShow = matchesQuery && matchesTag;

@@ -1,0 +1,14 @@
+baseURL = 'http://localhost:1313/culinary-cookbook/'
+languageCode = 'en'
+title = 'Culinary Cookbook'
+
+[taxonomies]
+  category = 'categories'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  description = 'My personal Cooklang digital cookbook'

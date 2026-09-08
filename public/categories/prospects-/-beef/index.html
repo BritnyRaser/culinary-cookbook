@@ -176,6 +176,251 @@
 
       
       
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+            
+          
+        
+        
+          
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+      
+
+      
         <div class="category-controls">
           <label class="control search-control">
             <span class="control-label">Search by name</span>
@@ -201,6 +446,71 @@
             
             
             
+            
+            
+            
+            
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
             
             
             
@@ -249,7 +559,7 @@
               
             
 
-            <article class="recipe-card category-card" data-name="Beef Tenderloin with Red Wine Sauce" data-tags="Prospects, American, Beef, Roast, Tenderloin, Red Wine">
+            <article class="recipe-card category-card" data-name="Beef Tenderloin with Red Wine Sauce" data-tags="Prospects, American, Beef, Roast, Tenderloin, Red Wine" data-ingredients="Beef Tenderloin Roast, Unsalted Butter, Shallots, Red Wine, Beef Broth, Fresh Thyme Sprigs, Salt, Black Pepper, Sugar, Unsalted Butter, Flour, Salt, Black Pepper, Vegetable Oil, Beef Broth">
               
                 <img src="/culinary-cookbook/images/recipes/beef_tenderloin_with_red_wine_sauce.jpg" alt="Beef Tenderloin with Red Wine Sauce" class="recipe-image">
               
@@ -292,7 +602,8 @@
       const getUniqueTags = () => {
         const uniqueTags = new Set();
         cards.forEach((card) => {
-          parseTags(card.dataset.tags).forEach((tag) => uniqueTags.add(tag));
+          const combinedTags = [card.dataset.tags || '', card.dataset.ingredients || ''].join(',');
+          parseTags(combinedTags).forEach((tag) => uniqueTags.add(tag));
         });
         return Array.from(uniqueTags).sort();
       };
@@ -385,7 +696,8 @@
         cards.forEach((card) => {
           const nameText = normalizeText(card.dataset.name || card.querySelector('h3 a')?.textContent || '');
           const cardText = normalizeText(card.textContent || '');
-          const tags = parseTags(card.dataset.tags);
+          const combinedTags = [card.dataset.tags || '', card.dataset.ingredients || ''].join(',');
+          const tags = parseTags(combinedTags);
           const matchesQuery = !query || nameText.includes(query) || cardText.includes(query);
           const matchesTag = selectedTags.length === 0 || selectedTags.every((tag) => tags.includes(tag));
           const shouldShow = matchesQuery && matchesTag;

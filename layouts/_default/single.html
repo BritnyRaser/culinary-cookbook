@@ -14,6 +14,37 @@ step-by-step cooking directions.-->
   <header class="site-header">
     <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Back to Cookbook</a>
     <h1>{{ .Title }}</h1>
+
+    <div class="mobile-menu">
+      <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="main-menu" class="menu-panel" aria-label="Main menu">
+        <a href="{{ .Site.BaseURL }}" class="menu-item-link">Home</a>
+        <div class="menu-group">
+          <div class="menu-item">
+            <button class="menu-button" type="button" aria-expanded="false">
+              <span>Category</span>
+              <span class="caret">▾</span>
+            </button>
+            <ul class="sub-menu">
+              {{ range .Site.Taxonomies.categories }}
+                {{ $categoryTitle := .Page.Title }}
+                {{ if not (in $categoryTitle " / ") }}
+                  <li><a href="{{ .Page.RelPermalink }}">{{ $categoryTitle }}</a></li>
+                {{ end }}
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+
+        <a href="{{ "meal-plan/" | relURL }}" class="menu-item-link">Meal Plan</a>
+        <a href="{{ "grocery-list/" | relURL }}" class="menu-item-link">Grocery List</a>
+      </nav>
+    </div>
   </header>
 
   {{ $recipeKey := .File.TranslationBaseName }}

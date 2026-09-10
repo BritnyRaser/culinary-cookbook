@@ -18,28 +18,61 @@ step-by-step cooking directions.-->
 
   {{ $recipeKey := .File.TranslationBaseName }}
   {{ $recipe := index .Site.Data.recipes $recipeKey }}
+  {{ $recipeTitle := .Title }}
+  {{ $slug := lower $recipeTitle | urlize }}
+  {{ $slugUnderscore := replace $slug "-" "_" }}
+  {{ $recipeImage := "" }}
+  {{ $recipeCandidates := slice
+    (printf "static/images/recipes/%s.png" $slug)
+    (printf "static/images/recipes/%s.jpg" $slug)
+    (printf "static/images/recipes/%s.jpeg" $slug)
+    (printf "static/images/recipes/%s.svg" $slug)
+    (printf "static/images/recipes/%s.webp" $slug)
+    (printf "static/images/recipes/%s.gif" $slug)
+    (printf "static/images/recipes/%s.png" $slugUnderscore)
+    (printf "static/images/recipes/%s.jpg" $slugUnderscore)
+    (printf "static/images/recipes/%s.jpeg" $slugUnderscore)
+    (printf "static/images/recipes/%s.svg" $slugUnderscore)
+    (printf "static/images/recipes/%s.webp" $slugUnderscore)
+    (printf "static/images/recipes/%s.gif" $slugUnderscore)
+  }}
+  {{ range $recipeCandidates }}
+    {{ if eq $recipeImage "" }}
+      {{ if fileExists . }}
+        {{ $recipeImage = printf "images/recipes/%s" (replace . "static/images/recipes/" "") }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
 
-  <main class="container recipe-layout">
+  <main class="recipe-shell">
     {{ if $recipe }}
-      <!-- Sidebar: Ingredients & Equipment -->
-      <aside class="sidebar">
-        {{ with $recipe.metadata.map }}
-          <div class="meta-box">
-            {{ with .title }}<div><strong>Title:</strong> {{ . }}</div>{{ end }}
-            {{ with .tags }}<div><strong>Tags:</strong> {{ . }}</div>{{ end }}
+      <article class="recipe-card">
+        {{ with $recipeImage }}
+          <div class="recipe-hero-image">
+            <img src="{{ . | relURL }}" alt="{{ $recipeTitle }}" />
           </div>
         {{ end }}
 
-        {{ if $recipe.ingredients }}
-          <section class="ingredients-section">
-            <h2>Ingredients</h2>
-            <ul class="ingredients-list">
-              {{ range $recipe.ingredients }}
-                <li>
-                  <label>
-                    <input type="checkbox">
-                    <span>
-                      <strong>{{ .name }}</strong>
+        <div class="recipe-header">
+          <h2>{{ $recipeTitle }}</h2>
+          {{ with $recipe.metadata.map.Tags }}
+            <span class="recipe-chip">{{ . }}</span>
+          {{ else }}
+            {{ with $recipe.metadata.map.tags }}
+              <span class="recipe-chip">{{ . }}</span>
+            {{ end }}
+          {{ end }}
+        </div>
+
+        <div class="recipe-content">
+          <aside class="recipe-sidebar">
+            {{ if $recipe.ingredients }}
+              <section class="panel ingredient-panel">
+                <h3>Ingredients</h3>
+                <ol class="ingredients-list">
+                  {{ range $recipe.ingredients }}
+                    <li>
+                      <span class="ingredient-name">{{ .name }}</span>
                       {{ with .quantity }}
                         {{- if eq .value.type "text" -}}
                           — {{ .value.value }}
@@ -53,44 +86,78 @@ step-by-step cooking directions.-->
                           {{- end -}}
                         {{- end -}}
                       {{ end }}
-                    </span>
-                  </label>
-                </li>
-              {{ end }}
-            </ul>
-          </section>
-        {{ end }}
-      </aside>
-
-      <!-- Main Content: Directions -->
-      <section class="directions-section">
-        <h2>Directions</h2>
-        <ol class="steps-list">
-          {{ range $sidx, $section := $recipe.sections }}
-            {{ range $section.content }}
-              {{ if eq .type "step" }}
-                <li>
-                  <p>
-                    {{ range $it := .value.items }}
-                      {{- if eq $it.type "text" -}}
-                        {{ $it.value }}
-                      {{- else if eq $it.type "ingredient" -}}
-                        {{ $ing := index $recipe.ingredients (int $it.index) }}
-                        {{- if $ing }}<mark class="ing">{{ $ing.name }}</mark>{{ end -}}
-                      {{- else if eq $it.type "cookware" -}}
-                        {{ $cw := index $recipe.cookware (int $it.index) }}
-                        {{- if $cw }}<mark class="cw">{{ $cw.name }}</mark>{{ else }}<mark class="cw">cookware</mark>{{ end -}}
-                      {{- else -}}
-                        {{ printf "%v" $it }}
-                      {{- end -}}
-                    {{ end }}
-                  </p>
-                </li>
-              {{ end }}
+                    </li>
+                  {{ end }}
+                </ol>
+              </section>
             {{ end }}
-          {{ end }}
-        </ol>
-      </section>
+
+            {{ if $recipe.cookware }}
+              <section class="panel cookware-panel">
+                <h3>Cookware</h3>
+                <ol class="cookware-list">
+                  {{ range $recipe.cookware }}
+                    <li><span class="cookware-name">{{ .name }}</span></li>
+                  {{ end }}
+                </ol>
+              </section>
+            {{ end }}
+          </aside>
+
+          <section class="recipe-instructions">
+            <h3>Instructions</h3>
+            <ol class="steps-list">
+              {{ range $sidx, $section := $recipe.sections }}
+                {{ range $section.content }}
+                  {{ if eq .type "step" }}
+                    <li>
+                      <p>
+                        {{ range $it := .value.items }}
+                          {{- if eq $it.type "text" -}}
+                            {{ $it.value }}
+                          {{- else if eq $it.type "ingredient" -}}
+                            {{ $ing := index $recipe.ingredients (int $it.index) }}
+                            {{- if $ing }}<span class="ingredient-name">{{ $ing.name }}</span>{{ end -}}
+                          {{- else if eq $it.type "cookware" -}}
+                            {{ $cw := index $recipe.cookware (int $it.index) }}
+                            {{- if $cw }}<span class="cookware-name">{{ $cw.name }}</span>{{ else }}<span class="cookware-name">cookware</span>{{ end -}}
+                          {{- else -}}
+                            {{ printf "%v" $it }}
+                          {{- end -}}
+                        {{ end }}
+                      </p>
+                    </li>
+                  {{ end }}
+                {{ end }}
+              {{ end }}
+            </ol>
+
+            <div class="recipe-meta-row">
+              {{ with $recipe.metadata.map.Note }}
+                <div><strong>Note:</strong> {{ . }}</div>
+              {{ else }}
+                {{ with $recipe.metadata.map.note }}
+                  <div><strong>Note:</strong> {{ . }}</div>
+                {{ end }}
+              {{ end }}
+              {{ with $recipe.metadata.map.Link }}
+                <div><strong>Source:</strong> <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ . }}</a></div>
+              {{ else }}
+                {{ with $recipe.metadata.map.link }}
+                  <div><strong>Source:</strong> <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ . }}</a></div>
+                {{ end }}
+              {{ end }}
+              {{ with $recipe.metadata.map.Tags }}
+                <div><strong>Tags:</strong> {{ . }}</div>
+              {{ else }}
+                {{ with $recipe.metadata.map.tags }}
+                  <div><strong>Tags:</strong> {{ . }}</div>
+                {{ end }}
+              {{ end }}
+            </div>
+          </section>
+        </div>
+      </article>
     {{ else }}
       <p>Recipe details could not be loaded.</p>
     {{ end }}

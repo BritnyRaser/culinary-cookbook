@@ -15,3 +15,4 @@ title = 'Culinary Cookbook'
   description = 'My personal Cooklang digital cookbook'
   main_banner = "images/website/main_banner.png"
   main_banner_text = "Welcome to my cookbook"
+  meal_banner = "images/website/meal_banner.png"

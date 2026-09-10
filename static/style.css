@@ -84,6 +84,12 @@ body {
   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
 
+/* Back link should be white when banner is present */
+.site-header--with-banner .back-link {
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
 /* Ensure the mobile menu stays at the right edge */
 .site-header--with-banner .header-row {
   display: flex;

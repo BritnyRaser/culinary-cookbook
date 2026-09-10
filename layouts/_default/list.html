@@ -7,7 +7,57 @@
   <link rel="stylesheet" href="{{ "style.css" | relURL }}">
 </head>
 <body>
-  <header class="site-header">
+  {{/* Determine page banner: prefer site param, then page param, then images/website/<title> candidates */}}
+  {{ $pageBanner := "" }}
+
+  {{ with .Site.Params.meal_banner }}
+    {{ $normalized := strings.TrimPrefix "/" . }}
+    {{ $paramImage := printf "static/%s" $normalized }}
+    {{ if fileExists $paramImage }}
+      {{ $pageBanner = $normalized }}
+    {{ end }}
+  {{ end }}
+
+  {{ with .Params.image }}
+    {{ $normalizedImage := strings.TrimPrefix "/" . }}
+    {{ $paramImage := printf "static/%s" $normalizedImage }}
+    {{ if and (eq $pageBanner "") (fileExists $paramImage) }}
+      {{ $pageBanner = $normalizedImage }}
+    {{ end }}
+  {{ end }}
+
+  {{ if eq $pageBanner "" }}
+    {{ $slug := lower .Title | urlize }}
+    {{ $slugUnderscore := replace $slug "-" "_" }}
+    {{ $candidates := slice
+      (printf "static/images/website/%s.png" $slug)
+      (printf "static/images/website/%s.jpg" $slug)
+      (printf "static/images/website/%s.jpeg" $slug)
+      (printf "static/images/website/%s.svg" $slug)
+      (printf "static/images/website/%s.webp" $slug)
+      (printf "static/images/website/%s.gif" $slug)
+      (printf "static/images/website/%s.png" $slugUnderscore)
+      (printf "static/images/website/%s.jpg" $slugUnderscore)
+      (printf "static/images/website/%s.jpeg" $slugUnderscore)
+      (printf "static/images/website/%s.svg" $slugUnderscore)
+      (printf "static/images/website/%s.webp" $slugUnderscore)
+      (printf "static/images/website/%s.gif" $slugUnderscore)
+    }}
+
+    {{ range $candidates }}
+      {{ if eq $pageBanner "" }}
+        {{ if fileExists . }}
+          {{ $pageBanner = printf "images/website/%s" (replace . "static/images/website/" "") }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{ if ne $pageBanner "" }}
+    <header class="site-header site-header--with-banner" style="background-image: url('{{ $pageBanner | relURL }}');">
+  {{ else }}
+    <header class="site-header">
+  {{ end }}
     <div class="header-row">
       <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Back to Cookbook</a>
 

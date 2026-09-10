@@ -1,1 +1,46 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Prospects on Culinary Cookbook</title><link>https://BritnyRaser.github.io/culinary-cookbook/categories/prospects/</link><description>Recent content in Prospects on Culinary Cookbook</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://BritnyRaser.github.io/culinary-cookbook/categories/prospects/index.xml" rel="self" type="application/rss+xml"/><item><title>Aged Eggnog</title><link>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/aged-eggnog/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/aged-eggnog/</guid><description/></item><item><title>Bourbon Pork Marinade</title><link>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/bourbon_pork_marinade/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/bourbon_pork_marinade/</guid><description/></item><item><title>Salsa</title><link>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/salsa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/salsa/</guid><description/></item><item><title>Spicy Thai Veggie Marinade</title><link>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/spicy_thai_veggie_marinade/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/spicy_thai_veggie_marinade/</guid><description/></item><item><title>Teriyaki Sauce</title><link>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/teriyaki_sauce/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://BritnyRaser.github.io/culinary-cookbook/recipes/prospects/teriyaki_sauce/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prospects on Culinary Cookbook</title>
+    <link>http://localhost:1313/culinary-cookbook/categories/prospects/</link>
+    <description>Recent content in Prospects on Culinary Cookbook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/culinary-cookbook/categories/prospects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Aged Eggnog</title>
+      <link>http://localhost:1313/culinary-cookbook/recipes/prospects/aged-eggnog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/recipes/prospects/aged-eggnog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bourbon Pork Marinade</title>
+      <link>http://localhost:1313/culinary-cookbook/recipes/prospects/bourbon_pork_marinade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/recipes/prospects/bourbon_pork_marinade/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Salsa</title>
+      <link>http://localhost:1313/culinary-cookbook/recipes/prospects/salsa/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/recipes/prospects/salsa/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spicy Thai Veggie Marinade</title>
+      <link>http://localhost:1313/culinary-cookbook/recipes/prospects/spicy_thai_veggie_marinade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/recipes/prospects/spicy_thai_veggie_marinade/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Teriyaki Sauce</title>
+      <link>http://localhost:1313/culinary-cookbook/recipes/prospects/teriyaki_sauce/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/culinary-cookbook/recipes/prospects/teriyaki_sauce/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

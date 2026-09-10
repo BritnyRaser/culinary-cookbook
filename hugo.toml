@@ -13,3 +13,5 @@ title = 'Culinary Cookbook'
 # Tells Hugo to look for compiled recipe JSON in the data/ folder
 [params]
   description = 'My personal Cooklang digital cookbook'
+  main_banner = "images/website/main_banner.png"
+  main_banner_text = "Welcome to my cookbook"

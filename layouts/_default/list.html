@@ -94,8 +94,23 @@
         </nav>
       </div>
     </div>
+
+  {{/* If this is a taxonomy (category) page and the header already has the banner,
+       show the category wording inside the header to avoid duplicating the image below. */}}
+  {{ if and (in .RelPermalink "categories/") (ne $pageBanner "") }}
+    <style>
+      .category-hero-copy { margin-left: 1.25rem; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+      .category-hero-copy .eyebrow { opacity: 0.9; margin: 0 0 0.25rem 0; }
+      .category-hero-copy h1 { margin: 0; font-size: clamp(1.8rem, 3.2vw, 2.6rem); }
+    </style>
+    <div class="category-hero-copy">
+      <p class="eyebrow">Category</p>
+      <h1>{{ .Title }}</h1>
+    </div>
+  {{ end }}
   </header>
 
+  {{/* compute category image early so header can use it for category wording */}}
   {{ $categoryImage := "" }}
   {{ with .Params.image }}
     {{ $normalizedImage := strings.TrimPrefix "/" . }}
@@ -1180,12 +1195,14 @@
     </script>
   {{ else }}
     <main class="container category-page">
+      {{ if eq $pageBanner "" }}
       <section class="category-hero" {{ with $categoryImage }}style="background-image: url('{{ . | relURL }}');"{{ end }}>
         <div class="category-hero-copy">
           <p class="eyebrow">Category</p>
           <h1>{{ .Title }}</h1>
         </div>
       </section>
+      {{ end }}
 
       {{ $currentPage := . }}
       {{ $childCategories := slice }}

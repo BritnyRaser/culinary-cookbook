@@ -1,5 +1,6 @@
 ---
 title: "Grocery List"
+image: "images/website/grocery_banner.png"
 ---
 
 <style>

@@ -34,6 +34,66 @@ body {
   isolation: isolate;
 }
 
+.site-header--with-banner {
+  background-color: transparent;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 1.25rem 2rem;
+  min-height: 260px;
+}
+
+.site-header--with-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,23,42,0.18), rgba(15,23,42,0.12));
+  pointer-events: none;
+  z-index: 79;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.site-header--with-banner .header-row {
+  position: relative;
+  z-index: 80;
+}
+
+@media (max-width: 900px) {
+  .site-header--with-banner {
+    min-height: 200px;
+    padding: 1rem 1rem;
+    background-position: center top;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header--with-banner {
+    min-height: 160px;
+    padding: 0.75rem 0.75rem;
+    background-position: center top;
+  }
+  .site-header--with-banner h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Title should be white when banner is present */
+.site-header--with-banner h1 a {
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* Ensure the mobile menu stays at the right edge */
+.site-header--with-banner .header-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.site-header--with-banner .mobile-menu {
+  margin-left: auto;
+}
+
 .header-row {
   max-width: 1100px;
   margin: 0 auto;
@@ -329,6 +389,30 @@ body {
   align-items: flex-end;
   padding: 2rem 2rem 1.5rem;
   background-color: #edf8fb;
+}
+
+/* Homepage main banner */
+.main-banner {
+  flex: 1 1 auto;
+  min-height: 140px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 8px 18px rgba(18, 53, 74, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 1.25rem;
+  margin-left: 1rem;
+  overflow: hidden;
+}
+
+.main-banner-copy {
+  background: rgba(15, 23, 42, 0.12);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  color: #ffffff !important;
 }
 
 .category-hero-copy {

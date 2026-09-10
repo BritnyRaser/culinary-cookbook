@@ -7,7 +7,17 @@
   <link rel="stylesheet" href="{{ "style.css" | relURL }}">
 </head>
 <body>
-  <header class="site-header">
+  {{ with .Site.Params.main_banner }}
+    {{ $normalized := strings.TrimPrefix "/" . }}
+    {{ $paramImage := printf "static/%s" $normalized }}
+    {{ if fileExists $paramImage }}
+      <header class="site-header site-header--with-banner" style="background-image: url('{{ $normalized | relURL }}');">
+    {{ else }}
+      <header class="site-header">
+    {{ end }}
+  {{ else }}
+    <header class="site-header">
+  {{ end }}
     <div class="header-row">
       <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
 
@@ -40,6 +50,7 @@
           <a href="{{ "grocery-list/" | relURL }}" class="menu-item-link">Grocery List</a>
         </nav>
       </div>
+      <!-- banner text removed per request -->
     </div>
   </header>
 

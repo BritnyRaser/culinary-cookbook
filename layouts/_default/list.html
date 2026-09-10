@@ -10,11 +10,13 @@
   {{/* Determine page banner: prefer site param, then page param, then images/website/<title> candidates */}}
   {{ $pageBanner := "" }}
 
-  {{ with .Site.Params.meal_banner }}
-    {{ $normalized := strings.TrimPrefix "/" . }}
-    {{ $paramImage := printf "static/%s" $normalized }}
-    {{ if fileExists $paramImage }}
-      {{ $pageBanner = $normalized }}
+  {{ if eq .Title "Meal Plan" }}
+    {{ with .Site.Params.meal_banner }}
+      {{ $normalized := strings.TrimPrefix "/" . }}
+      {{ $paramImage := printf "static/%s" $normalized }}
+      {{ if fileExists $paramImage }}
+        {{ $pageBanner = $normalized }}
+      {{ end }}
     {{ end }}
   {{ end }}
 

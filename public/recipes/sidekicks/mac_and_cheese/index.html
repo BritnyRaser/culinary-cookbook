@@ -320,5 +320,266 @@
       </article>
     
   </main>
+
+  <div id="recipeAddModal" class="recipe-add-modal-backdrop hidden" aria-hidden="true">
+    <div class="recipe-add-modal" role="dialog" aria-modal="true" aria-labelledby="recipeAddTitle">
+      <div class="recipe-add-modal-header">
+        <button type="button" class="recipe-add-close" aria-label="Close add recipe">×</button>
+      </div>
+      <div class="recipe-add-modal-body">
+        <h2 id="recipeAddTitle" class="recipe-add-modal-title">Meal Plan</h2>
+        <p class="recipe-add-subtitle">Add this recipe to your meal plan and grocery list.</p>
+
+        <div class="recipe-add-options">
+          <div class="recipe-add-option">
+            <div class="recipe-add-field-row">
+              <label class="recipe-add-field">
+                <span>Day</span>
+                <select id="recipeAddDaySelect">
+                  <option>Sunday</option>
+                  <option>Monday</option>
+                  <option>Tuesday</option>
+                  <option>Wednesday</option>
+                  <option>Thursday</option>
+                  <option>Friday</option>
+                  <option>Saturday</option>
+                </select>
+              </label>
+              <label class="recipe-add-field">
+                <span>Meal</span>
+                <select id="recipeAddMealSelect">
+                  <option>Breakfast</option>
+                  <option>Lunch</option>
+                  <option selected>Dinner</option>
+                  <option>Snacks</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="recipe-add-ingredient-panel">
+          <div class="recipe-add-ingredient-header">
+            <span>Ingredients</span>
+            <button type="button" id="toggleIngredientSelection">Choose ingredients</button>
+          </div>
+          <ul id="recipeIngredientList" class="recipe-add-ingredient-list"></ul>
+        </div>
+
+        <div class="recipe-add-actions">
+          <button type="button" class="recipe-add-action secondary" id="recipeAddCancel">Cancel</button>
+          <button type="button" class="recipe-add-action primary" id="recipeAddSubmit">+ Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const recipe = {"cookware":[{"alias":null,"modifiers":"","name":"pot","note":null,"quantity":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}},{"alias":null,"modifiers":"","name":"pan","note":null,"quantity":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}},{"alias":null,"modifiers":"","name":"Applewood or Pecan wood chunks","note":null,"quantity":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}}],"ingredients":[{"alias":null,"modifiers":"","name":"Noodles","note":null,"quantity":{"scalable":false,"unit":null,"value":{"type":"text","value":"1/2 lb"}},"reference":null,"relation":{"reference_target":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}}},{"alias":null,"modifiers":"","name":"Butter","note":null,"quantity":{"scalable":false,"unit":null,"value":{"type":"text","value":"2 Tablespoons"}},"reference":null,"relation":{"reference_target":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}}},{"alias":null,"modifiers":"","name":"Flour","note":null,"quantity":{"scalable":false,"unit":null,"value":{"type":"text","value":"2 Tablespoons"}},"reference":null,"relation":{"reference_target":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}}},{"alias":null,"modifiers":"","name":"Milk","note":null,"quantity":{"scalable":false,"unit":null,"value":{"type":"text","value":"1.5 cups"}},"reference":null,"relation":{"reference_target":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}}},{"alias":null,"modifiers":"","name":"Cheese","note":null,"quantity":{"scalable":false,"unit":null,"value":{"type":"text","value":"8 oz"}},"reference":null,"relation":{"reference_target":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}}},{"alias":null,"modifiers":"","name":"Garlic Powder","note":null,"quantity":{"scalable":false,"unit":null,"value":{"type":"text","value":"1/8 teaspoon"}},"reference":null,"relation":{"reference_target":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}}},{"alias":null,"modifiers":"","name":"Old Bay","note":null,"quantity":{"scalable":false,"unit":null,"value":{"type":"text","value":"1/8 teaspoon"}},"reference":null,"relation":{"reference_target":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}}},{"alias":null,"modifiers":"","name":"Creole","note":null,"quantity":{"scalable":false,"unit":null,"value":{"type":"text","value":"1/8 teaspoon"}},"reference":null,"relation":{"reference_target":null,"relation":{"defined_in_step":true,"referenced_from":[],"type":"definition"}}}],"inline_quantities":[],"metadata":{"map":{"Servings":8,"Tags":"Sidekicks, Noodles, Cheese, Butter, Milk, Flour, Salt, Pepper","Title":"Mac \u0026 Cheese"}},"sections":[{"content":[{"type":"step","value":{"items":[{"type":"text","value":"Noodles: Boil "},{"index":0,"type":"ingredient"},{"type":"text","value":" in "},{"index":0,"type":"cookware"}],"number":1}},{"type":"step","value":{"items":[{"type":"text","value":"Cheese: In separate "},{"index":1,"type":"cookware"},{"type":"text","value":", melt "},{"index":1,"type":"ingredient"},{"type":"text","value":"."}],"number":2}},{"type":"step","value":{"items":[{"type":"text","value":"Add "},{"index":2,"type":"ingredient"},{"type":"text","value":" and whick until mixed."}],"number":3}},{"type":"step","value":{"items":[{"type":"text","value":"Slowly add "},{"index":3,"type":"ingredient"},{"type":"text","value":" and wisk fpr 4-6 minutes"}],"number":4}},{"type":"step","value":{"items":[{"type":"text","value":"Add shredded "},{"index":4,"type":"ingredient"},{"type":"text","value":" slowly while whisking on no heat!"}],"number":5}},{"type":"step","value":{"items":[{"type":"text","value":"Add  "},{"index":5,"type":"ingredient"},{"type":"text","value":".  If seafood, also add "},{"index":6,"type":"ingredient"},{"type":"text","value":" and "},{"index":7,"type":"ingredient"}],"number":6}},{"type":"step","value":{"items":[{"type":"text","value":"Smoke 225 degrees for "},{"index":0,"type":"timer"},{"type":"text","value":" with "},{"index":2,"type":"cookware"}],"number":7}}],"name":null}],"timers":[{"name":null,"quantity":{"scalable":false,"unit":null,"value":{"type":"text","value":"30 minutes"}}}]};
+      const modal = document.getElementById('recipeAddModal');
+      const submitButton = document.getElementById('recipeAddSubmit');
+      const cancelButton = document.getElementById('recipeAddCancel');
+      const closeButton = document.querySelector('.recipe-add-close');
+      const ingredientList = document.getElementById('recipeIngredientList');
+      const toggleButton = document.getElementById('toggleIngredientSelection');
+      const mealToggle = { checked: true };
+      const groceryToggle = { checked: true };
+      const daySelect = document.getElementById('recipeAddDaySelect');
+      const mealSelect = document.getElementById('recipeAddMealSelect');
+      const recipeTitle = "Mac \u0026 Cheese";
+
+      if (!recipe || !modal || !ingredientList) return;
+
+      function parseIngredientText(value) {
+        if (!value) return '';
+        if (typeof value === 'string') return value;
+        if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+        if (Array.isArray(value)) return value.map(parseIngredientText).filter(Boolean).join(', ');
+        if (typeof value === 'object') {
+          if (typeof value.value !== 'undefined') return parseIngredientText(value.value);
+          if (typeof value.amount !== 'undefined') return parseIngredientText(value.amount);
+          return Object.values(value).map(parseIngredientText).filter(Boolean).join(', ');
+        }
+        return '';
+      }
+
+      function ingredientQuantity(ingredient) {
+        if (!ingredient || !ingredient.quantity) return '';
+        const q = ingredient.quantity;
+        if (q && q.value && typeof q.value === 'object') {
+          if (q.value.type === 'text') {
+            return parseIngredientText(q.value.value) || '';
+          }
+          if (q.value.type === 'number') {
+            const val = q.value.value;
+            if (typeof val === 'object' && val !== null && typeof val.value !== 'undefined') {
+              return parseIngredientText(val.value);
+            }
+            return parseIngredientText(val);
+          }
+        }
+        return parseIngredientText(q.value || q.amount || q.unit || '');
+      }
+
+      function ingredientName(ingredient) {
+        if (!ingredient) return '';
+        if (typeof ingredient.name === 'string') return ingredient.name.trim();
+        return parseIngredientText(ingredient) || 'Ingredient';
+      }
+
+      function openModal() {
+        modal.classList.remove('hidden');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      function renderIngredientList() {
+        const ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
+        ingredientList.innerHTML = '';
+
+        ingredients.forEach((ingredient, index) => {
+          const name = ingredientName(ingredient);
+          const quantity = ingredientQuantity(ingredient);
+          const item = document.createElement('li');
+          item.className = 'recipe-add-ingredient-item';
+          item.innerHTML = `
+            <label class="recipe-add-ingredient">
+              <input type="checkbox" checked data-index="${index}">
+              <span>${name}</span>
+            </label>
+            <span class="recipe-add-ingredient-amount">${quantity || ''}</span>
+          `;
+          ingredientList.appendChild(item);
+        });
+      }
+
+      function toggleAllIngredients(checked) {
+        ingredientList.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+          input.checked = checked;
+        });
+      }
+
+      function getSelectedIngredients() {
+        const ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
+        const selected = [];
+        ingredientList.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+          if (!input.checked) return;
+          const index = Number(input.dataset.index);
+          if (Number.isInteger(index) && ingredients[index]) {
+            selected.push(ingredients[index]);
+          }
+        });
+        return selected;
+      }
+
+      function ensureGroceryState() {
+        const defaultState = {
+          Produce: [], Bakery: [], Meat: [], Pantry: [], Dairy: [], Frozen: [], 'Personal Care': [], 'Home Supplies': [], 'Miscellaneous': []
+        };
+        try {
+          const raw = localStorage.getItem('groceryState_v1');
+          if (!raw) {
+            localStorage.setItem('groceryState_v1', JSON.stringify(defaultState));
+            return defaultState;
+          }
+          const parsed = JSON.parse(raw);
+          Object.keys(defaultState).forEach((section) => {
+            if (!Array.isArray(parsed[section])) parsed[section] = [];
+          });
+          return parsed;
+        } catch (error) {
+          console.warn('Unable to access grocery state:', error);
+          return defaultState;
+        }
+      }
+
+      function addIngredientsToGroceryList() {
+        const state = ensureGroceryState();
+        const section = 'Pantry';
+        const selected = getSelectedIngredients();
+
+        selected.forEach((ingredient) => {
+          const name = ingredientName(ingredient);
+          const amount = ingredientQuantity(ingredient) || '1';
+          const item = { name, amount, unit: 'each', checked: false };
+          const existing = (state[section] || []).find((entry) => (entry.name || '').toLowerCase() === name.toLowerCase());
+
+          if (existing) {
+            existing.amount = existing.amount || '1';
+            existing.unit = existing.unit || 'each';
+          } else {
+            state[section].push(item);
+          }
+        });
+
+        localStorage.setItem('groceryState_v1', JSON.stringify(state));
+      }
+
+      function ensureMealPlanState() {
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const mealTimes = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
+        const emptyState = Object.fromEntries(days.map((day) => [day, Object.fromEntries(mealTimes.map((time) => [time, []]))]));
+        try {
+          const raw = localStorage.getItem('mealPlanState_v1');
+          if (!raw) {
+            localStorage.setItem('mealPlanState_v1', JSON.stringify(emptyState));
+            return emptyState;
+          }
+          const parsed = JSON.parse(raw);
+          days.forEach((day) => {
+            mealTimes.forEach((time) => {
+              if (!Array.isArray(parsed?.[day]?.[time])) parsed[day][time] = [];
+            });
+          });
+          return parsed;
+        } catch (error) {
+          console.warn('Unable to access meal plan state:', error);
+          return emptyState;
+        }
+      }
+
+      function addRecipeToMealPlan() {
+        const state = ensureMealPlanState();
+        const day = daySelect.value;
+        const time = mealSelect.value;
+        state[day][time].push(recipeTitle);
+        localStorage.setItem('mealPlanState_v1', JSON.stringify(state));
+      }
+
+      function handleAdd() {
+        if (mealToggle.checked) addRecipeToMealPlan();
+        if (groceryToggle.checked) addIngredientsToGroceryList();
+        closeModal();
+      }
+
+      document.querySelectorAll('.add-recipe-button').forEach((button) => {
+        button.addEventListener('click', openModal);
+      });
+
+      submitButton.addEventListener('click', handleAdd);
+      cancelButton.addEventListener('click', closeModal);
+      closeButton.addEventListener('click', closeModal);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+
+      toggleButton.addEventListener('click', () => {
+        const checked = ingredientList.querySelectorAll('input[type="checkbox"]:checked').length !== ingredientList.querySelectorAll('input[type="checkbox"]').length;
+        toggleAllIngredients(checked);
+      });
+
+      renderIngredientList();
+    })();
+  </script>
 </body>
 </html>

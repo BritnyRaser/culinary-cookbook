@@ -138,6 +138,10 @@ body .site-header .mobile-menu {
 .mobile-menu {
   position: relative;
   z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.65rem;
 }
 
 .hamburger {
@@ -154,6 +158,35 @@ body .site-header .mobile-menu {
   padding: 0;
   cursor: pointer;
   box-shadow: 0 8px 18px rgba(13, 48, 83, 0.08);
+}
+
+.add-recipe-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(180deg, #0d6a73 0%, #0d5e67 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.1rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(13, 94, 103, 0.18);
+}
+
+.add-recipe-button::before {
+  content: "+";
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.add-recipe-button:hover,
+.add-recipe-button:focus-visible {
+  filter: brightness(1.04);
 }
 
 .hamburger span {

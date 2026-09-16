@@ -554,5 +554,34 @@
       renderIngredientList();
     })();
   </script>
+  <script>
+    (function () {
+      const hamburger = document.querySelector('.hamburger');
+      const menuPanel = document.querySelector('.menu-panel');
+      const categoryButton = document.querySelector('.menu-button');
+      const categorySubmenu = document.querySelector('.sub-menu');
+
+      if (hamburger && menuPanel) {
+        hamburger.addEventListener('click', () => {
+          const isOpen = menuPanel.classList.toggle('open');
+          hamburger.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.mobile-menu')) {
+            menuPanel.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      if (categoryButton && categorySubmenu) {
+        categoryButton.addEventListener('click', () => {
+          const isOpen = categorySubmenu.classList.toggle('open');
+          categoryButton.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

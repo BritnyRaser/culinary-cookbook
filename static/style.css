@@ -909,6 +909,18 @@ body .site-header .mobile-menu {
   padding: 1.6rem 1.8rem 1.7rem;
 }
 
+.recipe-add-top-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 1.2fr);
+  align-items: end;
+  gap: 1.2rem;
+  margin-bottom: 1.15rem;
+}
+
+.recipe-add-title-block {
+  min-width: 0;
+}
+
 .recipe-add-modal-title {
   margin: 0;
   color: #114d68;
@@ -917,9 +929,17 @@ body .site-header .mobile-menu {
 }
 
 .recipe-add-subtitle {
-  margin: 0.25rem 0 1.25rem;
+  margin: 0.25rem 0 0;
   color: #4c6f7d;
   font-size: 1.05rem;
+}
+
+.recipe-add-daymeal-panel {
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(27, 75, 135, 0.12);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
 }
 
 .recipe-add-options {
@@ -954,9 +974,8 @@ body .site-header .mobile-menu {
 
 .recipe-add-field-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 0.85rem;
-  margin-top: 0.9rem;
 }
 
 .recipe-add-field {
@@ -965,6 +984,11 @@ body .site-header .mobile-menu {
   gap: 0.45rem;
   color: #3d6070;
   font-weight: 700;
+  min-width: 0;
+}
+
+.recipe-add-field span {
+  white-space: nowrap;
 }
 
 .recipe-add-field select {
@@ -975,6 +999,30 @@ body .site-header .mobile-menu {
   padding: 0.72rem 0.8rem;
   font: inherit;
   color: #1d3a4a;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .recipe-add-top-row {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .recipe-add-modal-title {
+    font-size: clamp(1.7rem, 8vw, 2.5rem);
+  }
+
+  .recipe-add-subtitle {
+    font-size: 0.96rem;
+  }
+
+  .recipe-add-field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-add-field span {
+    white-space: normal;
+  }
 }
 
 .recipe-add-ingredient-panel {

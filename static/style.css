@@ -792,6 +792,11 @@ body .site-header .mobile-menu {
   font-weight: 700;
 }
 
+.timer-name {
+  color: #15803d;
+  font-weight: 700;
+}
+
 .recipe-instructions {
   background: white;
   border: 1px solid rgba(27, 75, 135, 0.12);

@@ -156,6 +156,9 @@ step-by-step cooking directions.-->
                           {{- else if eq $it.type "cookware" -}}
                             {{ $cw := index $recipe.cookware (int $it.index) }}
                             {{- if $cw }}<span class="cookware-name">{{ $cw.name }}</span>{{ else }}<span class="cookware-name">cookware</span>{{ end -}}
+                          {{- else if eq $it.type "timer" -}}
+                            {{ $timer := index $recipe.timers (int $it.index) }}
+                            {{- with $timer.quantity.value.value }}<span class="timer-name">{{ . }}</span>{{ end -}}
                           {{- else -}}
                             {{ printf "%v" $it }}
                           {{- end -}}

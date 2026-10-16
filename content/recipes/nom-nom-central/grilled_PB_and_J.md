@@ -1,5 +1,5 @@
 ---
-title: "Grilled PB & J"
+title: "Grilled PB & J Sandwich"
 categories:
   - "Nom Nom Central"
 ---

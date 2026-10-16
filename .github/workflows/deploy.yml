@@ -4,10 +4,9 @@
 # Triggers: Automatically runs on pushes to 'main' or via manual dispatch.
 # Build Phase:
 #   1. Sets up the Ubuntu build environment and checks out repository source.
-#   2. Installs CookCLI to parse plain-text .cook recipe files.
-#   3. Installs Hugo static site generator.
-#   4. Executes 'build.sh' to process recipes into JSON and generate content routes.
-#   5. Compiles and minifies the final site into static assets ('./public').
+#   2. Installs Hugo static site generator.
+#   3. Executes 'build.sh' to process Markdown recipes into JSON and generate content routes.
+#   4. Compiles and minifies the final site into static assets ('./public').
 # Deploy Phase:
 #   6. Publishes compiled build artifacts directly to GitHub Pages.
 # ==============================================================================
@@ -35,30 +34,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install CookCLI
-        run: |
-          # Fetch the latest release download URL directly from GitHub API
-          DOWNLOAD_URL=$(curl -s https://api.github.com/repos/cooklang/CookCLI/releases/latest | grep "browser_download_url" | grep "linux" | grep "x86_64" | head -n 1 | cut -d '"' -f 4)
-          
-          # Fallback to direct release URL if API query returns empty
-          if [ -z "$DOWNLOAD_URL" ]; then
-            DOWNLOAD_URL="https://github.com/cooklang/CookCLI/releases/download/v0.32.1/cook-x86_64-unknown-linux-musl.tar.gz"
-          fi
-          
-          echo "Downloading CookCLI from: $DOWNLOAD_URL"
-          curl -sSL "$DOWNLOAD_URL" -o cookcli.tar.gz
-          tar -xzf cookcli.tar.gz
-          
-          # Move binary into system path
-          sudo mv cook /usr/local/bin/ || sudo mv cookcli /usr/local/bin/
-          cook --version
-
       - name: Install Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: 'latest'
 
-      - name: Process Recipes (.cook to JSON)
+      - name: Process Markdown Recipes
         run: |
           chmod +x build.sh
           ./build.sh

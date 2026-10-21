@@ -6,15 +6,17 @@
     {{ $ing := index $recipe.ingredients (int $it.index) }}
     {{- if $ing -}}
       {{- $amount := "" -}}
-      {{- with $ing.quantity.value -}}
-        {{- if eq .type "text" -}}
-          {{- $amount = .value -}}
-        {{- else if eq .type "number" -}}
-          {{- with .value -}}
-            {{- if .value -}}
-              {{- $amount = printf "%v" .value -}}
-            {{- else -}}
-              {{- $amount = printf "%v" . -}}
+      {{- with $ing.quantity -}}
+        {{- with .value -}}
+          {{- if eq .type "text" -}}
+            {{- $amount = .value -}}
+          {{- else if eq .type "number" -}}
+            {{- with .value -}}
+              {{- if .value -}}
+                {{- $amount = printf "%v" .value -}}
+              {{- else -}}
+                {{- $amount = printf "%v" . -}}
+              {{- end -}}
             {{- end -}}
           {{- end -}}
         {{- end -}}

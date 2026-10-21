@@ -79,12 +79,7 @@
                 <span class="caret">▾</span>
               </button>
               <ul class="sub-menu">
-                {{ range .Site.Taxonomies.categories }}
-                  {{ $categoryTitle := .Page.Title }}
-                  {{ if not (in $categoryTitle " / ") }}
-                    <li><a href="{{ .Page.RelPermalink }}">{{ $categoryTitle }}</a></li>
-                  {{ end }}
-                {{ end }}
+                {{ partial "category-menu-links.html" . }}
               </ul>
             </div>
           </div>

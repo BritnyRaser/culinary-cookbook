@@ -1,0 +1,8 @@
+{{ $hiddenCategory := "Pawlickin' Treats" }}
+{{ range .Site.Taxonomies.categories }}
+  {{ $categoryTitle := .Page.Title }}
+  {{ if and (not (in $categoryTitle " / ")) (ne $categoryTitle $hiddenCategory) }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ $categoryTitle }}</a></li>
+  {{ end }}
+{{ end }}
+<li><a href="{{ "categories/pawlickin-treats/" | relURL }}">{{ $hiddenCategory }}</a></li>

@@ -37,12 +37,7 @@
                 <span class="caret">▾</span>
               </button>
               <ul class="sub-menu">
-                {{ range .Site.Taxonomies.categories }}
-                  {{ $categoryTitle := .Page.Title }}
-                  {{ if not (in $categoryTitle " / ") }}
-                    <li><a href="{{ .Page.RelPermalink }}">{{ $categoryTitle }}</a></li>
-                  {{ end }}
-                {{ end }}
+                {{ partial "category-menu-links.html" . }}
               </ul>
             </div>
           </div>
@@ -63,7 +58,7 @@
         <div class="category-dial-grid">
           {{ range .Site.Taxonomies.categories }}
             {{ $title := .Page.Title }}
-            {{ if not (in $title " / ") }}
+            {{ if and (not (in $title " / ")) (ne $title "Pawlickin' Treats") }}
               {{ $imagePath := "" }}
 
               {{ with .Page.Params.image }}
@@ -133,6 +128,7 @@
 
       <div class="recipe-grid home-recipe-grid">
         {{ range where .Site.RegularPages "Section" "recipes" }}
+          {{ if not (in (.Params.categories | default (slice)) "Pawlickin' Treats") }}
           {{ $title := .Title }}
           {{ $recipeKey := .File.TranslationBaseName }}
           {{ $recipeData := index $.Site.Data.recipes $recipeKey }}
@@ -184,6 +180,7 @@
               <p class="recipe-meta">{{ $tags }}</p>
             {{ end }}
           </article>
+          {{ end }}
         {{ end }}
       </div>
       <p id="no-results" class="empty-state" hidden>No recipes match your search.</p>

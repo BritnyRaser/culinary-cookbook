@@ -146,24 +146,17 @@ step-by-step cooking directions.-->
                 {{ range $section.content }}
                   {{ if eq .type "step" }}
                     <li>
-                      <p>
-                        {{ range $it := .value.items }}
-                          {{- if eq $it.type "text" -}}
-                            {{ $it.value }}
-                          {{- else if eq $it.type "ingredient" -}}
-                            {{ $ing := index $recipe.ingredients (int $it.index) }}
-                            {{- if $ing }}<span class="ingredient-name">{{ $ing.name }}</span>{{ end -}}
-                          {{- else if eq $it.type "cookware" -}}
-                            {{ $cw := index $recipe.cookware (int $it.index) }}
-                            {{- if $cw }}<span class="cookware-name">{{ $cw.name }}</span>{{ else }}<span class="cookware-name">cookware</span>{{ end -}}
-                          {{- else if eq $it.type "timer" -}}
-                            {{ $timer := index $recipe.timers (int $it.index) }}
-                            {{- with $timer.quantity.value.value }}<span class="timer-name">{{ . }}</span>{{ end -}}
-                          {{- else -}}
-                            {{ printf "%v" $it }}
-                          {{- end -}}
+                      {{ range .value.blocks }}
+                        {{ if eq .type "paragraph" }}
+                          <p>{{ partial "recipe-inline-items.html" (dict "recipe" $recipe "items" .items) }}</p>
+                        {{ else if eq .type "bullet_list" }}
+                          <ul class="step-bullets">
+                            {{ range .items }}
+                              <li>{{ partial "recipe-inline-items.html" (dict "recipe" $recipe "items" .) }}</li>
+                            {{ end }}
+                          </ul>
                         {{ end }}
-                      </p>
+                      {{ end }}
                     </li>
                   {{ end }}
                 {{ end }}

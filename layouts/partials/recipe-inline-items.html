@@ -1,0 +1,17 @@
+{{- $recipe := .recipe -}}
+{{- range $it := .items -}}
+  {{- if eq $it.type "text" -}}
+    {{ $it.value }}
+  {{- else if eq $it.type "ingredient" -}}
+    {{ $ing := index $recipe.ingredients (int $it.index) }}
+    {{- if $ing }}<span class="ingredient-name">{{ $ing.name }}</span>{{ end -}}
+  {{- else if eq $it.type "cookware" -}}
+    {{ $cw := index $recipe.cookware (int $it.index) }}
+    {{- if $cw }}<span class="cookware-name">{{ $cw.name }}</span>{{ else }}<span class="cookware-name">cookware</span>{{ end -}}
+  {{- else if eq $it.type "timer" -}}
+    {{ $timer := index $recipe.timers (int $it.index) }}
+    {{- with $timer.quantity.value.value }}<span class="timer-name">{{ . }}</span>{{ end -}}
+  {{- else -}}
+    {{ printf "%v" $it }}
+  {{- end }}
+{{- end -}}

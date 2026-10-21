@@ -822,6 +822,15 @@ body .site-header .mobile-menu {
   margin: 0;
 }
 
+.step-bullets {
+  margin: 0.4rem 0;
+  padding-left: 1.5rem;
+}
+
+.step-bullets li {
+  margin-bottom: 0.25rem;
+}
+
 .recipe-meta-row {
   display: flex;
   flex-wrap: wrap;

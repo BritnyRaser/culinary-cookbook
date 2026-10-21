@@ -87,14 +87,14 @@ def _quantity(value: str | None) -> dict[str, Any] | None:
     }
 
 
-def _parse_step(
+def _parse_inline_items(
     text: str,
     ingredients: list[dict[str, Any]],
     cookware: list[dict[str, Any]],
     timers: list[dict[str, Any]],
     line_number: int,
     source: Path,
-) -> dict[str, Any]:
+) -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
     plain: list[str] = []
 
@@ -189,7 +189,60 @@ def _parse_step(
         index = end
 
     flush_text()
-    return {"type": "step", "value": {"items": items, "number": 0}}
+    return items
+
+
+def _is_bullet(line: str) -> bool:
+    return line.lstrip().startswith(("- ", "* "))
+
+
+def _parse_step(
+    lines: list[tuple[int, str]],
+    ingredients: list[dict[str, Any]],
+    cookware: list[dict[str, Any]],
+    timers: list[dict[str, Any]],
+    source: Path,
+) -> dict[str, Any]:
+    blocks: list[dict[str, Any]] = []
+    paragraph: list[tuple[int, str]] = []
+    bullets: list[list[dict[str, Any]]] = []
+
+    def flush_paragraph() -> None:
+        if paragraph:
+            text = " ".join(line.strip() for _, line in paragraph)
+            items = _parse_inline_items(
+                text, ingredients, cookware, timers, paragraph[0][0], source
+            )
+            if items:
+                blocks.append({"type": "paragraph", "items": items})
+            paragraph.clear()
+
+    def flush_bullets() -> None:
+        if bullets:
+            blocks.append({"type": "bullet_list", "items": bullets.copy()})
+            bullets.clear()
+
+    for line_number, line in lines:
+        stripped = line.strip()
+        if _is_bullet(stripped):
+            flush_paragraph()
+            bullets.append(
+                _parse_inline_items(
+                    stripped[2:].strip(),
+                    ingredients,
+                    cookware,
+                    timers,
+                    line_number,
+                    source,
+                )
+            )
+        else:
+            flush_bullets()
+            paragraph.append((line_number, line))
+
+    flush_paragraph()
+    flush_bullets()
+    return {"type": "step", "value": {"blocks": blocks, "number": 0}}
 
 
 def parse_recipe(contents: str, source: Path) -> dict[str, Any]:
@@ -201,21 +254,20 @@ def parse_recipe(contents: str, source: Path) -> dict[str, Any]:
     steps: list[dict[str, Any]] = []
     note_lines: list[str] = []
     in_notes = False
-    paragraph: list[tuple[int, str]] = []
+    step_lines: list[tuple[int, str]] = []
 
-    def flush_paragraph() -> None:
-        if paragraph:
-            text = " ".join(line.strip() for _, line in paragraph)
-            step = _parse_step(text, ingredients, cookware, timers, paragraph[0][0], source)
-            if step["value"]["items"]:
+    def flush_step() -> None:
+        if step_lines:
+            step = _parse_step(step_lines, ingredients, cookware, timers, source)
+            if step["value"]["blocks"]:
                 steps.append(step)
-            paragraph.clear()
+            step_lines.clear()
 
     for line_number, raw_line in enumerate(lines[body_start:], body_start + 1):
         stripped = raw_line.strip()
         note_match = re.match(r"^Notes:\s*(.*)$", stripped, flags=re.IGNORECASE)
         if note_match:
-            flush_paragraph()
+            flush_step()
             in_notes = True
             if note_match.group(1):
                 note_lines.append(note_match.group(1))
@@ -225,15 +277,10 @@ def parse_recipe(contents: str, source: Path) -> dict[str, Any]:
                 note_lines.append(re.sub(r"^\d+\.\s*", "", stripped))
             continue
         if not stripped:
-            flush_paragraph()
-        elif stripped.startswith("- ") or stripped.startswith("* "):
-            flush_paragraph()
-            step = _parse_step(stripped[2:].strip(), ingredients, cookware, timers, line_number, source)
-            if step["value"]["items"]:
-                steps.append(step)
+            flush_step()
         else:
-            paragraph.append((line_number, raw_line))
-    flush_paragraph()
+            step_lines.append((line_number, raw_line))
+    flush_step()
 
     if note_lines:
         metadata.setdefault("Note", " ".join(note_lines))

@@ -29,8 +29,42 @@ Notes: Serve warm.
         self.assertEqual(recipe["timers"][0]["quantity"]["value"]["value"], "5 minutes")
         self.assertEqual(
             [step["value"]["number"] for section in recipe["sections"] for step in section["content"]],
-            [1, 2],
+            [1],
         )
+        step = recipe["sections"][0]["content"][0]
+        self.assertEqual(
+            [block["type"] for block in step["value"]["blocks"]],
+            ["paragraph", "bullet_list"],
+        )
+
+    def test_blank_lines_separate_steps_and_dashes_render_as_bullets(self):
+        recipe = parse_recipe(
+            """---
+Title: Demo
+---
+
+Step one.
+
+Step two.
+
+Mix together:
+- @Cream Cheese{8 oz}
+- @Milk{2 cups}
+- @Vanilla{2 teaspoons}
+Set aside.
+
+Step four.
+""",
+            Path("demo.md"),
+        )
+
+        steps = recipe["sections"][0]["content"]
+        self.assertEqual([step["value"]["number"] for step in steps], [1, 2, 3, 4])
+        self.assertEqual(
+            [block["type"] for block in steps[2]["value"]["blocks"]],
+            ["paragraph", "bullet_list", "paragraph"],
+        )
+        self.assertEqual(len(steps[2]["value"]["blocks"][1]["items"]), 3)
 
     def test_marker_without_quantity_stops_at_next_word(self):
         recipe = parse_recipe(

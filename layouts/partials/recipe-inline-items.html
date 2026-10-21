@@ -4,7 +4,30 @@
     {{ $it.value }}
   {{- else if eq $it.type "ingredient" -}}
     {{ $ing := index $recipe.ingredients (int $it.index) }}
-    {{- if $ing }}<span class="ingredient-name">{{ $ing.name }}</span>{{ end -}}
+    {{- if $ing -}}
+      {{- $amount := "" -}}
+      {{- with $ing.quantity.value -}}
+        {{- if eq .type "text" -}}
+          {{- $amount = .value -}}
+        {{- else if eq .type "number" -}}
+          {{- with .value -}}
+            {{- if .value -}}
+              {{- $amount = printf "%v" .value -}}
+            {{- else -}}
+              {{- $amount = printf "%v" . -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if $amount -}}
+        <button class="ingredient-name ingredient-amount-trigger" type="button" aria-label="{{ $ing.name }} — {{ $amount }}" aria-expanded="false">
+          <span>{{ $ing.name }}</span>
+          <span class="ingredient-amount-popup" aria-hidden="true">{{ $amount }}</span>
+        </button>
+      {{- else -}}
+        <span class="ingredient-name">{{ $ing.name }}</span>
+      {{- end -}}
+    {{- end -}}
   {{- else if eq $it.type "cookware" -}}
     {{ $cw := index $recipe.cookware (int $it.index) }}
     {{- if $cw }}<span class="cookware-name">{{ $cw.name }}</span>{{ else }}<span class="cookware-name">cookware</span>{{ end -}}

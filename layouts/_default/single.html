@@ -453,6 +453,33 @@ step-by-step cooking directions.-->
   </script>
   <script>
     (function () {
+      const ingredientButtons = document.querySelectorAll('.ingredient-amount-trigger');
+
+      function closeIngredientPopups(except) {
+        ingredientButtons.forEach((button) => {
+          if (button === except) return;
+          button.classList.remove('is-open');
+          button.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      ingredientButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const isOpen = button.classList.toggle('is-open');
+          button.setAttribute('aria-expanded', String(isOpen));
+          closeIngredientPopups(isOpen ? button : null);
+        });
+      });
+
+      document.addEventListener('click', () => closeIngredientPopups());
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeIngredientPopups();
+      });
+    })();
+  </script>
+  <script>
+    (function () {
       const hamburger = document.querySelector('.hamburger');
       const menuPanel = document.querySelector('.menu-panel');
       const categoryButton = document.querySelector('.menu-button');

@@ -196,9 +196,9 @@
         font-weight: 700;
       }
       .grocery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
       }
       .grocery-item {
         display: flex;
@@ -217,13 +217,34 @@
       .grocery-item.is-checked { opacity: 0.62; }
       .grocery-item.is-checked .item-name,
       .grocery-item.is-checked .item-amount { text-decoration: line-through; }
+      .grocery-item.is-dragging { opacity: 0.4; }
+      .drag-handle {
+        flex: 0 0 30px;
+        width: 30px;
+        min-height: 36px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: #66808a;
+        font-size: 1.15rem;
+        cursor: grab;
+        touch-action: none;
+      }
+      .drag-handle:active { cursor: grabbing; }
+      .drag-handle:focus-visible {
+        outline: 2px solid #0f766e;
+        outline-offset: 2px;
+      }
       .item-content {
         flex: 1;
         min-width: 0;
         display: flex;
-        flex-direction: column;
-        gap: 0.15rem;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.15rem 0.75rem;
       }
+      .item-name { flex: 0 1 auto; }
+      .item-amount { flex: 0 0 auto; }
       .item-name {
         color: #1d4558;
         font-weight: 700;
@@ -235,6 +256,7 @@
         font-size: 0.8rem;
         font-weight: 600;
         line-height: 1.2;
+        text-align: right;
       }
       .item-actions {
         display: flex;
@@ -285,6 +307,7 @@
         align-items: center;
         gap: 0.4rem;
         margin-top: 0.35rem;
+        width: 100%;
       }
       .grocery-item.is-editing .edit-controls { display: flex; }
       .grocery-item.is-editing .item-amount,
@@ -333,120 +356,25 @@
       }
       @media (max-width: 640px) {
         .grocery-page { padding: 1.25rem 0.75rem 2.5rem; }
-        .grocery-grid { grid-template-columns: 1fr; }
+        .grocery-item { gap: 0.45rem; }
+        .item-actions { gap: 0.25rem; }
       }
     </style>
 
     <section class="grocery-page">
       <header class="grocery-header">
         <h1>Grocery List</h1>
-        <div class="grocery-badge">Checklist view</div>
+        <div class="grocery-badge">Drag to reorder</div>
       </header>
 
       <div class="grocery-sections">
-        <section class="grocery-section" data-section="Produce">
-          <div class="section-header"><h2>Produce</h2><button class="add-item-button" type="button">Add</button></div>
-          <div class="grocery-grid" data-grid="Produce"></div>
-          <form class="add-form" data-form="Produce">
+        <section class="grocery-section">
+          <div class="section-header"><h2>Ingredients</h2><button class="add-item-button" type="button">Add</button></div>
+          <div class="grocery-grid" data-grid="all"></div>
+          <form class="add-form" data-form="all">
             <label>Ingredient<input type="text" name="name" placeholder="e.g. Spinach" required></label>
             <label>Amount<input type="text" name="amount" placeholder="2" required></label>
             <label>Unit<select name="unit"><option value="each">each</option><option value="oz">oz</option><option value="lb">lb</option><option value="bunch">bunch</option><option value="bag">bag</option><option value="bottle">bottle</option><option value="loaf">loaf</option><option value="gal">gal</option><option value="box">box</option><option value="pack">pack</option><option value="can">can</option><option value="jar">jar</option></select></label>
-            <button class="add-submit" type="submit">Add Ingredient</button>
-            <button class="add-cancel" type="button">Cancel</button>
-          </form>
-        </section>
-
-        <section class="grocery-section" data-section="Bakery">
-          <div class="section-header"><h2>Bakery</h2><button class="add-item-button" type="button">Add</button></div>
-          <div class="grocery-grid" data-grid="Bakery"></div>
-          <form class="add-form" data-form="Bakery">
-            <label>Ingredient<input type="text" name="name" placeholder="e.g. Sourdough" required></label>
-            <label>Amount<input type="text" name="amount" placeholder="2" required></label>
-            <label>Unit<select name="unit"><option value="each">each</option><option value="oz">oz</option><option value="lb">lb</option><option value="loaf">loaf</option><option value="pack">pack</option></select></label>
-            <button class="add-submit" type="submit">Add Ingredient</button>
-            <button class="add-cancel" type="button">Cancel</button>
-          </form>
-        </section>
-
-        <section class="grocery-section" data-section="Meat">
-          <div class="section-header"><h2>Meat</h2><button class="add-item-button" type="button">Add</button></div>
-          <div class="grocery-grid" data-grid="Meat"></div>
-          <form class="add-form" data-form="Meat">
-            <label>Ingredient<input type="text" name="name" placeholder="e.g. Chicken" required></label>
-            <label>Amount<input type="text" name="amount" placeholder="1.5" required></label>
-            <label>Unit<select name="unit"><option value="lb">lb</option><option value="oz">oz</option><option value="each">each</option></select></label>
-            <button class="add-submit" type="submit">Add Ingredient</button>
-            <button class="add-cancel" type="button">Cancel</button>
-          </form>
-        </section>
-
-        <section class="grocery-section" data-section="Pantry">
-          <div class="section-header"><h2>Pantry</h2><button class="add-item-button" type="button">Add</button></div>
-          <div class="grocery-grid" data-grid="Pantry"></div>
-          <form class="add-form" data-form="Pantry">
-            <label>Ingredient<input type="text" name="name" placeholder="e.g. Rice" required></label>
-            <label>Amount<input type="text" name="amount" placeholder="2" required></label>
-            <label>Unit<select name="unit"><option value="bag">bag</option><option value="can">can</option><option value="jar">jar</option><option value="bottle">bottle</option><option value="each">each</option><option value="oz">oz</option></select></label>
-            <button class="add-submit" type="submit">Add Ingredient</button>
-            <button class="add-cancel" type="button">Cancel</button>
-          </form>
-        </section>
-
-        <section class="grocery-section" data-section="Dairy">
-          <div class="section-header"><h2>Dairy</h2><button class="add-item-button" type="button">Add</button></div>
-          <div class="grocery-grid" data-grid="Dairy"></div>
-          <form class="add-form" data-form="Dairy">
-            <label>Ingredient<input type="text" name="name" placeholder="e.g. Cheese" required></label>
-            <label>Amount<input type="text" name="amount" placeholder="8" required></label>
-            <label>Unit<select name="unit"><option value="oz">oz</option><option value="gal">gal</option><option value="each">each</option><option value="pack">pack</option></select></label>
-            <button class="add-submit" type="submit">Add Ingredient</button>
-            <button class="add-cancel" type="button">Cancel</button>
-          </form>
-        </section>
-
-        <section class="grocery-section" data-section="Frozen">
-          <div class="section-header"><h2>Frozen</h2><button class="add-item-button" type="button">Add</button></div>
-          <div class="grocery-grid" data-grid="Frozen"></div>
-          <form class="add-form" data-form="Frozen">
-            <label>Ingredient<input type="text" name="name" placeholder="e.g. Frozen Peas" required></label>
-            <label>Amount<input type="text" name="amount" placeholder="1" required></label>
-            <label>Unit<select name="unit"><option value="bag">bag</option><option value="box">box</option><option value="each">each</option><option value="lb">lb</option></select></label>
-            <button class="add-submit" type="submit">Add Ingredient</button>
-            <button class="add-cancel" type="button">Cancel</button>
-          </form>
-        </section>
-
-        <section class="grocery-section" data-section="Personal Care">
-          <div class="section-header"><h2>Personal Care</h2><button class="add-item-button" type="button">Add</button></div>
-          <div class="grocery-grid" data-grid="Personal Care"></div>
-          <form class="add-form" data-form="Personal Care">
-            <label>Ingredient<input type="text" name="name" placeholder="e.g. Shampoo" required></label>
-            <label>Amount<input type="text" name="amount" placeholder="1" required></label>
-            <label>Unit<select name="unit"><option value="each">each</option><option value="bottle">bottle</option><option value="pack">pack</option></select></label>
-            <button class="add-submit" type="submit">Add Ingredient</button>
-            <button class="add-cancel" type="button">Cancel</button>
-          </form>
-        </section>
-
-        <section class="grocery-section" data-section="Home Supplies">
-          <div class="section-header"><h2>Home Supplies</h2><button class="add-item-button" type="button">Add</button></div>
-          <div class="grocery-grid" data-grid="Home Supplies"></div>
-          <form class="add-form" data-form="Home Supplies">
-            <label>Ingredient<input type="text" name="name" placeholder="e.g. Dish Soap" required></label>
-            <label>Amount<input type="text" name="amount" placeholder="1" required></label>
-            <label>Unit<select name="unit"><option value="each">each</option><option value="bottle">bottle</option><option value="pack">pack</option></select></label>
-            <button class="add-submit" type="submit">Add Ingredient</button>
-            <button class="add-cancel" type="button">Cancel</button>
-          </form>
-        </section>
-
-        <section class="grocery-section" data-section="Miscellaneous">
-          <div class="section-header"><h2>Miscellaneous</h2><button class="add-item-button" type="button">Add</button></div>
-          <div class="grocery-grid" data-grid="Miscellaneous"></div>
-          <form class="add-form" data-form="Miscellaneous">
-            <label>Ingredient<input type="text" name="name" placeholder="e.g. Candle" required></label>
-            <label>Amount<input type="text" name="amount" placeholder="1" required></label>
-            <label>Unit<select name="unit"><option value="each">each</option><option value="pack">pack</option><option value="box">box</option><option value="bottle">bottle</option></select></label>
             <button class="add-submit" type="submit">Add Ingredient</button>
             <button class="add-cancel" type="button">Cancel</button>
           </form>
@@ -456,27 +384,41 @@
 
     <script>
       const STORAGE_KEY = 'groceryState_v1';
-
+      const ORDER_STORAGE_KEY = 'groceryOrder_v1';
+      const sectionOrder = ['Produce','Bakery','Meat','Pantry','Dairy','Frozen','Personal Care','Home Supplies','Miscellaneous'];
       const defaultState = {
         Produce: [{ name: 'Apples', amount: 6, unit: 'each' }, { name: 'Avocados', amount: 2, unit: 'each' }, { name: 'Bell Peppers', amount: 3, unit: 'each' }],
         Bakery: [{ name: 'Bread', amount: 1, unit: 'loaf' }],
         Meat: [], Pantry: [], Dairy: [], Frozen: [], 'Personal Care': [], 'Home Supplies': [], 'Miscellaneous': []
       };
-
-      const sectionOrder = ['Produce','Bakery','Meat','Pantry','Dairy','Frozen','Personal Care','Home Supplies','Miscellaneous'];
+      const groceryGrid = document.querySelector('[data-grid="all"]');
 
       function loadState() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
-          if (raw) {
-            const parsed = JSON.parse(raw);
-            sectionOrder.forEach((s) => { if (!Array.isArray(parsed[s])) parsed[s] = defaultState[s] || []; });
-            return parsed;
-          }
+          if (raw === null) return JSON.parse(JSON.stringify(defaultState));
+          const parsed = JSON.parse(raw);
+          sectionOrder.forEach((section) => {
+            if (!Array.isArray(parsed[section])) parsed[section] = [];
+          });
+          return parsed;
         } catch (e) {
           console.warn('Failed to load grocery state:', e);
         }
         return JSON.parse(JSON.stringify(defaultState));
+      }
+
+      function loadOrder() {
+        try {
+          const raw = localStorage.getItem(ORDER_STORAGE_KEY);
+          if (raw === null) return [];
+          const parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed)) throw new TypeError('Saved grocery order must be an array.');
+          return parsed;
+        } catch (e) {
+          console.warn('Failed to load grocery order:', e);
+          return [];
+        }
       }
 
       function saveState() {
@@ -488,6 +430,37 @@
       }
 
       const groceryState = loadState();
+      let groceryOrder = loadOrder();
+      let itemIdsChanged = false;
+      let draggedArticle = null;
+      let dragPointerId = null;
+
+      function createItemId(usedIds) {
+        let id;
+        do {
+          id = 'grocery-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2);
+        } while (usedIds.has(id));
+        return id;
+      }
+
+      function getOrderedItems() {
+        const usedIds = new Set();
+        const allItems = sectionOrder.flatMap((section) => (groceryState[section] || []).map((item) => {
+          if (!item._groceryId || usedIds.has(item._groceryId)) {
+            item._groceryId = createItemId(usedIds);
+            itemIdsChanged = true;
+          }
+          usedIds.add(item._groceryId);
+          return { item, section };
+        }));
+        const itemsById = new Map(allItems.map((entry) => [entry.item._groceryId, entry]));
+        const orderedItems = groceryOrder.map((id) => itemsById.get(id)).filter(Boolean);
+        const orderedIds = new Set(orderedItems.map((entry) => entry.item._groceryId));
+        allItems.forEach((entry) => {
+          if (!orderedIds.has(entry.item._groceryId)) orderedItems.push(entry);
+        });
+        return orderedItems;
+      }
 
       const formatAmount = (amount, unit) => {
         const normalizedAmount = amount == null || amount === '' ? '1' : String(amount).trim();
@@ -495,11 +468,48 @@
         return normalizedUnit ? `${normalizedAmount} ${normalizedUnit}` : normalizedAmount;
       };
 
-      function renderSection(sectionName) {
-        const grid = document.querySelector('[data-grid="' + sectionName + '"]');
-        if (!grid) return;
+      function saveOrderFromDOM() {
+        groceryOrder = Array.from(groceryGrid.querySelectorAll('.grocery-item')).map((article) => article.dataset.itemId);
+        try {
+          localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(groceryOrder));
+        } catch (e) {
+          console.warn('Failed to save grocery order:', e);
+        }
+        renderSection();
+      }
+
+      function moveDraggedItem(event) {
+        if (!draggedArticle || event.pointerId !== dragPointerId) return;
+        const target = document.elementFromPoint(event.clientX, event.clientY)?.closest('.grocery-item');
+        if (!target || target === draggedArticle || target.parentElement !== groceryGrid) return;
+        const midpoint = target.getBoundingClientRect().top + target.getBoundingClientRect().height / 2;
+        if (event.clientY < midpoint) {
+          if (draggedArticle.nextElementSibling !== target) groceryGrid.insertBefore(draggedArticle, target);
+        } else if (target.nextElementSibling !== draggedArticle) {
+          groceryGrid.insertBefore(draggedArticle, target.nextElementSibling);
+        }
+      }
+
+      function finishDragging(event) {
+        if (!draggedArticle || event.pointerId !== dragPointerId) return;
+        draggedArticle.classList.remove('is-dragging');
+        draggedArticle = null;
+        dragPointerId = null;
+        saveOrderFromDOM();
+      }
+
+      document.addEventListener('pointermove', moveDraggedItem);
+      document.addEventListener('pointerup', finishDragging);
+      document.addEventListener('pointercancel', finishDragging);
+
+      function renderSection() {
+        const grid = groceryGrid;
         grid.innerHTML = '';
-        const items = groceryState[sectionName] || [];
+        const items = getOrderedItems();
+        if (itemIdsChanged) {
+          saveState();
+          itemIdsChanged = false;
+        }
 
         if (!items.length) {
           const empty = document.createElement('div');
@@ -509,11 +519,13 @@
           return;
         }
 
-        items.forEach((item, itemIndex) => {
+        items.forEach(({ item, section }) => {
           const article = document.createElement('article');
           article.className = 'grocery-item';
+          article.dataset.itemId = item._groceryId;
           if (item.checked) article.classList.add('is-checked');
           article.innerHTML = `
+            <button class="drag-handle" type="button" aria-label="Reorder ${item.name}" title="Drag to reorder; use arrow keys to move">⠿</button>
             <div class="item-content">
               <span class="item-name">${item.name}</span>
               <span class="item-amount">${formatAmount(item.amount, item.unit)}</span>
@@ -554,6 +566,25 @@
           const amountText = article.querySelector('.item-amount');
           const amountInput = article.querySelector('input[type="text"]');
           const unitSelect = article.querySelector('select');
+          const dragHandle = article.querySelector('.drag-handle');
+
+          dragHandle.addEventListener('pointerdown', (event) => {
+            if (event.button !== 0) return;
+            event.preventDefault();
+            draggedArticle = article;
+            dragPointerId = event.pointerId;
+            article.classList.add('is-dragging');
+          });
+          dragHandle.addEventListener('keydown', (event) => {
+            if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
+            event.preventDefault();
+            const sibling = event.key === 'ArrowUp' ? article.previousElementSibling : article.nextElementSibling;
+            if (!sibling || !sibling.classList.contains('grocery-item')) return;
+            grid.insertBefore(article, event.key === 'ArrowUp' ? sibling : sibling.nextSibling);
+            saveOrderFromDOM();
+            const nextIndex = groceryOrder.indexOf(article.dataset.itemId);
+            grid.querySelectorAll('.drag-handle')[nextIndex]?.focus();
+          });
 
           checkToggle.addEventListener('click', () => {
             item.checked = !item.checked;
@@ -592,9 +623,16 @@
           });
 
           removeToggle.addEventListener('click', () => {
-            groceryState[sectionName].splice(itemIndex, 1);
+            const sectionItems = groceryState[section];
+            sectionItems.splice(sectionItems.indexOf(item), 1);
+            groceryOrder = groceryOrder.filter((id) => id !== item._groceryId);
             saveState();
-            renderSection(sectionName);
+            try {
+              localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(groceryOrder));
+            } catch (e) {
+              console.warn('Failed to save grocery order:', e);
+            }
+            renderSection();
           });
 
           grid.appendChild(article);
@@ -602,7 +640,7 @@
       }
 
       function renderAllSections() {
-        sectionOrder.forEach(renderSection);
+        renderSection();
       }
 
       document.querySelectorAll('.add-item-button').forEach((button) => {
@@ -625,26 +663,28 @@
       document.querySelectorAll('.add-form').forEach((form) => {
         form.addEventListener('submit', (event) => {
           event.preventDefault();
-          const sectionName = form.dataset.form;
           const formData = new FormData(form);
           const name = (formData.get('name') || '').toString().trim();
           const amount = (formData.get('amount') || '').toString().trim();
           const unit = (formData.get('unit') || 'each').toString();
           if (!name || !amount) return;
 
-          const list = groceryState[sectionName] || [];
-          list.push({ name, amount, unit });
-          groceryState[sectionName] = list;
+          groceryState.Miscellaneous.push({ name, amount, unit });
           saveState();
           form.reset();
           form.closest('.grocery-section').classList.remove('is-adding');
-          renderSection(sectionName);
+          renderSection();
         });
       });
-
+      renderAllSections();
       renderAllSections();
     </script>
   
+
+
+
+
+
 
   <script>
     (function () {

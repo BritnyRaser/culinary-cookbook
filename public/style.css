@@ -203,6 +203,8 @@ body .site-header .mobile-menu {
   top: calc(100% + 12px);
   right: 0;
   min-width: 240px;
+  max-height: calc(100vh - 5rem);
+  overflow-y: auto;
   background: var(--surface);
   border: 1px solid var(--border-color);
   border-radius: 18px;
@@ -267,7 +269,7 @@ body .site-header .mobile-menu {
 }
 
 .sub-menu.open {
-  max-height: 420px;
+  max-height: 100vh;
 }
 
 .sub-menu li + li {

@@ -1,9 +1,34 @@
 {{ $toggleCategoryRoots := .Site.Data.toggle_categories | default (slice) }}
+{{ $hasRecipeCategories := false }}
+{{ $hasToggleCategories := false }}
+{{ range .Site.Taxonomies.categories }}
+  {{ $categoryTitle := .Page.Title }}
+  {{ if not (in $categoryTitle " / ") }}
+    {{ if not (in $toggleCategoryRoots $categoryTitle) }}
+      {{ $hasRecipeCategories = true }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ range .Site.Taxonomies.categories }}
+  {{ $categoryTitle := .Page.Title }}
+  {{ $isToggleCategory := false }}
+  {{ range $toggleCategoryRoots }}
+    {{ if or (eq $categoryTitle .) (strings.HasPrefix $categoryTitle (printf "%s /" .)) }}
+      {{ $isToggleCategory = true }}
+    {{ end }}
+  {{ end }}
+  {{ if $isToggleCategory }}
+    {{ $hasToggleCategories = true }}
+  {{ end }}
+{{ end }}
 {{ range .Site.Taxonomies.categories }}
   {{ $categoryTitle := .Page.Title }}
   {{ if and (not (in $categoryTitle " / ")) (not (in $toggleCategoryRoots $categoryTitle)) }}
     <li><a href="{{ .Page.RelPermalink }}">{{ $categoryTitle }}</a></li>
   {{ end }}
+{{ end }}
+{{ if and $hasRecipeCategories $hasToggleCategories }}
+  <li class="menu-category-divider" role="separator" aria-hidden="true"></li>
 {{ end }}
 {{ range .Site.Taxonomies.categories }}
   {{ $categoryTitle := .Page.Title }}

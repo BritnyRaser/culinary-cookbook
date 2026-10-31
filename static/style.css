@@ -276,6 +276,11 @@ body .site-header .mobile-menu {
   margin-top: 0.25rem;
 }
 
+.sub-menu .menu-category-divider {
+  border-top: 1px solid var(--border-color);
+  margin: 0.5rem 0;
+}
+
 .sub-menu a {
   display: block;
   padding: 0.45rem 0.5rem;
@@ -797,6 +802,7 @@ body .site-header .mobile-menu {
   background: transparent;
   padding: 0;
   font: inherit;
+  font-weight: 700;
   text-align: left;
   cursor: pointer;
 }

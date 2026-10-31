@@ -1,8 +1,19 @@
-{{ $hiddenCategory := "Pawlickin' Treats" }}
+{{ $toggleCategoryRoots := .Site.Data.toggle_categories | default (slice) }}
 {{ range .Site.Taxonomies.categories }}
   {{ $categoryTitle := .Page.Title }}
-  {{ if and (not (in $categoryTitle " / ")) (ne $categoryTitle $hiddenCategory) }}
+  {{ if and (not (in $categoryTitle " / ")) (not (in $toggleCategoryRoots $categoryTitle)) }}
     <li><a href="{{ .Page.RelPermalink }}">{{ $categoryTitle }}</a></li>
   {{ end }}
 {{ end }}
-<li><a href="{{ "categories/pawlickin-treats/" | relURL }}">{{ $hiddenCategory }}</a></li>
+{{ range .Site.Taxonomies.categories }}
+  {{ $categoryTitle := .Page.Title }}
+  {{ $isToggleCategory := false }}
+  {{ range $toggleCategoryRoots }}
+    {{ if or (eq $categoryTitle .) (strings.HasPrefix $categoryTitle (printf "%s /" .)) }}
+      {{ $isToggleCategory = true }}
+    {{ end }}
+  {{ end }}
+  {{ if $isToggleCategory }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ $categoryTitle }}</a></li>
+  {{ end }}
+{{ end }}

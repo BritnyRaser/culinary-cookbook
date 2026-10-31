@@ -1,6 +1,10 @@
+import json
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
+import build_recipes
 from build_recipes import RecipeParseError, parse_recipe
 
 
@@ -86,6 +90,55 @@ Step four.
     def test_rejects_unterminated_marker(self):
         with self.assertRaisesRegex(RecipeParseError, "unterminated @ marker"):
             parse_recipe("---\nTitle: Demo\n---\n\nUse @Flour{2 cups.", Path("demo.md"))
+
+
+class BuildRecipesTests(unittest.TestCase):
+    def test_builds_toggle_recipes_and_records_their_category_roots(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            recipes_dir = root / "recipes"
+            toggle_recipes_dir = root / "recipes_toggle"
+            toggle_recipe = toggle_recipes_dir / "pawlickin'-treats" / "bird_feet.md"
+            nested_recipe = (
+                toggle_recipes_dir
+                / "pawlickin'-treats"
+                / "bird-snacks"
+                / "dehydrated_treats.md"
+            )
+            recipe_contents = "---\nTitle: Toggle Recipe\n---\n\nCook.\n"
+            toggle_recipe.parent.mkdir(parents=True)
+            nested_recipe.parent.mkdir(parents=True)
+            toggle_recipe.write_text(recipe_contents, encoding="utf-8")
+            nested_recipe.write_text(recipe_contents, encoding="utf-8")
+
+            data_dir = root / "data" / "recipes"
+            toggle_categories_file = root / "data" / "toggle_categories.json"
+            content_recipes_dir = root / "content" / "recipes"
+            categories_dir = root / "content" / "categories"
+            with patch.multiple(
+                build_recipes,
+                ROOT=root,
+                RECIPES_DIR=recipes_dir,
+                TOGGLE_RECIPES_DIR=toggle_recipes_dir,
+                DATA_DIR=data_dir,
+                TOGGLE_CATEGORIES_FILE=toggle_categories_file,
+                CONTENT_RECIPES_DIR=content_recipes_dir,
+                CATEGORIES_DIR=categories_dir,
+            ):
+                self.assertEqual(build_recipes.build(), 2)
+
+            self.assertEqual(
+                json.loads(toggle_categories_file.read_text(encoding="utf-8")),
+                ["Pawlickin' Treats"],
+            )
+            self.assertTrue(
+                (
+                    content_recipes_dir
+                    / "pawlickin'-treats"
+                    / "bird-snacks"
+                    / "dehydrated_treats.md"
+                ).exists()
+            )
 
 
 if __name__ == "__main__":

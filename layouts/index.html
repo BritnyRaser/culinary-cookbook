@@ -58,7 +58,13 @@
         <div class="category-dial-grid">
           {{ range .Site.Taxonomies.categories }}
             {{ $title := .Page.Title }}
-            {{ if and (not (in $title " / ")) (ne $title "Pawlickin' Treats") }}
+            {{ $showOnHomepage := not (in $title " / ") }}
+            {{ range $.Site.Data.toggle_categories }}
+              {{ if or (eq $title .) (strings.HasPrefix $title (printf "%s /" .)) }}
+                {{ $showOnHomepage = false }}
+              {{ end }}
+            {{ end }}
+            {{ if $showOnHomepage }}
               {{ $imagePath := "" }}
 
               {{ with .Page.Params.image }}
@@ -128,7 +134,16 @@
 
       <div class="recipe-grid home-recipe-grid">
         {{ range where .Site.RegularPages "Section" "recipes" }}
-          {{ if not (in (.Params.categories | default (slice)) "Pawlickin' Treats") }}
+          {{ $isToggleRecipe := false }}
+          {{ range .Params.categories }}
+            {{ $recipeCategory := . }}
+            {{ range $.Site.Data.toggle_categories }}
+              {{ if or (eq $recipeCategory .) (strings.HasPrefix $recipeCategory (printf "%s /" .)) }}
+                {{ $isToggleRecipe = true }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ if not $isToggleRecipe }}
           {{ $title := .Title }}
           {{ $recipeKey := .File.TranslationBaseName }}
           {{ $recipeData := index $.Site.Data.recipes $recipeKey }}
@@ -325,7 +340,7 @@
         cards.forEach((card) => {
           const nameText = normalizeText(card.dataset.name || card.querySelector('h3 a')?.textContent || '');
           const cardText = normalizeText(card.textContent || '');
-          const tags = parseTags(card.dataset.tags);
+          const tags = parseTags([card.dataset.tags || '', card.dataset.ingredients || ''].join(','));
           const matchesQuery = !query || nameText.includes(query) || cardText.includes(query);
           const matchesTag = selectedTags.length === 0 || selectedTags.some((tag) => tags.includes(tag));
           const shouldShow = matchesQuery && matchesTag;

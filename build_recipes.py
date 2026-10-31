@@ -12,7 +12,9 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent
 RECIPES_DIR = ROOT / "recipes"
+TOGGLE_RECIPES_DIR = ROOT / "recipes_toggle"
 DATA_DIR = ROOT / "data" / "recipes"
+TOGGLE_CATEGORIES_FILE = ROOT / "data" / "toggle_categories.json"
 CONTENT_RECIPES_DIR = ROOT / "content" / "recipes"
 CATEGORIES_DIR = ROOT / "content" / "categories"
 MARKER_END = set(",.;:!?&")
@@ -339,31 +341,50 @@ def _write_category_indexes(recipe_directories: set[Path]) -> None:
 
 
 def build() -> int:
-    recipe_files = sorted(RECIPES_DIR.rglob("*.md"))
+    recipe_sources = sorted(
+        (
+            source,
+            source.relative_to(source_root),
+            source_root == TOGGLE_RECIPES_DIR,
+        )
+        for source_root in (RECIPES_DIR, TOGGLE_RECIPES_DIR)
+        if source_root.exists()
+        for source in source_root.rglob("*.md")
+    )
+    recipe_files = [source for source, _, _ in recipe_sources]
     if not recipe_files:
-        raise RuntimeError(f"No Markdown recipes found in {RECIPES_DIR}")
+        raise RuntimeError(
+            f"No Markdown recipes found in {RECIPES_DIR} or {TOGGLE_RECIPES_DIR}"
+        )
 
-    parsed_recipes: list[tuple[Path, Path, dict[str, Any]]] = []
+    parsed_recipes: list[tuple[Path, Path, dict[str, Any], bool]] = []
     output_names: set[str] = set()
-    for source in recipe_files:
+    toggle_categories: set[str] = set()
+    for source, relative, is_toggle_recipe in recipe_sources:
         if source.stem in output_names:
             raise RuntimeError(f"Recipe filenames must be unique: {source.stem}")
         output_names.add(source.stem)
-        relative = source.relative_to(RECIPES_DIR)
         data = parse_recipe(source.read_text(encoding="utf-8"), source)
-        parsed_recipes.append((source, relative, data))
+        parsed_recipes.append((source, relative, data, is_toggle_recipe))
+        if is_toggle_recipe and relative.parts:
+            toggle_categories.add(_display_name(relative.parts[0]))
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
+    TOGGLE_CATEGORIES_FILE.parent.mkdir(parents=True, exist_ok=True)
     CONTENT_RECIPES_DIR.mkdir(parents=True, exist_ok=True)
     (ROOT / "static" / "images").mkdir(parents=True, exist_ok=True)
 
+    TOGGLE_CATEGORIES_FILE.write_text(
+        json.dumps(sorted(toggle_categories), ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
     for generated in DATA_DIR.glob("*.json"):
         generated.unlink()
     for generated in CONTENT_RECIPES_DIR.rglob("*.md"):
         generated.unlink()
 
     recipe_directories: set[Path] = set()
-    for source, relative, data in parsed_recipes:
+    for source, relative, data, _ in parsed_recipes:
         category_path = relative.parent
         json_path = DATA_DIR / f"{source.stem}.json"
         json_path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")

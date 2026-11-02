@@ -1,0 +1,27 @@
+{
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "markup.ingredient.culinary",
+        "settings": {
+          "foreground": "#2563eb",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "markup.cookware.culinary",
+        "settings": {
+          "foreground": "#b91c1c",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "markup.timer.culinary",
+        "settings": {
+          "foreground": "#15803d",
+          "fontStyle": "bold"
+        }
+      }
+    ]
+  }
+}

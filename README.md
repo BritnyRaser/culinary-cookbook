@@ -96,6 +96,27 @@ Underscores are also accepted in place of hyphens in image filenames. Run
 and category indexes under `content/` and recipe data under `data/` should not
 be edited directly.
 
+## VS Code recipe marker colors
+
+The repository includes a small VS Code grammar and workspace colors for
+recipe Markdown: ingredient markers (`@`) are blue, cookware markers (`#`) are
+red, and timers (`~{...}`) are green. The colors match the recipe page. Only
+well-formed markers are colored, so typos and incomplete markers remain
+unhighlighted. The grammar does not replace the recipe build's validation.
+
+VS Code does not automatically load extensions stored in a repository. To
+enable the highlighting, package and install the included local extension once:
+
+1. Install the VS Code Extension Manager if needed: `npm install --global @vscode/vsce`.
+2. From `extensions/culinary-recipe-markers/`, run `vsce package`.
+3. From the repository root, install the resulting file:
+   `code --install-extension extensions/culinary-recipe-markers/culinary-recipe-markers-0.1.0.vsix`.
+4. Reload the VS Code window.
+
+The workspace color settings are in `.vscode/settings.json`; the grammar is in
+`extensions/culinary-recipe-markers/`. Repackage and reinstall the extension
+after changing its grammar.
+
 ## Using the homepage
 
 The homepage shows category tiles and recipe cards. Click a category tile to

@@ -1,0 +1,18 @@
+{
+  "scopeName": "text.markdown.culinary-recipe-markers",
+  "injectionSelector": "L:text.html.markdown - markup.fenced_code - markup.inline.raw",
+  "patterns": [
+    {
+      "name": "markup.ingredient.culinary",
+      "match": "@(?=[^\\s@#~{},.;:!?&{}])(?:[^@#~{}\\n]*?\\{[^}\\n]*\\}|[^\\s@#~{},.;:!?&{}]+(?=$|[\\s,.;:!?&@#~}]))"
+    },
+    {
+      "name": "markup.cookware.culinary",
+      "match": "#(?=[^\\s@#~{},.;:!?&{}])(?:[^@#~{}\\n]*?\\{[^}\\n]*\\}|[^\\s@#~{},.;:!?&{}]+(?=$|[\\s,.;:!?&@#~}]))"
+    },
+    {
+      "name": "markup.timer.culinary",
+      "match": "~\\{[^}\\n]*\\}"
+    }
+  ]
+}

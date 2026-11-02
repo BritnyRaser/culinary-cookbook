@@ -1,0 +1,24 @@
+{
+  "name": "culinary-recipe-markers",
+  "displayName": "Culinary Recipe Markers",
+  "description": "Colorizes ingredient, cookware, and timer markers in cookbook Markdown.",
+  "version": "0.1.0",
+  "publisher": "culinary-cookbook",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "grammars": [
+      {
+        "scopeName": "text.markdown.culinary-recipe-markers",
+        "path": "./syntaxes/recipe-markers.tmLanguage.json",
+        "injectTo": [
+          "text.html.markdown"
+        ]
+      }
+    ]
+  }
+}

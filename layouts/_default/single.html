@@ -13,7 +13,12 @@ step-by-step cooking directions.-->
 <body>
   <header class="site-header">
     <div class="header-row">
-      <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Back to Cookbook</a>
+      <div class="back-links">
+        <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Back to Cookbook</a>
+        {{ with index (.GetTerms "categories") 0 }}
+          <a href="{{ .RelPermalink }}" class="back-link">&larr; Back to Category</a>
+        {{ end }}
+      </div>
 
       <div class="mobile-menu">
         <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">

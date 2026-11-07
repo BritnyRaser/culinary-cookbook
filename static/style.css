@@ -109,6 +109,12 @@ body {
   gap: 1rem;
 }
 
+.back-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .site-header h1 {
   margin: 0;
 }

@@ -1,7 +1,7 @@
 ---
 Title: Teriyaki Chicken Crockpot
 Servings: 1
-Tags: Prospects, Poultry, Asian
+Tags: Asian
 ---
 
 Pat the boneless @Chicken Thighs{2 pounds} dry with paper towels.

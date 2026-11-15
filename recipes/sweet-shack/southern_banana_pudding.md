@@ -1,7 +1,7 @@
 ---
 Title: Southern Banana Pudding
 Servings: 10
-Tags: Sweet Shack, Southern
+Tags: Southern
 Link: https://grilledcheesesocial.com/2024/09/16/southern-banana-pudding-condesned-milk/#recipe
 ---
 

@@ -1,6 +1,6 @@
 ---
 Title: Chicken Bouillon
-Tags: Condiments, Seasoning
+Tags: Seasoning
 ---
 
 Mix in a #large bowl{}:

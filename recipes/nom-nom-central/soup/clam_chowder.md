@@ -1,6 +1,6 @@
 ---
 Title: Clam Chowder
-Tags: Nom Nom Central, Seafood, Soup
+Tags: Seafood
 ---
 
 Saute chopped @Bacon{6 Slices} until crisp in a #large pot{}.  Remove from pan and set aside.

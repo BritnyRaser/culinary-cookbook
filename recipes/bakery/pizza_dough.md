@@ -1,6 +1,6 @@
 ---
 Title: Pizza Dough
-Tags: Bakery, Homemade
+Tags: Homemade
 ---
 
 Mix together:

@@ -1,7 +1,7 @@
 ---
 Title: Spicy Thai Veggie Marinade
 Servings: 1 servings
-Tags: Prospects, Thai, Sauce
+Tags: Thai, Sauce
 Link: https://www.themanual.com/food-and-drink/marinades-for-beef-pork-chicken-seafood-veggies/
 ---
 

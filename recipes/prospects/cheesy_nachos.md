@@ -1,6 +1,6 @@
 ---
 Title: Cheesy Nachos
-Tags: Prospects, Beef, Mexican
+Tags: Beef, Mexican
 ---
 
 Make Birra with Sauce

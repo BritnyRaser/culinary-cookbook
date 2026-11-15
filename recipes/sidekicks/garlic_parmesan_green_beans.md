@@ -1,6 +1,5 @@
 --- 
 Title: Garlic Parmesan Green Beans
-Tags: Sidekicks
 ---
 
 Set oven to 425F.

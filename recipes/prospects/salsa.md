@@ -1,7 +1,7 @@
 ---
 Title: Salsa
 Servings: 6 servings
-Tags: Prospects, Mexican
+Tags: Mexican
 Link: https://www.cookingclassy.com/fresh-homemade-salsa/
 ---
 

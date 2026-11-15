@@ -1,7 +1,7 @@
 ---
 Title: Aged Eggnog
 Servings: 8-10 servings
-Tags: Prospects, American, Cocktail
+Tags: American, Cocktail
 Link: https://altonbrown.com/recipes/aged-eggnog/
 ---
 

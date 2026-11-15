@@ -1,6 +1,5 @@
 ---
 Title: Dehydrate Bird Feet
-Tags: Pawlickin' Treats
 ---
 
 Remove @Bird Feet{} from the body using #shears{}.

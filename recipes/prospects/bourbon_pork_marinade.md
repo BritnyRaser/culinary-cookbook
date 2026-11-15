@@ -1,7 +1,7 @@
 ---
 Title: Bourbon Pork Marinade
 Servings: 1 servings
-Tags: Prospects, American, Sauce
+Tags: American, Sauce
 Link: https://www.themanual.com/food-and-drink/marinades-for-beef-pork-chicken-seafood-veggies/
 ---
 

@@ -1,6 +1,5 @@
 --- 
 Title: Cheesy Bacon Squash
-Tags: Sidekicks
 ---
 
 Mix in #Dutch Oven{}:

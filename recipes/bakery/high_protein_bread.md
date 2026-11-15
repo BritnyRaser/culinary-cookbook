@@ -1,7 +1,7 @@
 ---
 Title: High Protein Bread
 Servings: 1 loaf
-Tags: Bakery, Bread, Protein
+Tags: Bread, Protein
 Link: https://www.biggerbolderbaking.com/protein-bread-recipe/#wprm-recipe-container-57536
 ---
 

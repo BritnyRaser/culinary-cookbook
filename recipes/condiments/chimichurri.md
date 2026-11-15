@@ -1,7 +1,7 @@
 ---
 Title: Chimichurri
 Servings: 4 servings
-Tags: Condiments, Argentinian, Sauce
+Tags: Argentinian, Sauce
 Link: https://www.simplyrecipes.com/recipes/chimichurri/
 ---
 

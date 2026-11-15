@@ -1,6 +1,6 @@
 ---
 Title: Garlic Cloud Bread
-Tags: Prospects, Bakery, Protein
+Tags: Bakery, Protein
 ---
 
 Whisk @Egg Whites{1 cup} until they whisk peaks/thickened like whipped cream.

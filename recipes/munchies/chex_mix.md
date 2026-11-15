@@ -1,7 +1,7 @@
 ---
 Title: Chex Mix
 Servings: 10 servings
-Tags: Munchies, Homemade
+Tags: Homemade
 ---
 
 Oven set at 250

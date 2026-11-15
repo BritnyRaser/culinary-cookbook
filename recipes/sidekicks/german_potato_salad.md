@@ -1,6 +1,6 @@
 --- 
 Title: German Potato Salad
-Tags: Sidekicks, Homemade, German
+Tags: Homemade, German
 ---
 
 Boil @Red Potatoes{5 lbs} until soft & peel while warm

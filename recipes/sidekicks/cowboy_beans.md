@@ -1,7 +1,7 @@
 --- 
 Title: Cowboy Beans
 Servings: 8
-Tags: Sidekicks, Beef, Pork
+Tags: Beef, Pork
 Link: https://www.allrecipes.com/recipe/13795/calico-beans/
 ---
 

@@ -1,6 +1,5 @@
 --- 
 Title: Stuffed Mushrooms
-Tags: Sidekicks
 ---
 
 In #bowl{} mix together @Cheddar Cheese{1 cup}, @Butter{2 Tablespoons}, minced @Garlic{5 cloves}, diced @Parsley{1/8 cup}, @Salt, & @Black Pepper.

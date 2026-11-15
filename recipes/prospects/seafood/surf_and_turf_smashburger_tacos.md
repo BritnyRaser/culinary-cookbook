@@ -1,7 +1,7 @@
 ---
 Title: Surf and Turf Smashburger Tacos
 Servings: 4 People
-Tags: Prospects, American, Beef, Seafood, Grilled
+Tags: American, Beef, Grilled
 Link: https://overthefirecooking.com/surf-and-turf-smashburger-tacos/#wprm-recipe-container-23326
 ---
 

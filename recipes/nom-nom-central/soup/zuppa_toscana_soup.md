@@ -1,6 +1,6 @@
 ---
 Title: Zuppa Toscana Soup
-Tags: Nom Nom Central, Pork, Soup
+Tags: Pork
 ---
 
 Set oven to 300F.

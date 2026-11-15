@@ -1,6 +1,6 @@
 ---
 Title: Fruity Pebbles Rice Krispy Treats
-Tags: Munchies, Homemade
+Tags: Homemade
 ---
 
 Take a #9 x 13 inch pan{} and grease it with @butter. 

@@ -1,6 +1,5 @@
 --- 
 Title: Texas Roadhouse Rolls
-Tags: Bakery
 ---
 
 In #mixing bowl{} mix together 100F @Milk{1 cup}, @Sugar{1/3 cup}, & @Yeast{1 packet or 2 1/4 tsp}. Let sit for 5 minutes until foamy.

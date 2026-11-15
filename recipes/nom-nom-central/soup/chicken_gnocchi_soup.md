@@ -1,6 +1,6 @@
 ---
 Title: Chicken Gnocchi Soup
-Tags: Nom Nom Central, Poultry, Soup
+Tags: Poultry
 ---
 
 In #large pot{}, heat @Oil{1 Tablespoon} over medium heat; add @Onion{1/2}, @Garlic{3 Cloves}, diced @Chicken{4 breasts}, and shredded @Carrots{1/2 cup}.

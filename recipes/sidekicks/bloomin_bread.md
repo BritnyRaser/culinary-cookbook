@@ -1,7 +1,6 @@
 --- 
 Title: Bloomin' Bread
 Servings: 8
-Tags: Sidekicks
 Link: https://www.allrecipes.com/recipe/13795/calico-beans/
 ---
 

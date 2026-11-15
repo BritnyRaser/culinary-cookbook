@@ -1,6 +1,6 @@
 ---
 Title: Fluffy Dumplings
-Tags: Bakery, Soup
+Tags: Soup
 ---
 
 Mix together:

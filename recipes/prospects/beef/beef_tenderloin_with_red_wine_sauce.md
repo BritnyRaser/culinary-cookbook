@@ -1,7 +1,7 @@
 ---
 Title: Beef Tenderloin with Red Wine Sauce
 Servings: 4-6 servings
-Tags: Prospects, American, Beef
+Tags: American
 Link: https://www.onceuponachef.com/recipes/roast-beef-tenderloin-wine-sauce.html
 ---
 

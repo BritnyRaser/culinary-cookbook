@@ -1,7 +1,7 @@
 ---
 Title: Peruvian Chicken Drumsticks with Green Sauce
 Servings: 4 People
-Tags: Prospects, Peruvian, Poultry, Grilled
+Tags: Peruvian, Grilled
 Link: https://overthefirecooking.com/butterflied-peruvian-chicken-drumsticks-with-green-sauce/
 ---
 

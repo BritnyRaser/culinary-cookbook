@@ -1,6 +1,6 @@
 --- 
 Title: Creamy Garlic Mushrooms
-Tags: Prospects, Sidekicks
+Tags: Sidekicks
 ---
 
 Saute @Mushrooms{1 pack} with @Butter.

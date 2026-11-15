@@ -1,7 +1,7 @@
 ---
 Title: Alfredo Sauce
 Servings: 8 servings
-Tags: Condiments, Italian-American
+Tags: Italian-American
 Link: https://therecipecritic.com/the-best-homemade-alfredo-sauce-ever/
 ---
 

@@ -1581,6 +1581,17 @@
             {{ $recipeKey := .File.TranslationBaseName }}
             {{ $recipeData := index $.Site.Data.recipes $recipeKey }}
             {{ with $recipeData.metadata.map.tags }}{{ $recipeTags = . }}{{ else }}{{ with $recipeData.metadata.map.Tags }}{{ $recipeTags = . }}{{ end }}{{ end }}
+            {{ $recipeCategories := slice }}
+            {{ range .Params.categories }}
+              {{ $categoryParts := split . " / " }}
+              {{ range $index, $categoryPart := $categoryParts }}
+                {{ if gt $index 0 }}
+                  {{ $recipeCategories = $recipeCategories | append $categoryPart }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+            {{ $recipeCategories = uniq $recipeCategories }}
+            {{ $recipeCategoryNames := delimit $recipeCategories ", " }}
             {{ $ingredientNames := slice }}
             {{ with $recipeData.ingredients }}
               {{ range . }}
@@ -1613,7 +1624,7 @@
               {{ end }}
             {{ end }}
 
-            <article class="recipe-card category-card" data-name="{{ $recipeTitle }}" data-tags="{{ $recipeTags }}" data-ingredients="{{ $ingredientTags }}">
+            <article class="recipe-card category-card" data-name="{{ $recipeTitle }}" data-tags="{{ $recipeTags }}" data-categories="{{ $recipeCategoryNames }}" data-ingredients="{{ $ingredientTags }}">
               <a href="{{ .RelPermalink }}" class="recipe-image-link">
                 {{ with $recipeImage }}
                   <img src="{{ . | relURL }}" alt="{{ $recipeTitle }}" class="recipe-image">
@@ -1756,8 +1767,9 @@
           const cardText = normalizeText(card.textContent || '');
           const combinedTags = [card.dataset.tags || '', card.dataset.ingredients || ''].join(',');
           const tags = parseTags(combinedTags);
+          const categories = parseTags(card.dataset.categories || '');
           const matchesQuery = !query || nameText.includes(query) || cardText.includes(query);
-          const matchesTag = selectedTags.length === 0 || selectedTags.every((tag) => tags.includes(tag));
+          const matchesTag = selectedTags.length === 0 || selectedTags.every((tag) => tags.includes(tag) || categories.includes(tag));
           const shouldShow = matchesQuery && matchesTag;
           card.style.display = shouldShow ? '' : 'none';
           if (shouldShow) visibleCount += 1;

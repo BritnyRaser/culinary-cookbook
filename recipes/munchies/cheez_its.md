@@ -1,7 +1,6 @@
 ---
 Title: Cheez-Its
 Servings: 1
-Tags: Munchies
 Link: https://nobunplease.com/my-crispy-cheddar-crisps/
 ---
 

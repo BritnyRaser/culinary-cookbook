@@ -1,7 +1,7 @@
 ---
 Title: Thai Basil Fried Rice
 Servings: 2-3 people
-Tags: Nom Nom Central, Thai, Seafood
+Tags: Thai
 Link: https://seonkyounglongest.com/thai-basil-fried-rice/
 ---
 

@@ -1,7 +1,6 @@
 ---
 Title: Puppy Chow Mix
 Servings: 1
-Tags: Munchies
 ---
 
 Melt the @Peanut Butter{3/4 cup}, @Chocolate Chips{1 cup}, and @Butter{1/4 cup} in a #medium saucepan{} over low heat, stirring constantly until smooth.

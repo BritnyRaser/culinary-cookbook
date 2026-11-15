@@ -1,7 +1,7 @@
 --- 
 Title: Brazilian Lemonade
 Servings: 5 cups
-Tags: Mystery Mixers, Brazilian
+Tags: Brazilian
 Link: https://braziliankitchenabroad.com/brazilian-lemonade/
 ---
 

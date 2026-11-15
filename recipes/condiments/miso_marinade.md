@@ -1,7 +1,7 @@
 ---
 Title: Miso Marinade
 Servings: 1 servings
-Tags: Condiments, Japanese, Sauce
+Tags: Japanese, Sauce
 Link: https://www.themanual.com/food-and-drink/marinades-for-beef-pork-chicken-seafood-veggies/
 ---
 

@@ -1,7 +1,6 @@
 --- 
 Title: Garlic Pesto Mushrooms
 Servings: 4
-Tags: Sidekicks
 ---
 
 Heat @Butter{2 Tablespoons} & @Olive Oil{1 Tablespoon} in a #large skillet{} over medium heat until hot and foaming.

@@ -1,6 +1,5 @@
 --- 
 Title: Enoki Mushrooms with Sauce
-Tags: Sidekicks
 ---
 
 Be gentle when handling these @Enoki Mushrooms{14 oz}.  Trim away about 1 inch of the root section. Use your fingers to tear the Enoki Mushrooms into small bute size bundles and line them up neatly.  Rinse clean and drain.

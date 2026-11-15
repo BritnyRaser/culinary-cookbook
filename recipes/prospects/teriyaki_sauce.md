@@ -1,7 +1,7 @@
 ---
 Title: Teriyaki Sauce
 Servings: 1 cup
-Tags: Prospects, Japanese, Sauce
+Tags: Japanese, Sauce
 Link: https://www.justonecookbook.com/teriyaki-sauce/
 ---
 

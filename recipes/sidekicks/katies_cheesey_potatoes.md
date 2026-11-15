@@ -1,6 +1,5 @@
 --- 
 Title: Katie's Cheesey Potatoes
-Tags: Sidekicks
 ---
 
 Mix @Cream of Chicken{10 oz} & @Sour Cream{12 oz}.

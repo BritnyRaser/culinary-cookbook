@@ -1,7 +1,7 @@
 ---
 Title: Mississippi Pot Roast
 Servings: 8 servings
-Tags: Prospects, Beef, Slow Cooker, American
+Tags: Slow Cooker, American
 Link: https://www.spendwithpennies.com/mississippi-pot-roast/
 ---
 

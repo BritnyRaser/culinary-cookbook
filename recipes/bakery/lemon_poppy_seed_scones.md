@@ -1,7 +1,7 @@
 ---
 Title: Lemon Poppy Seed Scones
 Servings: 8 scones
-Tags: Bakery, American
+Tags: American
 Link: https://www.shugarysweets.com/lemon-scones/comment-page-1/#comments
 ---
 

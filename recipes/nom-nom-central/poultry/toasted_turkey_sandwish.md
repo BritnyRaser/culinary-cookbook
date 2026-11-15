@@ -1,6 +1,5 @@
 ---
 Title: Toasted Turkey Sandwich
-Tags: Nom Nom Central, Poultry
 ---
 
 Lay out the Flatbread

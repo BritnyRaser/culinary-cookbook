@@ -1,7 +1,7 @@
 ---
 Title: Grilled PB & J Sandwich
 Servings: 1
-Tags: American, Nom Nom Central
+Tags: American
 ---
 
 Put @Jam on 1 side of a @Bread Slice{2}

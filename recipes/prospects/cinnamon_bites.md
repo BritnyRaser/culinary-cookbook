@@ -1,6 +1,6 @@
 ---
 Title: Cinnamon Bites
-Tags: Prospects, Bakery, Protein
+Tags: Bakery, Protein
 ---
 
 Mix in a #bowl:

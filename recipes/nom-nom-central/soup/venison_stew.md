@@ -1,6 +1,6 @@
 ---
 Title: Venison Stew
-Tags: American, Nom Nom Central, Wild Game, Venison, Soup
+Tags: American, Wild Game, Venison
 ---
 
 Season the diced @Venison{2 lbs} with:

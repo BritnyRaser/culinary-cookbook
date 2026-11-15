@@ -1,7 +1,7 @@
 ---
 Title: Pumpkin Pie Fluff
 Servings: 1
-Tags: Prospects, Sweet Shack
+Tags: Sweet Shack
 ---
 
 Mix in #large bowl{} until smooth: 

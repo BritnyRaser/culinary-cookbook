@@ -120,11 +120,11 @@
           <input id="recipe-search" type="text" aria-label="Search recipes by name" placeholder="Search recipes" />
         </label>
 
-        <div class="control tag-search-control" aria-label="Filter recipes by tag">
+        <div class="control tag-search-control" aria-label="Filter recipes by tags or categories">
           <div class="tag-filter-layout">
-            <span class="control-label">Filter by tags</span>
+            <span class="control-label">Filter by tags or categories</span>
             <div id="tag-search-shell" class="tag-search-shell">
-              <input id="tag-search" type="text" aria-label="Search tags" placeholder="Search tags" />
+              <input id="tag-search" type="text" aria-label="Search tags or categories" placeholder="Search tags or categories" />
             </div>
             <div id="tag-suggestions" class="tag-suggestions" hidden></div>
             <div id="selected-tags" class="selected-tags" aria-live="polite"></div>
@@ -149,6 +149,15 @@
           {{ $recipeData := index $.Site.Data.recipes $recipeKey }}
           {{ $tags := "" }}
           {{ with $recipeData.metadata.map.tags }}{{ $tags = . }}{{ else }}{{ with $recipeData.metadata.map.Tags }}{{ $tags = . }}{{ end }}{{ end }}
+          {{ $recipeCategories := slice }}
+          {{ range .Params.categories }}
+            {{ $categoryParts := split . " / " }}
+            {{ range $categoryParts }}
+              {{ $recipeCategories = $recipeCategories | append . }}
+            {{ end }}
+          {{ end }}
+          {{ $recipeCategories = uniq $recipeCategories }}
+          {{ $categoryNames := delimit $recipeCategories ", " }}
           {{ $ingredientNames := slice }}
           {{ with $recipeData.ingredients }}
             {{ range . }}
@@ -184,7 +193,7 @@
             {{ end }}
           {{ end }}
 
-          <article class="recipe-card home-recipe-card" data-name="{{ $title }}" data-tags="{{ $tags }}" data-ingredients="{{ $ingredientTags }}">
+          <article class="recipe-card home-recipe-card" data-name="{{ $title }}" data-tags="{{ $tags }}" data-categories="{{ $categoryNames }}" data-ingredients="{{ $ingredientTags }}">
             <a href="{{ .RelPermalink }}" class="recipe-image-link">
               {{ with $recipeImage }}
                 <img src="{{ . | relURL }}" alt="{{ $title }}" class="recipe-image">
@@ -257,7 +266,7 @@
       const getUniqueTags = () => {
         const uniqueTags = new Set();
         cards.forEach((card) => {
-          const combinedTags = [card.dataset.tags || '', card.dataset.ingredients || ''].join(',');
+          const combinedTags = [card.dataset.tags || '', card.dataset.categories || '', card.dataset.ingredients || ''].join(',');
           parseTags(combinedTags).forEach((tag) => uniqueTags.add(tag));
         });
         return Array.from(uniqueTags).sort();
@@ -340,7 +349,7 @@
         cards.forEach((card) => {
           const nameText = normalizeText(card.dataset.name || card.querySelector('h3 a')?.textContent || '');
           const cardText = normalizeText(card.textContent || '');
-          const tags = parseTags([card.dataset.tags || '', card.dataset.ingredients || ''].join(','));
+          const tags = parseTags([card.dataset.tags || '', card.dataset.categories || '', card.dataset.ingredients || ''].join(','));
           const matchesQuery = !query || nameText.includes(query) || cardText.includes(query);
           const matchesTag = selectedTags.length === 0 || selectedTags.some((tag) => tags.includes(tag));
           const shouldShow = matchesQuery && matchesTag;

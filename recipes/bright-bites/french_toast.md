@@ -1,6 +1,6 @@
 ---
 title: French Toast
-tags: American, Bright Bites
+tags: American
 ---
 
 Crack @Eggs{3-4} onto a #plate or #bowl

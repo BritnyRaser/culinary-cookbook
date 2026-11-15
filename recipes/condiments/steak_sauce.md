@@ -1,7 +1,7 @@
 ---
 Title: Steak Sauce
 Servings: 1
-Tags: Condiments, High Protein
+Tags: High Protein
 ---
 
 Mix together:

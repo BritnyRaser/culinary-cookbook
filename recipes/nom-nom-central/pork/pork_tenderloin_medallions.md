@@ -1,6 +1,6 @@
 ---
 Title: Pork Tenderloin Medallions
-Tags: American, Nom Nom Central, Pork
+Tags: American
 ---
 
 Slice the @Pork Tenderloin{2-4 lbs} into medallions. Pound each piece with a #mallet{} until it is about 1/8 inch thick.

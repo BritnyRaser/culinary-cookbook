@@ -1,7 +1,6 @@
 ---
 Title: Venison Snack Sticks
 Servings: 12 servings
-Tags: Munchies 
 ---
 
 MH:

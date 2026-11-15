@@ -1,6 +1,6 @@
 ---
 Title: Pakistani Chicken Tikka
-Tags: Prospects, Pakistani, Poultry
+Tags: Pakistani
 ---
 
 Mix together in a #large bowl{}:

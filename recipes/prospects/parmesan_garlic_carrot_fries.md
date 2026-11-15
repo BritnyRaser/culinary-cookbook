@@ -1,6 +1,6 @@
 ---
 Title: Parmesan Garlic Carrot Fries
-Tags: Prospects, Sidekicks
+Tags: Sidekicks
 ---
 
 Set oven to 400F.

@@ -4,4 +4,5 @@ subcategories:
   - "Beef"
   - "Poultry"
   - "Seafood"
+  - "Soup"
 ---

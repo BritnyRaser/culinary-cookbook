@@ -98,6 +98,8 @@ Underscores are also accepted in place of hyphens in image filenames. After
 adding or removing recipe files under either source folder, do these steps
 before committing:
 
+### Build and deploy
+Run the builder to refresh the generated category indexes and recipe data used by the site.
 1. Run the builder from the repository root. In Windows PowerShell:
 
 ```powershell
@@ -109,16 +111,17 @@ before committing:
 2. Check the printed recipe count and category tree. Review the generated
    changes under `content/` and `data/`; do not edit those generated files
    directly. A category disappears when no recipes remain in its folder or
-   subfolders.
+   sub-folders.
 3. Commit the recipe and image changes along with the intended generated
    changes, then push to `main` to deploy the site.
+
 
 ## VS Code recipe marker colors
 The repository includes a small VS Code grammar and workspace colors for
 recipe Markdown: ingredient markers (`@`) are blue, cookware markers (`#`) are
 red, and timers (`~{...}`) are green. The colors match the recipe page. Only
 well-formed markers are colored, so typos and incomplete markers remain
-unhighlighted. The grammar does not replace the recipe build's validation.
+un-highlighted. The grammar does not replace the recipe build's validation.
 
 VS Code does not automatically load extensions stored in a repository. Make
 sure `extensions/culinary-recipe-markers/culinary-recipe-markers-0.1.0.vsix`

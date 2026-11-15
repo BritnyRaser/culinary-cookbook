@@ -1,5 +1,5 @@
 ---
-Title: Tourin Soup
+Title: Tourin Garlic Soup
 Tags: Prospects, Sidekicks
 Link: https://www.bbc.co.uk/food/recipes/tourin_soup_82584 & https://www.tasty-lowcarb.com/french-garlic-soup/
 ---

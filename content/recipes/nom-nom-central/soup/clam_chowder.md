@@ -1,5 +1,5 @@
 ---
 title: "Clam Chowder"
 categories:
-  - "Nom Nom Central / Seafood"
+  - "Nom Nom Central / Soup"
 ---

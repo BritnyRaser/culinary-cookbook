@@ -1,5 +1,5 @@
 ---
 title: "Zuppa Toscana Soup"
 categories:
-  - "Nom Nom Central / Pork"
+  - "Nom Nom Central / Soup"
 ---

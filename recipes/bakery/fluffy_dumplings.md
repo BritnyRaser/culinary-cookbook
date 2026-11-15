@@ -9,4 +9,4 @@ Mix together:
 - @Baking Powder{3 teaspoons}
 - @Milk{1 cup}
 
-As lumpy balls, steam for 15 minutes.   
+As lumpy balls, steam for ~{15 minutes}.   

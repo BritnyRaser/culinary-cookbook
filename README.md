@@ -66,7 +66,7 @@ Tags: Dinner, Poultry
 Link: https://example.com/lemon-herb-chicken
 ---
 
-Preheat oven to 400 degrees F.
+Preheat oven to 400°F.
 
 Season @Chicken{4 breasts} with @Salt and @Pepper, then cook in a #skillet{}.
 Bake for ~{20 minutes}, or until cooked through.
@@ -89,6 +89,9 @@ Notes: Alternatively, cook in an air fryer for ~{18 minutes}.
 - Mark ingredients with `@Name{amount}`, cookware with `#Name{}`, and timers
   with `~{duration}`. Amounts are optional. Empty lines separate numbered
   steps, and consecutive `- ` lines render as bullets within a step.
+- On Windows, press **Windows key + . (period)** to open the symbols panel.
+  Select **Symbols** to insert the degree symbol (`°`) in temperatures such as
+  `425°F`.
 
 The site recognizes `.png`, `.jpg`, `.jpeg`, `.svg`, `.webp`, and `.gif` images.
 Underscores are also accepted in place of hyphens in image filenames. Run
@@ -97,25 +100,44 @@ and category indexes under `content/` and recipe data under `data/` should not
 be edited directly.
 
 ## VS Code recipe marker colors
-
 The repository includes a small VS Code grammar and workspace colors for
 recipe Markdown: ingredient markers (`@`) are blue, cookware markers (`#`) are
 red, and timers (`~{...}`) are green. The colors match the recipe page. Only
 well-formed markers are colored, so typos and incomplete markers remain
 unhighlighted. The grammar does not replace the recipe build's validation.
 
-VS Code does not automatically load extensions stored in a repository. To
-enable the highlighting, package and install the included local extension once:
+VS Code does not automatically load extensions stored in a repository. Make
+sure `extensions/culinary-recipe-markers/culinary-recipe-markers-0.1.0.vsix`
+is committed to the repository so it is available after cloning, then install
+it once:
 
-1. Install the VS Code Extension Manager if needed: `npm install --global @vscode/vsce`.
-2. From `extensions/culinary-recipe-markers/`, run `vsce package`.
-3. From the repository root, install the resulting file:
-   `code --install-extension extensions/culinary-recipe-markers/culinary-recipe-markers-0.1.0.vsix`.
-4. Reload the VS Code window.
+1. In VS Code, open the Extensions view with **Ctrl+Shift+X**.
+2. Select the **...** menu in the Extensions view and choose
+   **Install from VSIX...**.
+3. In the file picker, open the cloned repository's
+   `extensions/culinary-recipe-markers/` folder and select
+   `culinary-recipe-markers-0.1.0.vsix`.
+4. Reload the VS Code window if prompted.
+
+If the VSIX is missing, Windows users can create it from the repository root
+without npm by running
+`powershell -NoProfile -ExecutionPolicy Bypass -File .\extensions\culinary-recipe-markers\package.ps1`.
+Then repeat the install steps above.
+
+Alternatively, from the repository root, run
+`code --install-extension extensions/culinary-recipe-markers/culinary-recipe-markers-0.1.0.vsix`.
 
 The workspace color settings are in `.vscode/settings.json`; the grammar is in
-`extensions/culinary-recipe-markers/`. Repackage and reinstall the extension
-after changing its grammar.
+`extensions/culinary-recipe-markers/`. The included `package.ps1` uses only
+Windows PowerShell and .NET; alternatively, if you already have `vsce`, you
+can run `vsce package` from the extension directory.
+
+## VS Code spelling checks
+
+For spelling checks while writing recipes, install the
+[Code Spell Checker extension](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker).
+It checks Markdown as you type and underlines possible misspellings. Add
+recipe-specific terms to its dictionary when they are flagged incorrectly.
 
 ## Using the homepage
 

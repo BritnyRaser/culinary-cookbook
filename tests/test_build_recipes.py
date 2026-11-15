@@ -1,6 +1,8 @@
 import json
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 from unittest.mock import patch
 
@@ -93,6 +95,73 @@ Step four.
 
 
 class BuildRecipesTests(unittest.TestCase):
+    def test_builds_new_subcategory_into_parent_index_on_first_build(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            recipes_dir = root / "recipes"
+            toggle_recipes_dir = root / "recipes_toggle"
+            nested_recipe = recipes_dir / "nom-nom-central" / "soup" / "venison_stew.md"
+            nested_recipe.parent.mkdir(parents=True)
+            nested_recipe.write_text("---\nTitle: Venison Stew\n---\n\nCook.\n", encoding="utf-8")
+
+            data_dir = root / "data" / "recipes"
+            toggle_categories_file = root / "data" / "toggle_categories.json"
+            content_recipes_dir = root / "content" / "recipes"
+            categories_dir = root / "content" / "categories"
+            output = StringIO()
+            with patch.multiple(
+                build_recipes,
+                ROOT=root,
+                RECIPES_DIR=recipes_dir,
+                TOGGLE_RECIPES_DIR=toggle_recipes_dir,
+                DATA_DIR=data_dir,
+                TOGGLE_CATEGORIES_FILE=toggle_categories_file,
+                CONTENT_RECIPES_DIR=content_recipes_dir,
+                CATEGORIES_DIR=categories_dir,
+            ), redirect_stdout(output):
+                self.assertEqual(build_recipes.build(), 1)
+
+            parent_index = categories_dir / "nom-nom-central" / "_index.md"
+            self.assertIn('  - "Soup"', parent_index.read_text(encoding="utf-8"))
+            self.assertIn("Categories and subcategories:", output.getvalue())
+            self.assertIn("- Nom Nom Central", output.getvalue())
+            self.assertIn("  - Soup", output.getvalue())
+
+    def test_removes_subcategory_after_its_last_recipe_is_deleted(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            recipes_dir = root / "recipes"
+            toggle_recipes_dir = root / "recipes_toggle"
+            soup_recipe = recipes_dir / "nom-nom-central" / "soup" / "venison_stew.md"
+            beef_recipe = recipes_dir / "nom-nom-central" / "beef" / "roast.md"
+            soup_recipe.parent.mkdir(parents=True)
+            beef_recipe.parent.mkdir(parents=True)
+            recipe_contents = "---\nTitle: Demo\n---\n\nCook.\n"
+            soup_recipe.write_text(recipe_contents, encoding="utf-8")
+            beef_recipe.write_text(recipe_contents, encoding="utf-8")
+
+            data_dir = root / "data" / "recipes"
+            toggle_categories_file = root / "data" / "toggle_categories.json"
+            content_recipes_dir = root / "content" / "recipes"
+            categories_dir = root / "content" / "categories"
+            with patch.multiple(
+                build_recipes,
+                ROOT=root,
+                RECIPES_DIR=recipes_dir,
+                TOGGLE_RECIPES_DIR=toggle_recipes_dir,
+                DATA_DIR=data_dir,
+                TOGGLE_CATEGORIES_FILE=toggle_categories_file,
+                CONTENT_RECIPES_DIR=content_recipes_dir,
+                CATEGORIES_DIR=categories_dir,
+            ):
+                build_recipes.build()
+                soup_recipe.unlink()
+                self.assertEqual(build_recipes.build(), 1)
+
+            parent_index = categories_dir / "nom-nom-central" / "_index.md"
+            self.assertNotIn("Soup", parent_index.read_text(encoding="utf-8"))
+            self.assertFalse((categories_dir / "nom-nom-central" / "soup").exists())
+
     def test_builds_toggle_recipes_and_records_their_category_roots(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)

@@ -94,10 +94,24 @@ Notes: Alternatively, cook in an air fryer for ~{18 minutes}.
   `425°F`.
 
 The site recognizes `.png`, `.jpg`, `.jpeg`, `.svg`, `.webp`, and `.gif` images.
-Underscores are also accepted in place of hyphens in image filenames. Run
-`build.sh` after adding a recipe under either source folder; generated pages
-and category indexes under `content/` and recipe data under `data/` should not
-be edited directly.
+Underscores are also accepted in place of hyphens in image filenames. After
+adding or removing recipe files under either source folder, do these steps
+before committing:
+
+1. Run the builder from the repository root. In Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\python.exe build_recipes.py
+```
+
+   In Git Bash or WSL, run `bash build.sh`. If Python is on your `PATH`, you
+   can also run `python build_recipes.py` from PowerShell.
+2. Check the printed recipe count and category tree. Review the generated
+   changes under `content/` and `data/`; do not edit those generated files
+   directly. A category disappears when no recipes remain in its folder or
+   subfolders.
+3. Commit the recipe and image changes along with the intended generated
+   changes, then push to `main` to deploy the site.
 
 ## VS Code recipe marker colors
 The repository includes a small VS Code grammar and workspace colors for

@@ -322,11 +322,23 @@ def _write_recipe_page(path: Path, title: str, categories: list[str]) -> None:
 
 def _write_category_indexes(recipe_directories: set[Path]) -> None:
     for relative_dir in sorted(recipe_directories, key=lambda item: (len(item.parts), str(item))):
+        (CATEGORIES_DIR / relative_dir).mkdir(parents=True, exist_ok=True)
+
+    for index_path in CATEGORIES_DIR.rglob("_index.md"):
+        relative_dir = index_path.parent.relative_to(CATEGORIES_DIR)
+        if relative_dir not in recipe_directories:
+            index_path.unlink()
+
+    for relative_dir in sorted(recipe_directories, key=lambda item: (len(item.parts), str(item))):
         directory = CATEGORIES_DIR / relative_dir
-        directory.mkdir(parents=True, exist_ok=True)
         title = _display_name(relative_dir.name)
         child_directories = sorted(
-            (child for child in directory.iterdir() if child.is_dir()),
+            (
+                child
+                for child in recipe_directories
+                if len(child.parts) == len(relative_dir.parts) + 1
+                and child.parts[:-1] == relative_dir.parts
+            ),
             key=lambda child: _display_name(child.name).casefold(),
         )
         content = ["---", f"title: {_yaml_string(title)}"]
@@ -338,6 +350,15 @@ def _write_category_indexes(recipe_directories: set[Path]) -> None:
             )
         content.append("---")
         (directory / "_index.md").write_text("\n".join(content) + "\n", encoding="utf-8")
+
+    for directory in sorted(
+        (path for path in CATEGORIES_DIR.rglob("*") if path.is_dir()),
+        key=lambda item: len(item.parts),
+        reverse=True,
+    ):
+        relative_dir = directory.relative_to(CATEGORIES_DIR)
+        if relative_dir not in recipe_directories and not any(directory.iterdir()):
+            directory.rmdir()
 
 
 def build() -> int:
@@ -402,6 +423,13 @@ def build() -> int:
 
     _write_category_indexes(recipe_directories)
     print(f"Processed {len(recipe_files)} recipes.")
+    print("Categories and subcategories:")
+    for relative_dir in sorted(
+        recipe_directories,
+        key=lambda item: tuple(_display_name(part).casefold() for part in item.parts),
+    ):
+        indentation = "  " * (len(relative_dir.parts) - 1)
+        print(f"{indentation}- {_display_name(relative_dir.name)}")
     return len(recipe_files)
 
 

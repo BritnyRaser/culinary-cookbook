@@ -13,4 +13,4 @@ Mix together:
 - @Egg{1}
 - @Flour{3.5 cups}
 
-Roll out dough into pizza crust shape and bake at 425° F.
+Roll out dough into pizza crust shape & bake at 425° F.

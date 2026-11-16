@@ -9,9 +9,9 @@ Slice the @red onions{1} as thin as you can.
 
 Stuff all the red onions in the jar of your choice.
 
-In a measuring cup, combine @apple cider vinegar{0.5 cup}, @salt{1 1/2 teaspoons}, @sugar{1 tablespoon}, and @hot water{1 cup}. Stir to dissolve the sugar and salt. Pour the pickling mixture over the sliced onions, making sure they are immersed in the liquid, and let them set for an hour.
+In a measuring cup, combine @apple cider vinegar{0.5 cup}, @salt{1 1/2 teaspoons}, @sugar{1 tablespoon}, & @hot water{1 cup}. Stir to dissolve the sugar & salt. Pour the pickling mixture over the sliced onions, making sure they are immersed in the liquid, & let them set for an hour.
 
-After an hour, cover and store in the fridge for up to 3 weeks.
+After an hour, cover & store in the fridge for up to 3 weeks.
 
 -- Note:
 -- If they look mushy or cloudy, or have a bad odor, toss them out

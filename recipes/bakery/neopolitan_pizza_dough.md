@@ -12,14 +12,14 @@ Cover the bowl with a #damp cloth{} (if the cloth is not damp the dough may dry 
 
 Leave the dough to rest for around ~{1 hour} (the technical term for this process is the Autolyse).
 
-Turn the dough out onto the counter and knead for around ~{5 minutes}. 
+Turn the dough out onto the counter & knead for around ~{5 minutes}. 
 
-Place the dough back into the bowl (or proofing box) and cover tightly.
+Place the dough back into the bowl (or proofing box) & cover tightly.
 
 Leave the dough to proof for around 20 hours at room temperature. 
 
-Divide the dough into 4 equal parts (250g each) using some #kitchen scales{} and a #dough scraper{}. Do this about 4 hours before you intend to cook the pizza. 
+Divide the dough into 4 equal parts (250g each) using some #kitchen scales{} & a #dough scraper{}. Do this about 4 hours before you intend to cook the pizza. 
 
-Place each dough ball into a #small bowl{} (or a proofing box) and cover. Alternatively, use a large tupperware container with a lid, or two smaller ones. 
+Place each dough ball into a #small bowl{} (or a proofing box) & cover. Alternatively, use a large tupperware container with a lid, or two smaller ones. 
 
 Leave the dough balls to proof again for about 4-6 hours.

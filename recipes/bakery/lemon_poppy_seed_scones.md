@@ -7,18 +7,18 @@ Link: https://www.shugarysweets.com/lemon-scones/comment-page-1/#comments
 
 Preheat oven to 400 degrees F.
 
-Combine @Flour{2 cups}, @Sugar{1/2 cup}, @Baking Powder{3 teaspoons}, @Baking Soda{1/2 teaspoon}, @Salt{1/2 teaspoon}, and @Poppy Seeds{1 1/2 Tablespoons} in a #medium bowl{}.
+Combine @Flour{2 cups}, @Sugar{1/2 cup}, @Baking Powder{3 teaspoons}, @Baking Soda{1/2 teaspoon}, @Salt{1/2 teaspoon}, & @Poppy Seeds{1 1/2 Tablespoons} in a #medium bowl{}.
 
-Cut @Butter{6 Tablespoons} into chunks and use a pastry cutter to combine with flour mixture until butter chunks are pea-sized.
+Cut @Butter{6 Tablespoons} into chunks & use a pastry cutter to combine with flour mixture until butter chunks are pea-sized.
 
-Add @Heavy Whipping Cream{2/3 cup}, @Egg{1}, @Lemon Juice{2 Tablespoons}, @Lemon Extract{3 teaspoons} and @Lemon Peel{1 teaspoon}. Mix until just combined.
+Add @Heavy Whipping Cream{2/3 cup}, @Egg{1}, @Lemon Juice{2 Tablespoons}, @Lemon Extract{3 teaspoons} & @Lemon Peel{1 teaspoon}. Mix until just combined.
 
-Turn onto a hard, floured surface and knead until dough forms, about ~{1 minute}. Dough will be a little sticky. Form into a ball and pat down into a circle about 1 inch thick.
+Turn onto a hard, floured surface & knead until dough forms, about ~{1 minute}. Dough will be a little sticky. Form into a ball & pat down into a circle about 1 inch thick.
 
-Cut circle into eight triangles and place on a lightly greased baking sheet.
+Cut circle into eight triangles & place on a lightly greased baking sheet.
 
-Bake for ~{20 minutes}, or until bottoms of scones are lightly browned and a #toothpick comes out clean. Transfer to #cooling rack{}.
+Bake for ~{20 minutes}, or until bottoms of scones are lightly browned & a #toothpick comes out clean. Transfer to #cooling rack{}.
 
-Let scones cool for ~{20 minutes}. While they are cooling, prepare the glaze. Combine @Water{1/2 Tablespoon}, @Lemon Juice{1 Tablespoon}, and @Lemon Peel{1 teaspoon} in #small bowl{}. Add @Powdered Sugar{1 cup} 1 tablespoon at a time, mix thoroughly before adding more.
+Let scones cool for ~{20 minutes}. While they are cooling, prepare the glaze. Combine @Water{1/2 Tablespoon}, @Lemon Juice{1 Tablespoon}, & @Lemon Peel{1 teaspoon} in #small bowl{}. Add @Powdered Sugar{1 cup} 1 tablespoon at a time, mix thoroughly before adding more.
 
 Once cool, spoon glaze onto scones.

@@ -5,7 +5,7 @@ Tags: Sidekicks
 
 Saute @Mushrooms{1 pack} with @Butter.
 
-Add small diced @Onion{1} & @Garlic{1} and cook until softened.
+Add small diced @Onion{1} & @Garlic{1} & cook until softened.
 
 Add to the pan:
 - @Heavy Cream{1/2 cup}
@@ -15,4 +15,4 @@ Add to the pan:
 - @Soy Sauce{1 Tablespoon}
 - @Worcestershire{2 Tablespoons}
 
-Bring to a boil and then reduce to a simmer for 5 minutes.
+Bring to a boil & then reduce to a simmer for 5 minutes.

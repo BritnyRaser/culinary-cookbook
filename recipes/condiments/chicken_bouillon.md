@@ -15,4 +15,4 @@ Mix in a #large bowl{}:
 
 Optional: Can blend in a food processor for a finer texture. 
 
-Store in an airtight container. Use as a seasoning for soups, stews, and other dishes.
+Store in an airtight container. Use as a seasoning for soups, stews, & other dishes.

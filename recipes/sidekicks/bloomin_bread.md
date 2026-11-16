@@ -12,7 +12,7 @@ Whisk @Oil{3 Tablespoons}, minced @Garlic{5 Tablespoons} & @Onion{5 Tablespoons}
 
 Slice @Prosciutto
 
-Apply the Oil Paste to top of crevasses of th Bread while stuffing in Prosciutto and @Cheese{2 cups}
+Apply the Oil Paste to top of crevasses of th Bread while stuffing in Prosciutto & @Cheese{2 cups}
 
 Bake for ~{15 minutes}
 

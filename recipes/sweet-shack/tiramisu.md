@@ -4,19 +4,19 @@ Servings: 10
 Tags: Italian
 ---
 
-Separate the @Egg{5} Yolks from the Egg Whites and place the Egg Whites in the #Kitchen Aid bowl{} and Egg Yolks into a separate #flat container{1}.
+Separate the @Egg{5} Yolks from the Egg Whites & place the Egg Whites in the #Kitchen Aid bowl{} & Egg Yolks into a separate #flat container{1}.
 
-Add @Sugar{1 Tablespoon} to the bowl with the Egg Whites and beat on high until stiff peaks form about ~{3-4 minutes}. Set aside in another #bowl{1}.
+Add @Sugar{1 Tablespoon} to the bowl with the Egg Whites & beat on high until stiff peaks form about ~{3-4 minutes}. Set aside in another #bowl{1}.
 
-Pour the @Sugar{1/4 cup} into the bowl with the Egg Yolks and beat them on high unti the mixture is pale yellow and thickened about ~{5 minutes}.
+Pour the @Sugar{1/4 cup} into the bowl with the Egg Yolks & beat them on high unti the mixture is pale yellow & thickened about ~{5 minutes}.
 
-Mix the @Mascarpone Cheese{1 lb} into the egg yolk mixture until smooth and creamy about ~{2 minutes}.
+Mix the @Mascarpone Cheese{1 lb} into the egg yolk mixture until smooth & creamy about ~{2 minutes}.
 
 Fold the egg whites into the mascarpone mixture until well combined, being careful not to deflate the egg whites.
 
-Rinse out the flat container and mix in the @Espresso Powder{1/2 cup}, room temp @Water{2 cup}, and @Marsala Wine{1 cup}
+Rinse out the flat container & mix in the @Espresso Powder{1/2 cup}, room temp @Water{2 cup}, & @Marsala Wine{1 cup}
 
-Dunk the @Ladyfinger Cookies{1 package} into the espresso mixture for ~{1-2 seconds} and place them in a #rectangulardish{}. Spread half of the mascarpone mixture over the ladyfingers and smooth it out with a #spatula{}. Repeat the process with the remaining ladyfingers and mascarpone mixture.
+Dunk the @Ladyfinger Cookies{1 package} into the espresso mixture for ~{1-2 seconds} & place them in a #rectangulardish{}. Spread half of the mascarpone mixture over the ladyfingers & smooth it out with a #spatula{}. Repeat the process with the remaining ladyfingers & mascarpone mixture.
 
 Refrigerate the tiramisu for at least ~{4 hours} or overnight to allow the flavors to meld together.
 

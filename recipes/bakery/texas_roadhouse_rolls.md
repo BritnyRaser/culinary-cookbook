@@ -8,7 +8,7 @@ Add @Eggs{1}, melted @Butter{1/3 cup}, @Salt{1 tsp}, & @Flour{3.5 cups}. Mix unt
 
 Let rise for 1 hour in a warm place until doubled in size.
 
-Then roll out to half inch thick, cut into 16 pieces, and shape into rolls. Place on a greased #baking sheet{} and brush tops with butter. 
+Then roll out to half inch thick, cut into 16 pieces, & shape into rolls. Place on a greased #baking sheet{} & brush tops with butter. 
 
 Let rise for another 30 minutes. 
 

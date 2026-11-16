@@ -7,12 +7,12 @@ Lay out the Flatbread
 Layer on top on 1 side:
 Thin cut @Oven-Roasted Turkey{16 oz}
 Optional to add @Bacon.
-Sauted diced @Red Peppers{1/2} and @Spinach
+Sauted diced @Red Peppers{1/2} & @Spinach
 @Sharp Cheddar Jack Cheese{}
 
 Toast in Air Fryer at ~385°F for {7 minutes}
 
 Layer with:
-@Salt and @Pepper
+@Salt & @Pepper
 @Fried Onion Cripsies{}
 @Sauce

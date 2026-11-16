@@ -3,8 +3,8 @@ Title: Puppy Chow Mix
 Servings: 1
 ---
 
-Melt the @Peanut Butter{3/4 cup}, @Chocolate Chips{1 cup}, and @Butter{1/4 cup} in a #medium saucepan{} over low heat, stirring constantly until smooth.
+Melt the @Peanut Butter{3/4 cup}, @Chocolate Chips{1 cup}, & @Butter{1/4 cup} in a #medium saucepan{} over low heat, stirring constantly until smooth.
 
-Once melted pour over the @Chex Cereal{8 cups} in a #large bowl{} and stir until the cereal is evenly coated.
+Once melted pour over the @Chex Cereal{8 cups} in a #large bowl{} & stir until the cereal is evenly coated.
 
-Then pour @Powdered Sugar{}  into a #large brown paper bag{} and add the cereal mixture. Seal the bag and shake until the cereal is evenly coated with powdered sugar.
+Then pour @Powdered Sugar{}  into a #large brown paper bag{} & add the cereal mixture. Seal the bag & shake until the cereal is evenly coated with powdered sugar.

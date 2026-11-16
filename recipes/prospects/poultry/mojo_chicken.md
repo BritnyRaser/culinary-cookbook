@@ -5,7 +5,7 @@ Tags: Cuban, Grilled
 Link: https://overthefirecooking.com/grilled-mojo-chicken/
 ---
 
-Add all of your ingredients for the Mojo Marinade (except @Serrano Peppers{3} & @Olive Oil{1.5 tbsp}) to a #blender{}: @Navel Oranges{4}, @Lime Juice and Zest{5 medium limes juiced, 2 zested}, @Grapefruit{1 juiced}, @Cilantro{1/4 cup}, @Garlic Cloves{10-12}, @Fresh Oregano{2 tbsp}, @Garlic Herb Seasoning{1.5 tbsp}, @Ground Cumin{1.5 tbsp}, @Kosher Salt{2 tsp}, and @Black Pepper{2 tsp}.
+Add all of your ingredients for the Mojo Marinade (except @Serrano Peppers{3} & @Olive Oil{1.5 tbsp}) to a #blender{}: @Navel Oranges{4}, @Lime Juice & Zest{5 medium limes juiced, 2 zested}, @Grapefruit{1 juiced}, @Cilantro{1/4 cup}, @Garlic Cloves{10-12}, @Fresh Oregano{2 tbsp}, @Garlic Herb Seasoning{1.5 tbsp}, @Ground Cumin{1.5 tbsp}, @Kosher Salt{2 tsp}, & @Black Pepper{2 tsp}.
 
 Blend for ~{4-5 seconds} in order to begin the mixture, then add the @Olive Oil{1.5 tbsp}.
 
@@ -13,9 +13,9 @@ Blend until fully immersed, then once done add the sliced @Serrano Peppers{3}.
 
 Add 1/4 cup of the marinade into a separate #small bowl{} to reserve for later before adding to chicken.
 
-Add your @Chicken Quarters{5-6} to a #food safe bowl{} and pour the remaining marinade over the top and mix thoroughly.
+Add your @Chicken Quarters{5-6} to a #food safe bowl{} & pour the remaining marinade over the top & mix thoroughly.
 
-Cover and place in the fridge, along with reserve marinade, to sit for ~{4 hours} but ideally overnight.
+Cover & place in the fridge, along with reserve marinade, to sit for ~{4 hours} but ideally overnight.
 
 Preheat your #grill{} for two-zone indirect cooking at 300 degrees F.
 
@@ -27,4 +27,4 @@ Cook for ~{1-1.5 hours} until they reach 170 degrees F internal. About ~{5 minut
 
 Pull the chicken off once done to rest for ~{5 minutes}.
 
-Serve the chicken with @White Rice{}, @Black Beans{}, sliced limes, and @Chopped Cilantro{for garnish}.
+Serve the chicken with @White Rice{}, @Black Beans{}, sliced limes, & @Chopped Cilantro{for garnish}.

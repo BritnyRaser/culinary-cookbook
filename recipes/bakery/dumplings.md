@@ -9,4 +9,4 @@ Mix together:
 - @Salt{1 teaspoon}
 - @Baking Powder{1 teaspoon}
 
-Drop by spoonfuls into boiling water. Cook until they float to the surface and are cooked through, about ~{20 minutes}.
+Drop by spoonfuls into boiling water. Cook until they float to the surface & are cooked through, about ~{20 minutes}.

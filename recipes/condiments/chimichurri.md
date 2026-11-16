@@ -5,12 +5,12 @@ Tags: Argentinian, Sauce
 Link: https://www.simplyrecipes.com/recipes/chimichurri/
 ---
 
-Finely chop @Fresh Parsley{1 cup}, @Garlic{3-4 cloves}, and @Fresh Oregano{2 tbsp} (or use @Dried Oregano{2 tsp}). 
+Finely chop @Fresh Parsley{1 cup}, @Garlic{3-4 cloves}, & @Fresh Oregano{2 tbsp} (or use @Dried Oregano{2 tsp}). 
 
-Place the chopped herbs and garlic into a #small bowl{}.
+Place the chopped herbs & garlic into a #small bowl{}.
 
-In a #measuring cup{}, stir together @Extra Virgin Olive Oil{1/2 cup}, @Red Wine Vinegar{2 tbsp}, @Coarse Salt{1 tsp}, @Ground Black Pepper{1/4 tsp}, and @Red Pepper Flakes{1/4 tsp}.
+In a #measuring cup{}, stir together @Extra Virgin Olive Oil{1/2 cup}, @Red Wine Vinegar{2 tbsp}, @Coarse Salt{1 tsp}, @Ground Black Pepper{1/4 tsp}, & @Red Pepper Flakes{1/4 tsp}.
 
-Pour the oil mixture over the parsley mixture and stir until well combined.
+Pour the oil mixture over the parsley mixture & stir until well combined.
 
-Adjust seasoning to taste and serve immediately or refrigerate.
+Adjust seasoning to taste & serve immediately or refrigerate.

@@ -7,14 +7,14 @@ Link: https://www.biggerbolderbaking.com/protein-bread-recipe/#wprm-recipe-conta
 
 Preheat the oven to 375°F Line a 9x5 inch #loaf pan{} with #parchment paper{}. Set aside.
 
-In a #large bowl{}, whisk together the @flour{3 cups}, @baking powder{1 Tablespoon}, @salt{1 1/4 teaspoons} and @baking soda{1/2 teaspoon}.
+In a #large bowl{}, whisk together the @flour{3 cups}, @baking powder{1 Tablespoon}, @salt{1 1/4 teaspoons} & @baking soda{1/2 teaspoon}.
 
-In a separate #bowl, mix together the @milk{1.5 cups} and @Greek yogurt{3/4 cup}, then pour into the flour mixture.
+In a separate #bowl, mix together the @milk{1.5 cups} & @Greek yogurt{3/4 cup}, then pour into the flour mixture.
 
-Combine the wet and dry ingredients with a #rubber spatula{} until combined, then spread the thick dough evenly into the prepared loaf pan. 
+Combine the wet & dry ingredients with a #rubber spatula{} until combined, then spread the thick dough evenly into the prepared loaf pan. 
 
-Brush the top with a little milk and bake for ~{55 minutes}, or until a tester inserted in the center comes out clean. If the top starts to get too dark, cover with a piece of foil for the remainder of the baking time.
+Brush the top with a little milk & bake for ~{55 minutes}, or until a tester inserted in the center comes out clean. If the top starts to get too dark, cover with a piece of foil for the remainder of the baking time.
 
 Let cool for ~{10 minutes} before transferring to a #wire rack{} to cool completely.
 
-Enjoy the bread as is or toasted with butter and jam. Store covered for up to 3 days at room temperature. It also freezes really well for up to 8 weeks. 
+Enjoy the bread as is or toasted with butter & jam. Store covered for up to 3 days at room temperature. It also freezes really well for up to 8 weeks. 

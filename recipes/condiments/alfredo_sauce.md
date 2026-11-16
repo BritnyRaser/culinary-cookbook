@@ -5,12 +5,12 @@ Tags: Italian-American
 Link: https://therecipecritic.com/the-best-homemade-alfredo-sauce-ever/
 ---
 
-Add @Unsalted Butter{1/2 cup}, @Heavy Whipping Cream{2 cups}, and @Cream Cheese{4 oz} to a #medium saucepan{} and whisk over medium heat until melted.
+Add @Unsalted Butter{1/2 cup}, @Heavy Whipping Cream{2 cups}, & @Cream Cheese{4 oz} to a #medium saucepan{} & whisk over medium heat until melted.
 
-Add @Minced Garlic{1/2 tsp}, @Garlic Powder{1 tsp}, @Italian Seasoning{1 tsp}, @Salt{1/4 tsp}, and @Ground Black Pepper{1/4 tsp}.
+Add @Minced Garlic{1/2 tsp}, @Garlic Powder{1 tsp}, @Italian Seasoning{1 tsp}, @Salt{1/4 tsp}, & @Ground Black Pepper{1/4 tsp}.
 
 Continue to whisk until smooth before gradually adding @Freshly Grated Parmesan Cheese{1 cup}.
 
-Bring to a simmer and continue to whisk for ~{3-5 minutes} or until it thickens.
+Bring to a simmer & continue to whisk for ~{3-5 minutes} or until it thickens.
 
-Toss it with your favorite pasta and serve immediately.
+Toss it with your favorite pasta & serve immediately.

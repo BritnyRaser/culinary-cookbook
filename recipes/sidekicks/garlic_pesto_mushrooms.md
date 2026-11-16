@@ -3,13 +3,13 @@ Title: Garlic Pesto Mushrooms
 Servings: 4
 ---
 
-Heat @Butter{2 Tablespoons} & @Olive Oil{1 Tablespoon} in a #large skillet{} over medium heat until hot and foaming.
+Heat @Butter{2 Tablespoons} & @Olive Oil{1 Tablespoon} in a #large skillet{} over medium heat until hot & foaming.
 
 Add the halved @Mushrooms{1 lb} in a single layer. Let them cook without stirring for 3 minutes until the undersides are golden brown. 
 
-Flip and cook for another 3 minutes until the other side is also golden brown and any released moisture has completely evaporated from the pan.
+Flip & cook for another 3 minutes until the other side is also golden brown & any released moisture has completely evaporated from the pan.
 
-Turn the heat down to medium, stir in the minced @Garlic{3 cloves} and saute for 1 minute until highly fragrant.
+Turn the heat down to medium, stir in the minced @Garlic{3 cloves} & saute for 1 minute until highly fragrant.
 
 Remove the skillet from the heat source. 
 

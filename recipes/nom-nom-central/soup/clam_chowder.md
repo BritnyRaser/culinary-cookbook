@@ -3,7 +3,7 @@ Title: Clam Chowder
 Tags: Seafood
 ---
 
-Saute chopped @Bacon{6 Slices} until crisp in a #large pot{}.  Remove from pan and set aside.
+Saute chopped @Bacon{6 Slices} until crisp in a #large pot{}.  Remove from pan & set aside.
 
 Saute chopped @Celery{2}, @Carrots{2}, & @Onion{1} in the Bacon grease until soften.
 
@@ -15,6 +15,6 @@ Bring to a light boil.
 
 Add chopped @Potatoes{6} to the pot then the @Milk{2 cups} & @Heavy Cream{1 cup}.
 
-Bring to a boil, reduce heat, cover, and simmer until potatoes are soft about 20 minutes.
+Bring to a boil, reduce heat, cover, & simmer until potatoes are soft about 20 minutes.
 
-Season to taste with Salt & Black Pepper.  Garnish with the Bacon and @Cilantro{}. 
+Season to taste with Salt & Black Pepper.  Garnish with the Bacon & @Cilantro{}. 

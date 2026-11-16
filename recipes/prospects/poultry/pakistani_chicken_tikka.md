@@ -12,7 +12,7 @@ Mix together in a #large bowl{}:
 - @Chicken Tikka Spices{1 packet}
 - @Lemon{1/2} juice
 
-Put @Chicken Thighs{4 lbs} in the bowl and @Salt{}.  Mix until all chicken is coated. Cover and place in the fridge to marinate for ~{4 hours} but ideally overnight.
+Put @Chicken Thighs{4 lbs} in the bowl & @Salt{}.  Mix until all chicken is coated. Cover & place in the fridge to marinate for ~{4 hours} but ideally overnight.
 
 Put in oven at 375°F for 45 minutes or until internal temperature reaches 165°F.  Flip chicken halfway through cooking.
 
@@ -24,4 +24,4 @@ Put in #food processor{}:
 @Lemon{1} juice
 @Salt{}
 
-Optional: Brush each one Chicken with Garlic Cilantro Butter before serving.  Serve the Chicken and dip into the Garlic Cilantro Yogurt Sauce.
+Optional: Brush each one Chicken with Garlic Cilantro Butter before serving.  Serve the Chicken & dip into the Garlic Cilantro Yogurt Sauce.

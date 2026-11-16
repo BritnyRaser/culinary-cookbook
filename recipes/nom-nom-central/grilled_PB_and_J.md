@@ -14,4 +14,4 @@ Place the breads together so spread is on the inside
 
 Heat a #pan to medium heat
 
-Place the sandwich onto the hot pan and flip when necessary to reach golden sides
+Place the sandwich onto the hot pan & flip when necessary to reach golden sides
